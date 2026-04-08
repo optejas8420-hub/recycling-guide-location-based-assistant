@@ -1,43 +1,595 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EcoSort — Materials</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><style>
-:root {
-  --green-50:#f0faf4; --green-100:#d4f0e0; --green-200:#a8e0c0; --green-400:#3daa6e;
-  --green-600:#1e7a48; --green-800:#0d4a2a; --green-900:#062b18; --earth-50:#faf7f2;
-  --earth-100:#ede8df; --earth-200:#d6ccbb; --earth-400:#a08c6e; --earth-600:#6b5c42;
-  --amber:#e8a020; --red:#d94040; --blue:#2c7dd4; --text-primary:#0d1a12;
-  --text-secondary:#3d5246; --text-muted:#6b8478; --bg:#f8fdf9; --surface:#ffffff;
-  --border:rgba(30,122,72,0.12); --border-md:rgba(30,122,72,0.22); --radius-sm:8px;
-  --radius-md:14px; --radius-lg:22px; --radius-xl:32px; --shadow-sm:0 1px 4px rgba(13,74,42,0.08);
-  --shadow-md:0 4px 20px rgba(13,74,42,0.12); --shadow-lg:0 12px 40px rgba(13,74,42,0.16);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastic Materials - RecycleAssist</title>
+    <style>
+        /* --- General Basic Styles --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f7fbf8; /* Very light green background */
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Buttons --- */
+        .btn-primary {
+            background-color: #5bb46b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #4a9e59;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c7a3f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: bold;
+            color: #555;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #5bb46b;
+        }
+
+        .nav-links a.active {
+            color: #2c7a3f;
+            border-bottom: 2px solid #5bb46b;
+        }
+
+        /* --- Breadcrumbs & Page Header --- */
+        .page-top {
+            padding: 30px 0 20px;
+        }
+
+        .breadcrumbs {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumbs a:hover {
+            color: #5bb46b;
+            text-decoration: underline;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+            color: #1a1a1a;
+        }
+
+        .page-title p {
+            color: #666;
+            margin: 0 0 30px 0;
+        }
+
+        /* --- Search and Filter Bar --- */
+        .search-filter-container {
+            display: flex;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .main-search {
+            flex-grow: 1;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            padding-left: 15px;
+            border-left: 1px solid #eee;
+        }
+
+        .chip {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .chip.active {
+            background-color: #5bb46b;
+            color: white;
+        }
+
+        .chip:hover:not(.active) {
+            background-color: #e4e4e4;
+        }
+
+        /* --- Main Layout (Sidebar + Grid) --- */
+        .content-layout {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            height: fit-content;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            background-color: #fafafa;
+        }
+
+        /* --- Material Grid --- */
+        .material-grid {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            /* Flex layout to keep the button at the bottom */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: #dcedc8;
+        }
+
+        .item-card.highlight {
+            background-color: #f0fdf4;
+            border-color: #a5d6a7;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .item-card h3 {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #222;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .badge.recyclable {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge.not-recyclable {
+            background-color: #f5f5f5;
+            color: #757575;
+        }
+
+        .item-card p {
+            font-size: 12px;
+            color: #666;
+            margin: 0 0 15px 0; /* Added bottom margin */
+            line-height: 1.4;
+            flex-grow: 1; /* Pushes the button below to the very bottom */
+        }
+
+        /* --- NEW View More Button --- */
+        .btn-view-more {
+            background-color: transparent;
+            color: #5bb46b;
+            border: 1px solid #5bb46b;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: auto; /* Aligns to the bottom of the flex container */
+        }
+
+        .btn-view-more:hover {
+            background-color: #5bb46b;
+            color: white;
+        }
+
+        /* --- Load More & Quick Tip --- */
+        .bottom-actions {
+            text-align: center;
+            padding: 20px 0 60px 0;
+        }
+
+        .btn-load-more {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .btn-load-more:hover {
+            background-color: #f5f5f5;
+        }
+
+        .quick-tip-strip {
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        /* --- Modern Footer (From Previous) --- */
+       /* --- Simple Footer --- */
+        .simple-footer {
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            padding: 40px 0 20px 0;
+            text-align: center;
+            color: #555;
+            margin-top: 40px; /* Pushes footer down from main content */
+        }
+
+        .footer-contact h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .footer-contact p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+        }
+
+        .social-links {
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #5bb46b;
+            font-weight: bold;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #3d8749;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 13px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin: 0;
+        }
+    </style>
+
+<style id="mobile-responsive-fix">
+@media (max-width: 768px){
+  html,body{width:100%;overflow-x:hidden;}
+  body{padding-top:72px !important;}
+  .back-button{top:12px;left:12px;padding:10px 14px;font-size:13px;max-width:calc(100vw - 24px);}
+  img,svg,video,canvas,iframe{max-width:100%;height:auto;}
+  .container,.wrapper,.content,.hero,.section,.card-grid,.grid,.row,[class*="container"],[class*="wrapper"]{width:min(100%,calc(100vw - 24px)) !important;max-width:100% !important;margin-left:auto !important;margin-right:auto !important;}
+  .grid,.row,[class*="grid"],[class*="cards"],[class*="items"],[class*="list"]{display:grid !important;grid-template-columns:1fr !important;gap:16px !important;}
+  h1{font-size:clamp(1.8rem,7vw,2.5rem) !important;line-height:1.2 !important;}
+  h2{font-size:clamp(1.4rem,5.8vw,2rem) !important;line-height:1.25 !important;}
+  h3{font-size:clamp(1.1rem,4.8vw,1.4rem) !important;}
+  p,li,a,button,input,textarea,select{font-size:16px !important;}
+  section,header,main,footer,nav,article,aside,div{max-width:100%;}
+  table{display:block;overflow-x:auto;white-space:nowrap;}
+  [style*="width:"]{max-width:100% !important;}
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
-a{text-decoration:none;color:inherit} button,input,select{font:inherit}
-.site-shell{min-height:100vh;display:flex;flex-direction:column} main{flex:1}
-nav{position:sticky;top:0;left:0;right:0;z-index:100;background:rgba(248,253,249,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;color:var(--green-600)}
-.nav-logo-icon{width:34px;height:34px;background:var(--green-600);border-radius:10px;display:flex;align-items:center;justify-content:center}
-.nav-logo-icon svg{width:20px;height:20px;fill:#fff}.nav-links{display:flex;align-items:center;gap:6px}
-.nav-link{padding:7px 16px;border-radius:var(--radius-md);font-size:.875rem;font-weight:400;color:var(--text-secondary);transition:all .18s}
-.nav-link:hover,.nav-link.active{background:var(--green-100);color:var(--green-600);font-weight:500}
-.nav-cta{padding:8px 20px;background:var(--green-600);color:#fff;border:none;border-radius:var(--radius-md);font-size:.875rem;font-weight:500;transition:background .18s}
-.nav-cta:hover{background:var(--green-800)}
-.hero{background:linear-gradient(160deg,var(--green-800) 0%,var(--green-600) 55%,var(--green-400) 100%);position:relative;overflow:hidden;padding:80px 2rem 100px;text-align:center;color:#fff}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-.hero-eyebrow{display:inline-block;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:6px 18px;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;color:rgba(255,255,255,.9)}
-.hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.5rem,6vw,4.2rem);line-height:1.12;margin-bottom:20px}.hero h1 em{font-style:italic;color:#a8e0c0}.hero p{font-size:1.1rem;color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 36px;line-height:1.6}
-.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}.btn-primary{display:inline-block;padding:14px 32px;background:#fff;color:var(--green-600);border:none;border-radius:var(--radius-md);font-size:.95rem;font-weight:500;box-shadow:var(--shadow-md);transition:all .18s}.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}.btn-secondary-outline{display:inline-block;padding:14px 32px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:var(--radius-md);font-size:.95rem;font-weight:400;transition:all .18s}.btn-secondary-outline:hover{background:rgba(255,255,255,.12)}
-.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:60px;flex-wrap:wrap}.hero-stat{text-align:center}.hero-stat .num{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:700;color:#fff}.hero-stat .lbl{font-size:.8rem;color:rgba(255,255,255,.65);margin-top:2px}
-.search-bar-wrap{max-width:640px;margin:-30px auto 20px;position:relative;z-index:10;padding:0 2rem}.search-bar{display:flex;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);border:1px solid var(--border);overflow:hidden}.search-bar input{flex:1;padding:16px 20px;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text-primary);background:transparent}.search-bar input::placeholder{color:var(--text-muted)}.search-bar button{padding:12px 22px;margin:5px;background:var(--green-600);color:#fff;border:none;border-radius:var(--radius-md);font-size:.9rem;font-weight:500}
-.section{padding:72px 2rem;max-width:1100px;margin:0 auto}.section-header{margin-bottom:40px}.section-eyebrow{font-size:.78rem;font-weight:500;color:var(--green-400);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}.section-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:500;color:var(--text-primary);line-height:1.2}.section-title em{font-style:italic;color:var(--green-600)}.section-sub{font-size:1rem;color:var(--text-muted);margin-top:10px;max-width:560px}
-.categories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}.category-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 18px 20px;text-align:center;position:relative;overflow:hidden;transition:all .22s}.category-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--cat-color,var(--green-400));transform:scaleX(0);transition:transform .22s;transform-origin:left}.category-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--border-md)}.category-card:hover::before{transform:scaleX(1)}.cat-icon{width:56px;height:56px;border-radius:16px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px}.cat-name{font-weight:500;font-size:.95rem;color:var(--text-primary)}.cat-sub{font-size:.78rem;color:var(--text-muted);margin-top:4px}.cat-recyclable-pct{margin-top:10px;font-size:.75rem;font-weight:500;color:var(--green-600)}
-.impact-strip{background:var(--green-900);color:#fff;padding:56px 2rem;text-align:center}.impact-strip h2{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;margin-bottom:12px}.impact-strip h2 strong{font-weight:700}.impact-strip p{color:rgba(255,255,255,.6);font-size:.95rem;margin-bottom:36px}.impact-nums{display:flex;justify-content:center;gap:60px;flex-wrap:wrap}.impact-num .n{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:var(--green-200)}.impact-num .u{font-size:1.1rem;color:rgba(255,255,255,.5)}
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}.tip-card,.tip-full-card,.progress-card,.log-form,.material-header,.steps-section,.mistakes-section,.details-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg)}.tip-card{padding:24px;transition:all .2s}.tip-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-md)}.tip-tag{display:inline-block;font-size:.72rem;font-weight:500;padding:4px 12px;border-radius:100px;margin-bottom:14px}.tip-card h3,.tip-full-card h3{font-weight:500;font-size:1rem;margin-bottom:8px;line-height:1.4}.tip-card p{font-size:.875rem;color:var(--text-muted);line-height:1.6}.tip-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:.85rem;font-weight:500;color:var(--green-600)}
-.material-page-wrap,.tips-page{max-width:900px;margin:0 auto;padding:48px 2rem 80px}.profile-page{max-width:780px;margin:0 auto;padding:48px 2rem 80px}.material-header{padding:36px 40px;margin-bottom:28px;display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;border-radius:var(--radius-xl)}.material-icon-big{width:80px;height:80px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0}.material-info{flex:1;min-width:200px}.material-info h1{font-family:'Fraunces',serif;font-size:2rem;font-weight:500;margin-bottom:6px}.recyclable-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:100px;font-size:.9rem;font-weight:500;margin-bottom:14px}.recyclable-badge.yes{background:var(--green-100);color:var(--green-600)}.recyclable-badge.partial{background:#fef3d0;color:#8a5c00}.material-desc{font-size:.95rem;color:var(--text-secondary);line-height:1.65}
-.steps-section,.mistakes-section,.details-section{padding:28px 32px;margin-bottom:20px}.section-h2{font-weight:500;font-size:1.05rem;margin-bottom:20px;display:flex;align-items:center;gap:10px}.steps-list,.mistakes-list{display:flex;flex-direction:column;gap:14px}.step-item{display:flex;gap:16px;align-items:flex-start;padding:14px 16px;background:var(--green-50);border-radius:var(--radius-md);border:1px solid var(--green-100)}.step-num{width:28px;height:28px;background:var(--green-600);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:1px}.step-text{font-size:.93rem;color:var(--text-secondary);line-height:1.5}.mistake-item{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#fdf5f5;border-radius:var(--radius-md);border:1px solid #f5d0d0}.mistake-text{font-size:.9rem;color:#7a3030;line-height:1.5}.subcats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.subcat-card{padding:14px 16px;background:var(--green-50);border-radius:var(--radius-md);border:1px solid var(--green-100);display:flex;align-items:center;gap:10px}.subcat-card .name{font-size:.88rem;font-weight:500;color:var(--green-800)}
-.map-page-layout{display:grid;grid-template-columns:360px 1fr;min-height:calc(100vh - 64px)}.map-sidebar{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:24px}.map-sidebar h2{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:500;margin-bottom:6px}.map-sidebar p{font-size:.85rem;color:var(--text-muted);margin-bottom:20px}.filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.chip{padding:6px 14px;border-radius:100px;border:1px solid var(--border-md);font-size:.78rem;font-weight:500;color:var(--text-secondary);background:var(--surface)}.chip.active{background:var(--green-100);color:var(--green-600);border-color:var(--green-200)}.center-card{border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-bottom:14px;transition:all .18s}.center-card:hover{border-color:var(--green-400);background:var(--green-50)}.cc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}.cc-name{font-weight:500;font-size:.95rem}.cc-dist{font-size:.75rem;font-weight:500;color:var(--green-600);background:var(--green-100);padding:3px 10px;border-radius:100px}.cc-addr{font-size:.8rem;color:var(--text-muted);margin-bottom:8px}.cc-materials{display:flex;gap:6px;flex-wrap:wrap}.cc-mat-tag{font-size:.7rem;padding:3px 9px;border-radius:100px;background:var(--earth-100);color:var(--earth-600)}.cc-hours{font-size:.78rem;margin-top:8px;color:var(--text-muted)}.cc-hours .open{color:var(--green-600);font-weight:500}.cc-actions{display:flex;gap:8px;margin-top:12px}.btn-sm{display:inline-block;padding:7px 14px;border-radius:var(--radius-sm);font-size:.8rem;font-weight:500;border:1px solid;transition:all .15s}.btn-sm.primary{background:var(--green-600);color:#fff;border-color:var(--green-600)}.btn-sm.outline{background:transparent;color:var(--green-600);border-color:var(--green-200)}
-.map-canvas{background:#e8f0e8;position:relative;overflow:hidden;min-height:560px}.map-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(30,122,72,0.06) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(30,122,72,0.06) 40px),var(--green-50);position:relative}.map-road-h{position:absolute;height:12px;background:#fff;opacity:.7;border-top:1px solid rgba(30,122,72,0.12);border-bottom:1px solid rgba(30,122,72,0.12)}.map-road-v{position:absolute;width:12px;background:#fff;opacity:.7;border-left:1px solid rgba(30,122,72,0.12);border-right:1px solid rgba(30,122,72,0.12)}.map-block{position:absolute;background:rgba(30,122,72,0.08);border-radius:6px;border:1px solid rgba(30,122,72,0.1)}.map-pin{position:absolute;transform:translate(-50%,-100%)}.map-pin-inner{width:40px;height:40px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.2)}.map-pin-inner .icon{transform:rotate(45deg);font-size:1rem}.map-controls{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;gap:8px}.map-ctrl-btn{width:36px;height:36px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm)}.map-legend{position:absolute;bottom:20px;left:20px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;box-shadow:var(--shadow-sm)}.map-legend-title{font-size:.75rem;font-weight:500;margin-bottom:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}.legend-item{display:flex;align-items:center;gap:9px;font-size:.8rem;color:var(--text-secondary);margin-bottom:7px}.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.tips-page-header{margin-bottom:40px}.tips-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}.tab-btn{padding:9px 20px;border-radius:var(--radius-md);border:1px solid var(--border);background:var(--surface);font-size:.875rem;font-weight:400;color:var(--text-secondary)}.tab-btn.active{background:var(--green-600);color:#fff;border-color:var(--green-600);font-weight:500}.tip-full-card{padding:28px 32px;margin-bottom:18px}.tip-full-card h3{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500;margin-bottom:14px}.tip-full-card p{font-size:.93rem;color:var(--text-secondary);line-height:1.7;margin-bottom:14px}.dos-donts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}.dos-donts-col h4{font-size:.88rem;font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:7px}.do-item,.dont-item{display:flex;gap:9px;align-items:flex-start;font-size:.85rem;line-height:1.5;color:var(--text-secondary);margin-bottom:8px}.do-dot{width:7px;height:7px;background:var(--green-400);border-radius:50%;flex-shrink:0;margin-top:6px}.dont-dot{width:7px;height:7px;background:#d94040;border-radius:50%;flex-shrink:0;margin-top:6px}
-.profile-hero{background:linear-gradient(135deg,var(--green-800),var(--green-600));border-radius:var(--radius-xl);padding:36px;margin-bottom:24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}.avatar{width:72px;height:72px;background:rgba(255,255,255,.25);border-radius:50%;border:3px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;font-weight:700}.profile-info{flex:1}.profile-info h2{font-family:'Fraunces',serif;font-size:1.6rem;color:#fff;font-weight:500;margin-bottom:4px}.profile-level{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border-radius:100px;padding:5px 14px;font-size:.82rem;color:rgba(255,255,255,.9);font-weight:500}.profile-stats{display:flex;gap:32px;flex-wrap:wrap}.pstat .n{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:#fff}.pstat .l{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:2px}.progress-card{padding:24px 28px;margin-bottom:20px}.progress-card h3,.log-form h3{font-weight:500;font-size:1rem;margin-bottom:18px}.progress-row{margin-bottom:16px}.pr-header{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.85rem;color:var(--text-secondary)}.pr-header strong{color:var(--text-primary);font-weight:500}.progress-bar{height:8px;background:var(--green-100);border-radius:100px;overflow:hidden}.progress-fill{height:100%;background:var(--green-400);border-radius:100px}.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}.badge-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 14px;text-align:center;transition:all .18s}.badge-card.locked{opacity:.45}.badge-emoji{font-size:2rem;margin-bottom:8px}.badge-name{font-size:.82rem;font-weight:500;color:var(--text-primary);margin-bottom:4px}.badge-desc{font-size:.72rem;color:var(--text-muted);line-height:1.4}.earned-tag{display:inline-block;font-size:.65rem;font-weight:500;background:var(--green-100);color:var(--green-600);padding:2px 8px;border-radius:100px;margin-top:6px}.log-form{padding:24px 28px;margin-bottom:20px}.form-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}.form-group{flex:1;min-width:140px}.form-group label{display:block;font-size:.8rem;color:var(--text-muted);margin-bottom:6px;font-weight:500}.form-group select,.form-group input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text-primary);background:var(--bg);outline:none}.btn-log{padding:10px 22px;background:var(--green-600);color:#fff;border:none;border-radius:var(--radius-sm);font-size:.9rem;font-weight:500}.log-table{width:100%;border-collapse:collapse;font-size:.875rem}.log-table th{text-align:left;padding:10px 14px;background:var(--green-50);font-weight:500;color:var(--text-secondary);border-bottom:1px solid var(--border)}.log-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
-footer{background:var(--green-900);color:rgba(255,255,255,.7);padding:48px 2rem 32px;margin-top:0}.footer-inner{max-width:1100px;margin:0 auto}.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:24px}.footer-brand-name{font-family:'Fraunces',serif;font-size:1.4rem;color:#fff;font-weight:700;margin-bottom:12px}.footer-desc{font-size:.85rem;line-height:1.7}.footer-col h4{font-size:.8rem;font-weight:500;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}.footer-col a{display:block;font-size:.85rem;margin-bottom:8px;color:rgba(255,255,255,.6)}.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:12px}.footer-mission{font-size:.8rem;color:rgba(255,255,255,.45)}
-@media (max-width:768px){.map-page-layout{grid-template-columns:1fr}.map-canvas{min-height:400px}.footer-top{grid-template-columns:1fr 1fr}.dos-donts{grid-template-columns:1fr}nav .nav-links{display:none}}
-</style></head><body><div class="site-shell"><nav><a class="nav-brand" href="./home.html"><div class="nav-logo-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 19h10v-2.5l3 3.5-3 3.5V21H5v-6h2v4zm10-14H7V7.5L4 4 7 .5V3h12v6h-2V5zm-8.5 6.5l3-3 3 3-1.5 1.5-1.5-1.5-1.5 1.5L8.5 11.5z"/></svg></div>EcoSort</a><div class="nav-links"><a class="nav-link " href="./home.html">Home</a><a class="nav-link active" href="./materials.html">Materials</a><a class="nav-link " href="./map.html">Find Centers</a><a class="nav-link " href="./tips.html">Tips &amp; Guides</a></div><a class="nav-cta" href="./profile.html">My Profile</a></nav><main><div class="material-page-wrap"><div class="section-header"><div class="section-eyebrow">Materials guide</div><h1 class="section-title">Recycling categories &amp; <em>preparation steps</em></h1><p class="section-sub">All original material sections are divided into one dedicated page here.</p></div><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#e6f1fb">🧴</div><div class="material-info"><h1>Plastic Recycling</h1><div class="recyclable-badge partial">Mostly — depends on type</div><p class="material-desc">Mostly — depends on type</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle Plastic</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">False</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">False</div></div><div class="step-item"><div class="step-num">5</div><div class="step-text">False</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Rinse the item thoroughly — remove all food or liquid residue.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove the cap or lid (recycle separately if possible).</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Flatten or compress to save bin space.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Check the recycling symbol (♻️ 1 or 2 = usually accepted).</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Place in the correct coloured recycling bin.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">P</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">l</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">a</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">s</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">t</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#d4f0e0">🍾</div><div class="material-info"><h1>Glass Recycling</h1><div class="recyclable-badge yes">Yes — almost always</div><p class="material-desc">Yes — almost always</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle Glass</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">False</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">False</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove all lids, caps, and corks (recycle separately).</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Rinse thoroughly — no need to be spotless.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Sort by colour if your local centre requires it: clear, green, brown.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Do not break glass — whole pieces are sorted more safely.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Drop at a glass bank or kerbside collection.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">G</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">l</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">a</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">s</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#faeeda">📄</div><div class="material-info"><h1>Paper Recycling</h1><div class="recyclable-badge yes">Yes — if clean and dry</div><p class="material-desc">Yes — if clean and dry</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle Paper</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">False</div></div><div class="step-item"><div class="step-num">5</div><div class="step-text">False</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove any plastic windows from envelopes.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Flatten cardboard boxes completely.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Keep paper dry — wet paper fibres are shorter and harder to recycle.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove sticky tape, staples if possible.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Bundle or bag paper to prevent it blowing away.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">P</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">a</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">p</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">e</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">r</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#ede8df">🥫</div><div class="material-info"><h1>Metal Recycling</h1><div class="recyclable-badge yes">Yes — most metals</div><p class="material-desc">Yes — most metals</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle Metal</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">5</div><div class="step-text">True</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Rinse cans to remove food residue.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Flatten aluminium cans to save space.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Leave aerosol cans intact — never puncture them.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove paper labels if possible.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Take scrap metals to a dedicated metal recycler.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">A</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">l</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">u</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">m</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">i</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#eeedfe">📱</div><div class="material-info"><h1>E-Waste Recycling</h1><div class="recyclable-badge partial">Requires special centre</div><p class="material-desc">Requires special centre</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle E-Waste</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">5</div><div class="step-text">True</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Back up your data and perform a factory reset.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Remove any SIM cards or memory cards.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Find a certified e-waste drop-off centre (use our Map page).</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Package the device carefully to avoid breakage.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Ask if the retailer has a take-back scheme — many do.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">E</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">l</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">e</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">c</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">t</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section><section style="margin-bottom:42px"><div class="material-header"><div class="material-icon-big" style="background:#eaf3de">🍌</div><div class="material-info"><h1>Organics Recycling</h1><div class="recyclable-badge yes">Compostable</div><p class="material-desc">Compostable</p></div></div><div class="steps-section"><div class="section-h2">📋 How to recycle Organics</div><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">2</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">3</div><div class="step-text">True</div></div><div class="step-item"><div class="step-num">4</div><div class="step-text">False</div></div><div class="step-item"><div class="step-num">5</div><div class="step-text">False</div></div></div></div><div class="mistakes-section"><div class="section-h2">⚠️ Common mistakes</div><div class="mistakes-list"><div class="mistake-item"><div>✗</div><div class="mistake-text">Separate food waste from general waste at the source.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Use a countertop caddy with biodegradable liner bags.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Add a mix of green (wet) and brown (dry) materials to compost.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Turn compost every 2-4 weeks to aerate.</div></div><div class="mistake-item"><div>✗</div><div class="mistake-text">Use finished compost to enrich your garden.</div></div></div></div><div class="details-section"><div class="section-h2">📦 Item types</div><div class="subcats-grid"><div class="subcat-card"><div>✓</div><div><div class="name">F</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">o</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">o</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name">d</div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div><div class="subcat-card"><div>✓</div><div><div class="name"> </div><div style="font-size:.72rem;margin-top:3px;color:#1e7a48">Accepted</div></div></div></div></div></section></div></main><footer><div class="footer-inner"><div class="footer-top"><div><div class="footer-brand-name">🌿 EcoSort</div><p class="footer-desc">A location-aware recycling guide designed to reduce contamination, increase awareness, and make sustainable habits effortless for everyone.</p></div><div class="footer-col"><h4>App</h4><a href="./home.html">Home</a><a href="./materials.html">Materials Guide</a><a href="./map.html">Find Centers</a><a href="./tips.html">Recycling Tips</a></div><div class="footer-col"><h4>Learn</h4><a href="./tips.html">What happens after?</a><a href="./tips.html">Reduce &amp; Reuse</a><a href="./tips.html">E-Waste Guide</a><a href="./tips.html">Composting 101</a></div><div class="footer-col"><h4>Connect</h4><a href="./map.html">Submit a Center</a><a href="./materials.html">Report Error</a><a href="./profile.html">Partner With Us</a><a href="./home.html">About EcoSort</a></div></div><div class="footer-bottom"><span>© 2025 EcoSort · Built for a greener planet</span><span class="footer-mission">Our mission: make correct recycling effortless for every household.</span></div></div></footer></div></body></html>
+@media (max-width: 480px){
+  body{padding-top:76px !important;}
+  .back-button{border-radius:14px;}
+}
+</style>
+
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+           <a href="index.html" class="logo">🍃 RecycleAssist</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="materials.html" class="active">Materials</a>
+                <a href="recycling-areas.html">Map</a>
+                <a href="recycling-guide.html">Guides</a>
+            </nav>
+            <button class="btn-primary">Get Started</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-top">
+            <div class="breadcrumbs">
+                <a href="#">Home</a> > <a href="#">Materials</a> > Plastic
+            </div>
+            <div class="page-title">
+                <h1>Plastic Materials</h1>
+                <p>Browse recyclable and non-recyclable plastic items.</p>
+            </div>
+        </div>
+
+        <div class="search-filter-container">
+            <input type="text" class="main-search" placeholder="🔍 Search materials like bottle, straw, container...">
+            <span style="color: #ccc; padding: 0 10px;">|</span>
+            <div class="filter-chips">
+                <button class="chip active">All</button>
+                <button class="chip">Recyclable</button>
+                <button class="chip">Non-Recyclable</button>
+            </div>
+        </div>
+
+        <div class="content-layout">
+            
+            <aside class="sidebar">
+                <div class="filter-group">
+                    <label>Material Type</label>
+                    <select>
+                        <option>Plastic</option>
+                        <option>Paper</option>
+                        <option>Glass</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Recyclable status</label>
+                    <select>
+                        <option>Any</option>
+                        <option>Recyclable</option>
+                        <option>Not recyclable</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sort by</label>
+                    <select>
+                        <option>Most common</option>
+                        <option>A - Z</option>
+                    </select>
+                </div>
+            </aside>
+
+            <section class="material-grid">
+                
+                <div class="item-card">
+                    <div class="item-image">🧴</div>
+                    <h3>PET Bottle</h3>
+                    <span class="badge recyclable">✓ Recyclable</span>
+                    <p>Browse recyclable recyclable (PET Bottle).</p>
+                    <a href="PET-bottel.html" class="btn-view-more">View More</a>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🥤</div>
+                    <h3>Styrofoam Cup</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Rinse retyrofeam recyclable cup items.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🥛</div>
+                    <h3>HDPE Milk Jug</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Trave-recyclable milkti nulcs HDPE Milk Jug.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🧃</div>
+                    <h3>Plastic Straws</h3>
+                    <span class="badge recyclable">✓ Recyclable</span>
+                    <p>Browse restruction for plastic straws.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card highlight">
+                    <div class="item-image" style="background-color: transparent; font-size:40px;">🥡</div>
+                    <h3>PP Food Container</h3>
+                    <span class="badge recyclable">✓ Recyclable</span>
+                    <p>Browse somenhie PP Food Container loriom...</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🚰</div>
+                    <h3>PVC Pipe</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Rluses recyclable and recyclable PVC Pipe.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🫧</div>
+                    <h3>Bubble Wrap</h3>
+                    <span class="badge recyclable">✓ Recyclable</span>
+                    <p>Rinse rnze rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🍦</div>
+                    <h3>Yogurt Cup</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Rinse rnze rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🍴</div>
+                    <h3>Plastic Cutlery</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Tip: Always rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🫙</div>
+                    <h3>Plastic Jug</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Rinse rinee rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🪣</div>
+                    <h3>Plastic Tub</h3>
+                    <span class="badge recyclable">✓ Recyclable</span>
+                    <p>Tip: Always rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-image">🥄</div>
+                    <h3>Plastic Spoons</h3>
+                    <span class="badge not-recyclable">✕ Not recyclable</span>
+                    <p>Tip: Always rinse plastic before recycling.</p>
+                    <button class="btn-view-more">View More</button>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="bottom-actions">
+            <button class="btn-load-more">Load More</button>
+            <br>
+            <div class="quick-tip-strip">
+                Tip: Always rinse plastic before recycling ♻️
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="simple-footer">
+        <div class="container">
+            
+            <div class="footer-contact">
+                <h4>Contact Our Team</h4>
+                <p>Email: hello@recycleassist.com &nbsp;|&nbsp; Phone: (555) 123-4567</p>
+            </div>
+
+            <div class="social-links">
+                <a href="#" title="Instagram">📸 Instagram</a>
+                <a href="#" title="Twitter">🐦 Twitter</a>
+                <a href="#" title="LinkedIn">💼 LinkedIn</a>
+            </div>
+
+            <p class="copyright">&copy; 2026 RecycleAssist. All rights reserved.</p>
+            
+        </div>
+    </footer>
+
+</body>
+</html>

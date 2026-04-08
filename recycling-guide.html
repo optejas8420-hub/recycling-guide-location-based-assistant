@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Guides - EcoCycle</title>
+    <style>
+        /* --- General Reset & Basic Styles --- */
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4fcf6; /* Very light green background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        /* --- Buttons --- */
+        .btn-primary {
+            background-color: #4a9e59;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #3d8249;
+        }
+
+        /* --- Header / Navbar --- */
+        header {
+            background-color: #f4fcf6;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c7a3f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: bold;
+            color: #555;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #4a9e59;
+        }
+
+        .nav-links a.active {
+            color: #2c7a3f;
+            border-bottom: 2px solid #4a9e59;
+        }
+
+        /* --- Page Title --- */
+        .page-header {
+            text-align: center;
+            margin: 30px 0 40px 0;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            margin: 0 0 10px 0;
+            color: #1a1a1a;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* --- Search & Filter Bar --- */
+        .search-filter-bar {
+            display: flex;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 40px;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .filter-btn.active {
+            background-color: #4a9e59;
+            color: white;
+        }
+
+        /* --- Featured Guide (Big Card) --- */
+        .featured-guide {
+            display: flex;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .featured-image {
+            width: 50%;
+            background-color: #dcedc8;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .featured-content {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 28px;
+        }
+
+        .featured-content p {
+            color: #555;
+            margin: 0 0 25px 0;
+            font-size: 16px;
+        }
+
+        /* --- Guides Grid --- */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .guide-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-img {
+            height: 160px;
+            background-color: #e8ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .guide-text {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-text h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        .guide-text p {
+            margin: 0 0 15px 0;
+            color: #666;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+
+        .tag {
+            align-self: flex-start;
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* --- Category Quick Links --- */
+        .category-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-box {
+            flex: 1;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .category-box:hover {
+            border-color: #4a9e59;
+        }
+
+        .category-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Bottom Banners --- */
+        .tip-banner {
+            background-color: #4a9e59;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .info-banner {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-banner h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        .info-banner p {
+            margin: 0;
+            color: #555;
+            font-size: 15px;
+        }
+
+         .simple-footer {
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            padding: 40px 0 20px 0;
+            text-align: center;
+            color: #555;
+        }
+
+        .footer-contact h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .footer-contact p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+        }
+
+        .social-links {
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #5bb46b;
+            font-weight: bold;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #3d8749;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 13px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin: 0;
+        }
+
+    </style>
+
+<style id="back-button-fix-style">
+.back-button{position:fixed;top:20px;left:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:none;border-radius:999px;background:rgba(255,255,255,.92);color:#1f3d2b;font:600 14px/1.2 Arial,sans-serif;box-shadow:0 10px 24px rgba(0,0,0,.14);text-decoration:none;cursor:pointer;-webkit-user-select:none;user-select:none;}
+.back-button:hover{transform:translateY(-1px);background:#ffffff;}
+.back-button:focus-visible{outline:2px solid #4caf50;outline-offset:3px;}
+html,body{cursor:default !important;}
+body *{caret-color:transparent;}
+input,textarea,[],[contenteditable=""]{caret-color:auto !important;cursor:text !important;}
+[]:focus,[contenteditable=""]:focus{outline:none;}
+</style>
+
+</head>
+<body>
+<a class="back-button" href="./index-5.html" aria-label="Go back">&#8592; Back</a>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">🍃 EcoCycle Guides</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="materials.html">Materials</a>
+                <a href="recycling-areas.html">Map</a>
+                <a href="recycling-guide.html" class="active">Guides</a>
+            </nav>
+            <button class="btn-primary">Get Started</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="page-header">
+            <h1>Recycling Tips & Guides</h1>
+            <p>Learn how to recycle correctly and live sustainably</p>
+        </div>
+
+        <div class="search-filter-bar">
+            <input type="text" class="search-input" placeholder="🔍 Search guides like plastic recycling, home tips...">
+            <div class="filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Home Recycling</button>
+                <button class="filter-btn">Plastic</button>
+                <button class="filter-btn">E-waste</button>
+                <button class="filter-btn">Glass</button>
+            </div>
+        </div>
+
+        <div class="featured-guide">
+            <div class="featured-image" style="background-color: #c8e6c9;">
+                ♻️📦
+            </div>
+            <div class="featured-content">
+                <h2>How to Recycle Plastic at Home</h2>
+                <p>A comprehensive step-by-step guide to separating, cleaning, and preparing plastic waste for curb-side pickup.</p>
+                <div>
+                    <a href="#" class="btn-primary">Read Guide</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="guides-grid">
+            
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #e3f2fd;">💻</div>
+                <div class="guide-text">
+                    <h3>The Ultimate Guide to E-Waste Recycling</h3>
+                    <p>The ultimate guide to E-waste to recycle correctly.</p>
+                    <span class="tag">E-waste</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #fff3e0;">🌱</div>
+                <div class="guide-text">
+                    <h3>Simple Composting Tips for Beginners</h3>
+                    <p>Simple composting tips to recycle home waste or composting.</p>
+                    <span class="tag">Composting</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #e8f5e9;">🍾</div>
+                <div class="guide-text">
+                    <h3>Identifying Glass Recycling Symbols</h3>
+                    <p>Identifying glass recycling symbols and shapes.</p>
+                    <span class="tag">Glass</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #f3e5f5;">🪴</div>
+                <div class="guide-text">
+                    <h3>Recycle Ultimate Bopping</h3>
+                    <p>Learn about recycle efforts to recycling and guide to E-waste recycling.</p>
+                    <span class="tag">E-waste</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #e0f2f1;">📰</div>
+                <div class="guide-text">
+                    <h3>Complete Waster Guides</h3>
+                    <p>Recycle a guide processes for how their recycling and a plastic recycle.</p>
+                    <span class="tag">E-waste</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-img" style="background-color: #f1f8e9;">♻️</div>
+                <div class="guide-text">
+                    <h3>Recycler Plastic Recycling</h3>
+                    <p>Complete classied recycling plastic recycling, but some proet and waste.</p>
+                    <span class="tag">Composting</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="category-links">
+            <div class="category-box">
+                <div class="category-icon">🗑️</div>
+                <div>Home Recycling</div>
+            </div>
+            <div class="category-box">
+                <div class="category-icon">🧴</div>
+                <div>Plastic</div>
+            </div>
+            <div class="category-box">
+                <div class="category-icon">💻</div>
+                <div>E-waste</div>
+            </div>
+            <div class="category-box">
+                <div class="category-icon">🍾</div>
+                <div>Glass</div>
+            </div>
+        </div>
+
+        <div class="tip-banner">
+            Tip: Segregate waste at home for better recycling ♻️
+        </div>
+
+        <div class="info-banner">
+            <h3>What happens after recycling?</h3>
+            <p>Learn about the lifecycle of recycled materials, from processing facilities to their reuse in new products, and see how your efforts make a difference.</p>
+        </div>
+
+    </main>
+    <footer class="simple-footer">
+        <div class="container">
+            
+            <div class="footer-contact">
+                <h4>Contact Our Team</h4>
+                <p>Email: hello@recycleassist.com &nbsp;|&nbsp; Phone: (555) 123-4567</p>
+            </div>
+
+            <div class="social-links">
+                <a href="#" title="Instagram">📸 Instagram</a>
+                <a href="#" title="Twitter">🐦 Twitter</a>
+                <a href="#" title="LinkedIn">💼 LinkedIn</a>
+            </div>
+
+            <p class="copyright">&copy; 2026 RecycleAssist. All rights reserved.</p>
+            
+        </div>
+    </footer>
+
+
+<script id="back-button-fix-script">
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('[], [contenteditable=""]').forEach(function(el){
+    if(!el.matches('input, textarea')) el.removeAttribute('contenteditable');
+  });
+  document.querySelectorAll('*').forEach(function(el){
+    if(el.getAttribute('spellcheck') === 'true' && !el.matches('input, textarea, []')) el.removeAttribute('spellcheck');
+    if(el.tabIndex > -1 && !el.matches('a, button, input, textarea, select')) el.tabIndex = -1;
+  });
+});
+</script>
+
+</body>
+</html>
