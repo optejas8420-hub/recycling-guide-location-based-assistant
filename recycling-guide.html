@@ -349,20 +349,8 @@
         }
 
     </style>
-
-<style id="back-button-fix-style">
-.back-button{position:fixed;top:20px;left:20px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:none;border-radius:999px;background:rgba(255,255,255,.92);color:#1f3d2b;font:600 14px/1.2 Arial,sans-serif;box-shadow:0 10px 24px rgba(0,0,0,.14);text-decoration:none;cursor:pointer;-webkit-user-select:none;user-select:none;}
-.back-button:hover{transform:translateY(-1px);background:#ffffff;}
-.back-button:focus-visible{outline:2px solid #4caf50;outline-offset:3px;}
-html,body{cursor:default !important;}
-body *{caret-color:transparent;}
-input,textarea,[],[contenteditable=""]{caret-color:auto !important;cursor:text !important;}
-[]:focus,[contenteditable=""]:focus{outline:none;}
-</style>
-
 </head>
 <body>
-<a class="back-button" href="./index-5.html" aria-label="Go back">&#8592; Back</a>
 
     <header>
         <div class="header-content">
@@ -513,19 +501,6 @@ input,textarea,[],[contenteditable=""]{caret-color:auto !important;cursor:text !
             
         </div>
     </footer>
-
-
-<script id="back-button-fix-script">
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('[], [contenteditable=""]').forEach(function(el){
-    if(!el.matches('input, textarea')) el.removeAttribute('contenteditable');
-  });
-  document.querySelectorAll('*').forEach(function(el){
-    if(el.getAttribute('spellcheck') === 'true' && !el.matches('input, textarea, []')) el.removeAttribute('spellcheck');
-    if(el.tabIndex > -1 && !el.matches('a, button, input, textarea, select')) el.tabIndex = -1;
-  });
-});
-</script>
 
 </body>
 </html>
