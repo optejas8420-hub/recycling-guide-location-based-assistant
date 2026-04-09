@@ -26,7 +26,35 @@
     .panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}.panel-head h2{margin:0;font-size:1.08rem}.panel-head p{margin:0;color:var(--muted);font-size:.92rem}
     #map{width:100%;height:760px}.list-wrap{padding:14px;display:grid;gap:12px;max-height:760px;overflow:auto}.center-card{background:var(--surface-strong);border:1px solid rgba(34,93,56,.08);border-radius:22px;padding:16px;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;cursor:pointer}
     .center-card:hover,.center-card.active{transform:translateY(-2px);border-color:rgba(47,158,99,.34);box-shadow:0 12px 26px rgba(47,158,99,.14)}.center-top{display:flex;justify-content:space-between;align-items:start;gap:10px}.center-top h3{margin:0;font-size:1rem}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:rgba(47,158,99,.1);color:var(--primary-dark);border-radius:999px;font-size:12px;font-weight:700}.meta{margin-top:10px;display:grid;gap:8px;color:var(--muted);font-size:.93rem}.types{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}.type-pill{padding:7px 10px;border-radius:999px;background:#f2f8f4;border:1px solid rgba(34,93,56,.08);font-size:12px;font-weight:600}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:rgba(47,158,99,.1);color:var(--primary-dark);border-radius:999px;font-size:12px;font-weight:700}.meta{margin-top:10px;display:grid;gap:8px;color:var(--muted);font-size:.93rem}.types{display:flex;flex-wrap:wrap;gap:8px}.type-pill{padding:7px 10px;border-radius:999px;background:#f2f8f4;border:1px solid rgba(34,93,56,.08);font-size:12px;font-weight:600}
+    
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+    .view-more-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+    .view-more-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(47, 158, 99, 0.2);
+    }
+
     .view-map-only .list-panel,.view-list-only .map-panel{display:none}.view-both .main-grid{grid-template-columns:1.15fr .85fr}.leaflet-popup-content-wrapper{border-radius:18px}.leaflet-popup-content{margin:14px 16px;font-family:'Inter',sans-serif}.popup-title{font-weight:800;margin-bottom:6px;color:var(--text)}.popup-meta{font-size:13px;color:var(--muted);line-height:1.55}
     .legend{display:flex;flex-wrap:wrap;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line);background:rgba(255,255,255,.6)}.legend-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}.dot{width:12px;height:12px;border-radius:50%}
     @media (max-width:980px){.hero-inner,.main-grid,.view-both .main-grid{grid-template-columns:1fr}#map,.list-wrap{height:500px;max-height:none}}
@@ -34,7 +62,7 @@
   </style>
 </head>
 <body class="view-both">
-  <a class="back-button" href="index.html" aria-label="Go back">←</a>
+  <a class="back-button" href="index.html" aria-label="Go back">← Back to Home</a>
   <main class="page">
     <section class="hero">
       <div class="hero-inner">
@@ -90,8 +118,17 @@
   </main>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
+    
     const centers = [
-      {name:'Kapiltirth Market E-Waste Center',lat:16.6968,lng:74.2224,type:['ewaste'],address:'Kapiltirth Market, near Mahalakshmi Temple, Kolhapur',note:'Municipal e-waste collection point listed for Kolhapur city.'},
+      {
+        name:'Kapiltirth Market E-Waste Center',
+        lat:16.6968,
+        lng:74.2224,
+        type:['ewaste'],
+        address:'Kapiltirth Market, near Mahalakshmi Temple, Kolhapur',
+        note:'Municipal e-waste collection point listed for Kolhapur city.',
+        url: 'Kapiltirth_Market_E-Waste_Center.html' 
+      },
       {name:'Sambhajinagar Filter House Collection Point',lat:16.6889,lng:74.2338,type:['ewaste','plastic'],address:'Racecourse Naka, Sambhajinagar, Kolhapur',note:'Collection point suitable for e-waste and dry recyclable drop-off.'},
       {name:'Govind Pansare School Collection Office',lat:16.6838,lng:74.2418,type:['ewaste','paper'],address:'Sane Guruji Vasant area, Kolhapur',note:'Ward-level collection point for e-waste and paper waste segregation.'},
       {name:'Tararani Vidyalaya Collection Point',lat:16.6992,lng:74.2268,type:['ewaste','paper'],address:'Near Shahu Bank, Kolhapur',note:'Public collection office referenced in city e-waste network.'},
@@ -116,21 +153,78 @@
       {name:'Malkapur Scrap Collection Point',lat:16.8622,lng:74.3125,type:['metal','paper'],address:'Malkapur, Shahuwadi taluka, Kolhapur district',note:'Recovery point for paper and metal scrap from nearby settlements.'},
       {name:'Ajara Recycling Collection Point',lat:16.1170,lng:74.2107,type:['plastic','glass'],address:'Ajara, Kolhapur district',note:'Representative western belt collection point for dry recyclable waste.'}
     ];
+    
     const typeColors={plastic:'#34c77b',paper:'#f2b84b',glass:'#5ba8ff',metal:'#8d8cf7',ewaste:'#1e7f59'};
     const typeLabels={plastic:'Plastic',paper:'Paper',glass:'Glass',metal:'Metal',ewaste:'E-waste'};
+    
     const map=L.map('map',{zoomControl:true}).setView([16.705,74.2433],11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+    
     const markerLayer=L.layerGroup().addTo(map), listWrap=document.getElementById('centerList'), legend=document.getElementById('legend');
     let activeFilter='all';
+    
     function makeIcon(color){return L.divIcon({className:'custom-marker',html:`<div style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 8px 20px rgba(0,0,0,.2)"></div>`,iconSize:[18,18],iconAnchor:[9,9],popupAnchor:[0,-10]})}
     function primaryType(center){return center.type[0]}
     function filteredCenters(){return activeFilter==='all'?centers:centers.filter(c=>c.type.includes(activeFilter))}
     function renderLegend(){legend.innerHTML=Object.entries(typeLabels).map(([key,label])=>`<span class="legend-item"><span class="dot" style="background:${typeColors[key]}"></span>${label}</span>`).join('')}
-    function focusCenter(center,marker,card){map.flyTo([center.lat,center.lng],13,{duration:.9});marker.openPopup();document.querySelectorAll('.center-card').forEach(el=>el.classList.remove('active'));if(card)card.classList.add('active')}
-    function render(){markerLayer.clearLayers();listWrap.innerHTML='';const items=filteredCenters();const bounds=[];items.forEach(center=>{const color=typeColors[primaryType(center)]||'#2f9e63';const marker=L.marker([center.lat,center.lng],{icon:makeIcon(color)});marker.bindPopup(`<div class="popup-title">${center.name}</div><div class="popup-meta">${center.address}<br>${center.note}<br><strong>Accepts:</strong> ${center.type.map(t=>typeLabels[t]).join(', ')}</div>`);marker.addTo(markerLayer);bounds.push([center.lat,center.lng]);const card=document.createElement('article');card.className='center-card';card.innerHTML=`<div class="center-top"><h3>${center.name}</h3><span class="tag">${typeLabels[primaryType(center)]}</span></div><div class="meta"><div>📍 ${center.address}</div><div>♻️ Accepts: ${center.type.map(t=>typeLabels[t]).join(', ')}</div><div>ℹ️ ${center.note}</div></div><div class="types">${center.type.map(t=>`<span class="type-pill">${typeLabels[t]}</span>`).join('')}</div>`;card.addEventListener('click',()=>focusCenter(center,marker,card));marker.on('click',()=>focusCenter(center,marker,card));listWrap.appendChild(card)});if(bounds.length){map.fitBounds(bounds,{padding:[35,35]})}else{map.setView([16.705,74.2433],11)}}
+    
+    function focusCenter(center,marker,card){
+      map.flyTo([center.lat,center.lng],13,{duration:.9});
+      marker.openPopup();
+      document.querySelectorAll('.center-card').forEach(el=>el.classList.remove('active'));
+      if(card)card.classList.add('active');
+    }
+    
+    function render(){
+      markerLayer.clearLayers();
+      listWrap.innerHTML='';
+      const items=filteredCenters();
+      const bounds=[];
+      
+      items.forEach(center=>{
+        const color=typeColors[primaryType(center)]||'#2f9e63';
+        const marker=L.marker([center.lat,center.lng],{icon:makeIcon(color)});
+        marker.bindPopup(`<div class="popup-title">${center.name}</div><div class="popup-meta">${center.address}<br>${center.note}<br><strong>Accepts:</strong> ${center.type.map(t=>typeLabels[t]).join(', ')}</div>`);
+        marker.addTo(markerLayer);
+        bounds.push([center.lat,center.lng]);
+        
+        const card=document.createElement('article');
+        card.className='center-card';
+        
+       
+        const linkUrl = center.url ? center.url : '#';
+        
+        card.innerHTML=`
+          <div class="center-top">
+            <h3>${center.name}</h3>
+            <span class="tag">${typeLabels[primaryType(center)]}</span>
+          </div>
+          <div class="meta">
+            <div>📍 ${center.address}</div>
+            <div>♻️ Accepts: ${center.type.map(t=>typeLabels[t]).join(', ')}</div>
+            <div>ℹ️ ${center.note}</div>
+          </div>
+          <div class="card-footer">
+            <div class="types">
+              ${center.type.map(t=>`<span class="type-pill">${typeLabels[t]}</span>`).join('')}
+            </div>
+            <a href="${linkUrl}" class="view-more-btn" onclick="event.stopPropagation()">View Details &rarr;</a>
+          </div>
+        `;
+        
+        card.addEventListener('click',()=>focusCenter(center,marker,card));
+        marker.on('click',()=>focusCenter(center,marker,card));
+        listWrap.appendChild(card);
+      });
+      
+      if(bounds.length){map.fitBounds(bounds,{padding:[35,35]})}else{map.setView([16.705,74.2433],11)}
+    }
+    
     document.querySelectorAll('.filter-chip').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.dataset.filter;render()}));
     document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const view=btn.dataset.view;document.body.classList.remove('view-both','view-map-only','view-list-only');if(view==='map')document.body.classList.add('view-map-only');else if(view==='list')document.body.classList.add('view-list-only');else document.body.classList.add('view-both');setTimeout(()=>map.invalidateSize(),250)}));
-    renderLegend();render();
+    
+    renderLegend();
+    render();
   </script>
 </body>
 </html>
