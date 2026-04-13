@@ -1,230 +1,894 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kolhapur Recycling Areas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <style>
-    :root{
-      --bg:#f4fbf6;--surface:rgba(255,255,255,.88);--surface-strong:#fff;--text:#163222;--muted:#5d7667;
-      --primary:#2f9e63;--primary-dark:#21734a;--line:rgba(28,71,45,.12);--shadow:0 20px 50px rgba(34,93,56,.14);
-      --radius:24px;--radius-sm:16px;
-    }
-    *{box-sizing:border-box} html,body{margin:0;padding:0;font-family:'Inter',sans-serif;background:radial-gradient(circle at top left,#effff2 0,#f4fbf6 38%,#edf7ff 100%);color:var(--text)}
-    body{min-height:100vh}.back-button{position:fixed;top:16px;left:16px;z-index:1100;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.95);box-shadow:0 10px 30px rgba(0,0,0,.12);font-weight:700;color:inherit;text-decoration:none}
-    .page{width:min(1220px,calc(100% - 32px));margin:0 auto;padding:84px 0 24px}.hero{background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(232,250,238,.92));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:32px;overflow:hidden}
-    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:30px}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(47,158,99,.1);color:var(--primary-dark);font-size:13px;font-weight:700}
-    h1{margin:14px 0 10px;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05}.lead{margin:0;max-width:62ch;font-size:1rem;color:var(--muted);line-height:1.7}
-    .hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.stat{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:20px;padding:18px;min-height:112px;display:flex;flex-direction:column;justify-content:space-between}.stat strong{font-size:1.6rem}.stat span{color:var(--muted);font-size:.95rem}
-    .controls{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}.view-toggle{display:inline-flex;padding:6px;gap:6px;background:rgba(255,255,255,.76);border:1px solid var(--line);border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
-    .view-btn,.filter-chip{border:none;border-radius:999px;padding:11px 16px;background:transparent;color:var(--muted);cursor:pointer;transition:.25s ease}.view-btn.active,.filter-chip.active{background:linear-gradient(135deg,var(--primary),#5bcf8f);color:#fff;box-shadow:0 8px 20px rgba(47,158,99,.25)}
-    .filter-bar{display:flex;gap:10px;flex-wrap:wrap}.main-grid{margin-top:22px;display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}.panel{background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-    .panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}.panel-head h2{margin:0;font-size:1.08rem}.panel-head p{margin:0;color:var(--muted);font-size:.92rem}
-    #map{width:100%;height:760px}.list-wrap{padding:14px;display:grid;gap:12px;max-height:760px;overflow:auto}.center-card{background:var(--surface-strong);border:1px solid rgba(34,93,56,.08);border-radius:22px;padding:16px;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;cursor:pointer}
-    .center-card:hover,.center-card.active{transform:translateY(-2px);border-color:rgba(47,158,99,.34);box-shadow:0 12px 26px rgba(47,158,99,.14)}.center-top{display:flex;justify-content:space-between;align-items:start;gap:10px}.center-top h3{margin:0;font-size:1rem}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:rgba(47,158,99,.1);color:var(--primary-dark);border-radius:999px;font-size:12px;font-weight:700}.meta{margin-top:10px;display:grid;gap:8px;color:var(--muted);font-size:.93rem}.types{display:flex;flex-wrap:wrap;gap:8px}.type-pill{padding:7px 10px;border-radius:999px;background:#f2f8f4;border:1px solid rgba(34,93,56,.08);font-size:12px;font-weight:600}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Recycling Map - Recycle Smart</title>
     
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px dashed var(--line);
-    }
-    .view-more-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 14px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      white-space: nowrap;
-    }
-    .view-more-btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(47, 158, 99, 0.2);
-    }
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-    .view-map-only .list-panel,.view-list-only .map-panel{display:none}.view-both .main-grid{grid-template-columns:1.15fr .85fr}.leaflet-popup-content-wrapper{border-radius:18px}.leaflet-popup-content{margin:14px 16px;font-family:'Inter',sans-serif}.popup-title{font-weight:800;margin-bottom:6px;color:var(--text)}.popup-meta{font-size:13px;color:var(--muted);line-height:1.55}
-    .legend{display:flex;flex-wrap:wrap;gap:10px;padding:14px 18px 18px;border-top:1px solid var(--line);background:rgba(255,255,255,.6)}.legend-item{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}.dot{width:12px;height:12px;border-radius:50%}
-    @media (max-width:980px){.hero-inner,.main-grid,.view-both .main-grid{grid-template-columns:1fr}#map,.list-wrap{height:500px;max-height:none}}
-    @media (max-width:640px){.page{width:min(100% - 18px,100%);padding-top:76px}.hero-inner{padding:18px}.hero-stats{grid-template-columns:1fr 1fr}.panel-head{align-items:start;flex-direction:column}.controls{align-items:stretch}.view-toggle{width:100%;justify-content:space-between}.view-btn{flex:1;text-align:center}.filter-bar{width:100%}.filter-chip{flex:1 1 calc(50% - 10px);text-align:center}.back-button{top:10px;left:10px;padding:10px 14px}#map,.list-wrap{height:420px}}
-  </style>
+    <style>
+        /* --- Base Styles --- */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            background-color: #f7fbf8; 
+            line-height: 1.6;
+            padding-top: 70px; 
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            background-color: #2c7a3f;
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000; /* Increased to stay above Leaflet map */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            margin-right: 25px;
+        }
+
+        .nav-links a {
+            font-weight: bold;
+            color: #e8f5e9;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-thickness: 2px;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            color: #2c7a3f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* --- Sidebar (Mobile Nav) --- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%; 
+            width: 80%; 
+            max-width: 300px;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 3000;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            background-color: #f0fdf4;
+            padding: 25px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            color: #2c7a3f;
+            font-size: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #555;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 18px 20px;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .sidebar-menu a:active {
+            background-color: #e8f5e9;
+        }
+
+        .sidebar-menu .mobile-only {
+            display: none;
+        }
+
+        /* --- Page Header & Stats --- */
+        .page-header {
+            padding: 30px 0 20px;
+        }
+
+        .breadcrumbs {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .page-desc {
+            color: #666;
+            margin: 0 0 25px 0;
+            font-size: 16px;
+            max-width: 800px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c7a3f;
+            margin: 5px 0;
+        }
+
+        .stat-desc {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* --- Toolbar (Controls & Filters) --- */
+        .toolbar {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .view-toggles {
+            display: flex;
+            background-color: #f5f5f5;
+            padding: 4px;
+            border-radius: 8px;
+        }
+
+        .view-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background-color: white;
+            color: #2c7a3f;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            background-color: white;
+            color: #555;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chip.active {
+            background-color: #5bb46b;
+            color: white;
+            border-color: #5bb46b;
+        }
+
+        .chip:hover:not(.active) {
+            background-color: #f0fdf4;
+            border-color: #c8e6c9;
+        }
+
+        /* --- Main Map/List Layout --- */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            height: 650px;
+            margin-bottom: 60px;
+            transition: all 0.3s ease;
+        }
+
+        /* Dynamic classes based on view toggle */
+        body.view-map-only .dashboard-layout {
+            grid-template-columns: 1fr;
+        }
+        body.view-map-only .list-panel {
+            display: none;
+        }
+        body.view-list-only .dashboard-layout {
+            grid-template-columns: 1fr;
+        }
+        body.view-list-only .map-panel {
+            display: none;
+        }
+
+        .map-panel {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        #map {
+            flex-grow: 1;
+            width: 100%;
+            z-index: 1; /* Keep below navbar */
+        }
+
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 12px 20px;
+            background-color: white;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .list-panel {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* --- Location Cards inside List --- */
+        .location-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 18px;
+            transition: all 0.2s;
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+
+        .location-card:hover, .location-card.active {
+            background-color: white;
+            border-color: #a5d6a7;
+            box-shadow: 0 4px 12px rgba(46, 160, 67, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .card-address {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .type-pill {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border: 1px solid #eee;
+        }
+
+        .btn-view-details {
+            display: block;
+            text-align: center;
+            width: 100%;
+            padding: 8px;
+            background-color: #e8f5e9;
+            color: #2c7a3f;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-view-details:hover {
+            background-color: #5bb46b;
+            color: white;
+        }
+
+        /* Leaflet Popup customization */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .leaflet-popup-content {
+            margin: 15px;
+            font-family: inherit;
+        }
+        .popup-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+        .popup-meta {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* --- Footer --- */
+        .simple-footer {
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            padding: 40px 0 20px 0;
+            text-align: center;
+            color: #555;
+        }
+
+        .footer-contact h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .footer-contact p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+        }
+
+        .social-links {
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #5bb46b;
+            font-weight: bold;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #3d8749;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 13px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin: 0;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .map-panel {
+                height: 400px;
+            }
+            .list-panel {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .sidebar-menu .mobile-only { display: block; background-color: #fafafa; }
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .view-toggles {
+                justify-content: center;
+            }
+            .filter-chips {
+                overflow-x: auto;
+                padding-bottom: 5px;
+                flex-wrap: nowrap;
+            }
+            .chip {
+                flex-shrink: 0;
+            }
+        }
+    </style>
 </head>
 <body class="view-both">
-  <a class="back-button" href="index.html" aria-label="Go back">← Back to Home</a>
-  <main class="page">
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">♻️ Kolhapur district recycling map</div>
-          <h1>Explore recycling places across Kolhapur district.</h1>
-          <p class="lead">This page opens directly on Kolhapur and shows a larger set of major collection and recycling points for plastic, paper, glass, metal, and e-waste. Use the three view modes to switch between map only, list only, or both together in a clean mobile-friendly layout.</p>
-          <div class="controls">
-            <div class="view-toggle">
-              <button class="view-btn active" data-view="both">✨ Both view</button>
-              <button class="view-btn" data-view="map">🗺️ Map view</button>
-              <button class="view-btn" data-view="list">📋 List view</button>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">🍃 Recycle Smart</a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="materials.html">Materials</a>
+                    <a href="recycling-areas.html" class="active" style="text-decoration: underline;">Map</a>
+                    <a href="recycling-guide.html">Guides</a>
+                </div>
+                <div class="user-icon" id="userIcon" aria-label="Open Menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
             </div>
-            <div class="filter-bar">
-              <button class="filter-chip active" data-filter="all">All waste</button>
-              <button class="filter-chip" data-filter="plastic">Plastic</button>
-              <button class="filter-chip" data-filter="paper">Paper</button>
-              <button class="filter-chip" data-filter="glass">Glass</button>
-              <button class="filter-chip" data-filter="metal">Metal</button>
-              <button class="filter-chip" data-filter="ewaste">E-waste</button>
+        </div>
+    </nav>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="mobileMenu">
+        <div class="sidebar-header">
+            <h3>Welcome!</h3>
+            <button class="close-btn" id="closeBtn" aria-label="Close Menu">&times;</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="login.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
+            <li><a href="#">📊 My Recycling Stats</a></li>
+            <li><a href="#">🔖 Saved Guides</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            
+            <li class="mobile-only"><a href="index.html">🏠 Home</a></li>
+            <li class="mobile-only"><a href="materials.html">📦 Materials</a></li>
+            <li class="mobile-only"><a href="recycling-areas.html">🗺️ Map</a></li>
+            <li class="mobile-only"><a href="recycling-guide.html">📚 Guides</a></li>
+        </ul>
+    </div>
+
+    <main class="container">
+        
+        <div class="page-header">
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > Map
             </div>
-          </div>
+            <h1 class="page-title">Recycling Centers & Drop-offs</h1>
+            <p class="page-desc">Explore verified recycling facilities and collection points across the Kolhapur district. Use the filters to find centers that accept specific materials.</p>
         </div>
-        <div class="hero-stats">
-          <div class="stat"><span>District focus</span><strong>Kolhapur</strong><span>Default center on map</span></div>
-          <div class="stat"><span>Major points shown</span><strong>24</strong><span>Collection and recycling locations across the district</span></div>
-          <div class="stat"><span>View styles</span><strong>3</strong><span>Map, list, or both</span></div>
-          <div class="stat"><span>Waste coverage</span><strong>5</strong><span>Plastic, paper, glass, metal, e-waste</span></div>
-        </div>
-      </div>
-    </section>
-    <section class="main-grid">
-      <section class="panel map-panel">
-        <div class="panel-head">
-          <div>
-            <h2>Map view</h2>
-            <p>Free OpenStreetMap tiles with interactive markers for Kolhapur district.</p>
-          </div>
-        </div>
-        <div id="map"></div>
-        <div class="legend" id="legend"></div>
-      </section>
-      <section class="panel list-panel">
-        <div class="panel-head">
-          <div>
-            <h2>List view</h2>
-            <p>Select any center card to focus that place on the map.</p>
-          </div>
-        </div>
-        <div class="list-wrap" id="centerList"></div>
-      </section>
-    </section>
-  </main>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-    
-    const centers = [
-      {
-        name:'Kapiltirth Market E-Waste Center',
-        lat:16.6968,
-        lng:74.2224,
-        type:['ewaste'],
-        address:'Kapiltirth Market, near Mahalakshmi Temple, Kolhapur',
-        note:'Municipal e-waste collection point listed for Kolhapur city.',
-        url: 'Kapiltirth_Market_E-Waste_Center.html' 
-      },
-      {name:'Sambhajinagar Filter House Collection Point',lat:16.6889,lng:74.2338,type:['ewaste','plastic'],address:'Racecourse Naka, Sambhajinagar, Kolhapur',note:'Collection point suitable for e-waste and dry recyclable drop-off.'},
-      {name:'Govind Pansare School Collection Office',lat:16.6838,lng:74.2418,type:['ewaste','paper'],address:'Sane Guruji Vasant area, Kolhapur',note:'Ward-level collection point for e-waste and paper waste segregation.'},
-      {name:'Tararani Vidyalaya Collection Point',lat:16.6992,lng:74.2268,type:['ewaste','paper'],address:'Near Shahu Bank, Kolhapur',note:'Public collection office referenced in city e-waste network.'},
-      {name:'Shahu Cloth Market Dry Waste Point',lat:16.7038,lng:74.2430,type:['paper','plastic'],address:'Shahu Cloth Market, Kolhapur',note:'Useful dry-waste point for paper and plastic segregation.'},
-      {name:'Padmaraje Vidyalaya Collection Point',lat:16.7089,lng:74.2282,type:['ewaste','glass'],address:'Near Khol Khandoba Temple, Kolhapur',note:'Ward collection point that can be shown as a local recycling drop-off center.'},
-      {name:'Panchganga Hospital Collection Point',lat:16.7146,lng:74.2238,type:['plastic','paper','glass'],address:'Panchganga Hospital area, Kolhapur',note:'Mixed recyclable collection point for household dry waste.'},
-      {name:'Shastrinagar Fire Station Center',lat:16.7212,lng:74.2387,type:['ewaste','metal'],address:'Shastrinagar Ground, opposite Fire Station, Kolhapur',note:'Local e-waste collection location in the city network.'},
-      {name:'Mohite Vidyalaya Shahupuri Center',lat:16.7005,lng:74.2352,type:['ewaste','paper'],address:'Shahupuri, Kolhapur',note:'Public collection office for ward residents.'},
-      {name:'Kawla Naka Fire Station E-Waste Point',lat:16.7058,lng:74.2438,type:['ewaste'],address:'Kawla Naka, Kolhapur',note:'Public drop-off location in Kolhapur city.'},
-      {name:'Kasaba Bawada Pavilion Hall Center',lat:16.7349,lng:74.2433,type:['ewaste','metal'],address:'Kasaba Bawada, Kolhapur',note:'Ward collection point connected with Kasaba Bawada processing facility.'},
-      {name:'Mahadik Mal Family Welfare Center',lat:16.7248,lng:74.2664,type:['ewaste','plastic'],address:'Mahadik Mal, Kolhapur',note:'Public collection point for e-waste and hazardous dry waste.'},
-      {name:'Kasaba Bawada Processing Facility',lat:16.7365,lng:74.2477,type:['ewaste'],address:'Kasaba Bawada processing zone, Kolhapur',note:'Processing-related reference point for collected e-waste.'},
-      {name:'ServCare Kolhapur Pickup Coverage Point',lat:16.7050,lng:74.2433,type:['ewaste','plastic'],address:'Kolhapur service coverage',note:'Authorized collection coverage in Kolhapur for e-waste and plastic pickup requests.'},
-      {name:'Shiroli MIDC Scrap & Metal Cluster',lat:16.7433,lng:74.3182,type:['metal','plastic'],address:'Shiroli MIDC, Kolhapur district',note:'Industrial area with concentrated scrap and material recovery activity.'},
-      {name:'Gokul Shirgaon Industrial Scrap Hub',lat:16.6549,lng:74.2902,type:['metal','plastic'],address:'Gokul Shirgaon MIDC, Kolhapur district',note:'Industrial recovery point for metal and plastic scrap movement.'},
-      {name:'Ujalaiwadi Dry Waste Point',lat:16.6777,lng:74.2978,type:['plastic','paper'],address:'Ujalaiwadi, Kolhapur district',note:'Representative suburban dry-waste sorting point.'},
-      {name:'Ichalkaranji Material Recovery Point',lat:16.6918,lng:74.4605,type:['plastic','paper','metal'],address:'Ichalkaranji, Kolhapur district',note:'Representative material recovery point for dry waste and scrap sorting.'},
-      {name:'Jaysingpur Scrap Recovery Point',lat:16.7762,lng:74.5548,type:['metal','plastic'],address:'Jaysingpur, Kolhapur district',note:'Scrap and recycling activity point serving the eastern belt.'},
-      {name:'Hupari Metal Recycling Point',lat:16.7630,lng:74.4675,type:['metal'],address:'Hupari, Kolhapur district',note:'Metal-focused recovery point in a well-known metal trade area.'},
-      {name:'Gadhinglaj Dry Waste Center',lat:16.2229,lng:74.3501,type:['plastic','paper','glass'],address:'Gadhinglaj, Kolhapur district',note:'Southern district collection point for mixed dry recyclables.'},
-      {name:'Kagal Municipal Dry Waste Point',lat:16.5770,lng:74.3154,type:['plastic','paper','glass'],address:'Kagal, Kolhapur district',note:'Municipal-side dry-waste point for local segregation and transfer.'},
-      {name:'Malkapur Scrap Collection Point',lat:16.8622,lng:74.3125,type:['metal','paper'],address:'Malkapur, Shahuwadi taluka, Kolhapur district',note:'Recovery point for paper and metal scrap from nearby settlements.'},
-      {name:'Ajara Recycling Collection Point',lat:16.1170,lng:74.2107,type:['plastic','glass'],address:'Ajara, Kolhapur district',note:'Representative western belt collection point for dry recyclable waste.'}
-    ];
-    
-    const typeColors={plastic:'#34c77b',paper:'#f2b84b',glass:'#5ba8ff',metal:'#8d8cf7',ewaste:'#1e7f59'};
-    const typeLabels={plastic:'Plastic',paper:'Paper',glass:'Glass',metal:'Metal',ewaste:'E-waste'};
-    
-    const map=L.map('map',{zoomControl:true}).setView([16.705,74.2433],11);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-    
-    const markerLayer=L.layerGroup().addTo(map), listWrap=document.getElementById('centerList'), legend=document.getElementById('legend');
-    let activeFilter='all';
-    
-    function makeIcon(color){return L.divIcon({className:'custom-marker',html:`<div style="width:18px;height:18px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 8px 20px rgba(0,0,0,.2)"></div>`,iconSize:[18,18],iconAnchor:[9,9],popupAnchor:[0,-10]})}
-    function primaryType(center){return center.type[0]}
-    function filteredCenters(){return activeFilter==='all'?centers:centers.filter(c=>c.type.includes(activeFilter))}
-    function renderLegend(){legend.innerHTML=Object.entries(typeLabels).map(([key,label])=>`<span class="legend-item"><span class="dot" style="background:${typeColors[key]}"></span>${label}</span>`).join('')}
-    
-    function focusCenter(center,marker,card){
-      map.flyTo([center.lat,center.lng],13,{duration:.9});
-      marker.openPopup();
-      document.querySelectorAll('.center-card').forEach(el=>el.classList.remove('active'));
-      if(card)card.classList.add('active');
-    }
-    
-    function render(){
-      markerLayer.clearLayers();
-      listWrap.innerHTML='';
-      const items=filteredCenters();
-      const bounds=[];
-      
-      items.forEach(center=>{
-        const color=typeColors[primaryType(center)]||'#2f9e63';
-        const marker=L.marker([center.lat,center.lng],{icon:makeIcon(color)});
-        marker.bindPopup(`<div class="popup-title">${center.name}</div><div class="popup-meta">${center.address}<br>${center.note}<br><strong>Accepts:</strong> ${center.type.map(t=>typeLabels[t]).join(', ')}</div>`);
-        marker.addTo(markerLayer);
-        bounds.push([center.lat,center.lng]);
-        
-        const card=document.createElement('article');
-        card.className='center-card';
-        
-       
-        const linkUrl = center.url ? center.url : '#';
-        
-        card.innerHTML=`
-          <div class="center-top">
-            <h3>${center.name}</h3>
-            <span class="tag">${typeLabels[primaryType(center)]}</span>
-          </div>
-          <div class="meta">
-            <div>📍 ${center.address}</div>
-            <div>♻️ Accepts: ${center.type.map(t=>typeLabels[t]).join(', ')}</div>
-            <div>ℹ️ ${center.note}</div>
-          </div>
-          <div class="card-footer">
-            <div class="types">
-              ${center.type.map(t=>`<span class="type-pill">${typeLabels[t]}</span>`).join('')}
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">District</span>
+                <span class="stat-value">Kolhapur</span>
+                <span class="stat-desc">Default map center</span>
             </div>
-            <a href="${linkUrl}" class="view-more-btn" onclick="event.stopPropagation()">View Details &rarr;</a>
-          </div>
-        `;
+            <div class="stat-card">
+                <span class="stat-label">Verified Centers</span>
+                <span class="stat-value">24</span>
+                <span class="stat-desc">Active collection points</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Material Types</span>
+                <span class="stat-value">5</span>
+                <span class="stat-desc">Plastic, Paper, Glass, Metal, E-waste</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Status</span>
+                <span class="stat-value" style="color: #1976d2;">Live</span>
+                <span class="stat-desc">Map updating automatically</span>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="view-toggles">
+                <button class="view-btn active" data-view="both">Split View</button>
+                <button class="view-btn" data-view="map">Map Only</button>
+                <button class="view-btn" data-view="list">List Only</button>
+            </div>
+            
+            <div class="filter-chips">
+                <button class="chip active" data-filter="all">All Waste</button>
+                <button class="chip" data-filter="plastic">Plastic</button>
+                <button class="chip" data-filter="paper">Paper</button>
+                <button class="chip" data-filter="glass">Glass</button>
+                <button class="chip" data-filter="metal">Metal</button>
+                <button class="chip" data-filter="ewaste">E-waste</button>
+            </div>
+        </div>
+
+        <div class="dashboard-layout">
+            
+            <div class="map-panel">
+                <div id="map"></div>
+                <div class="map-legend" id="legend">
+                    </div>
+            </div>
+
+            <div class="list-panel" id="centerList">
+                </div>
+
+        </div>
+
+    </main>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="footer-contact">
+                <h4>Contact Our Team</h4>
+                <p>Email: hello@recyclesmart.com &nbsp;|&nbsp; Phone: (555) 123-4567</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Instagram">📸 Instagram</a>
+                <a href="#" title="Twitter">🐦 Twitter</a>
+                <a href="#" title="LinkedIn">💼 LinkedIn</a>
+            </div>
+            <p class="copyright">&copy; 2026 Recycle Smart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script>
+        // Mobile Menu Logic
+        const userIcon = document.getElementById('userIcon');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('sidebarOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+
+        function openSidebar() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSidebar() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        userIcon.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        // Map Data & Logic
+        const centers = [
+            {name:'Kapiltirth Market E-Waste Center',lat:16.6968,lng:74.2224,type:['ewaste'],address:'Kapiltirth Market, near Mahalakshmi Temple, Kolhapur',note:'Municipal e-waste collection point listed for Kolhapur city.',url: 'kapiltirth-market.html'},
+            {name:'Sambhajinagar Filter House Collection Point',lat:16.6889,lng:74.2338,type:['ewaste','plastic'],address:'Racecourse Naka, Sambhajinagar, Kolhapur',note:'Collection point suitable for e-waste and dry recyclable drop-off.'},
+            {name:'Govind Pansare School Collection Office',lat:16.6838,lng:74.2418,type:['ewaste','paper'],address:'Sane Guruji Vasant area, Kolhapur',note:'Ward-level collection point for e-waste and paper waste segregation.'},
+            {name:'Tararani Vidyalaya Collection Point',lat:16.6992,lng:74.2268,type:['ewaste','paper'],address:'Near Shahu Bank, Kolhapur',note:'Public collection office referenced in city e-waste network.'},
+            {name:'Shahu Cloth Market Dry Waste Point',lat:16.7038,lng:74.2430,type:['paper','plastic'],address:'Shahu Cloth Market, Kolhapur',note:'Useful dry-waste point for paper and plastic segregation.'},
+            {name:'Padmaraje Vidyalaya Collection Point',lat:16.7089,lng:74.2282,type:['ewaste','glass'],address:'Near Khol Khandoba Temple, Kolhapur',note:'Ward collection point that can be shown as a local recycling drop-off center.'},
+            {name:'Panchganga Hospital Collection Point',lat:16.7146,lng:74.2238,type:['plastic','paper','glass'],address:'Panchganga Hospital area, Kolhapur',note:'Mixed recyclable collection point for household dry waste.'},
+            {name:'Shastrinagar Fire Station Center',lat:16.7212,lng:74.2387,type:['ewaste','metal'],address:'Shastrinagar Ground, opposite Fire Station, Kolhapur',note:'Local e-waste collection location in the city network.'},
+            {name:'Mohite Vidyalaya Shahupuri Center',lat:16.7005,lng:74.2352,type:['ewaste','paper'],address:'Shahupuri, Kolhapur',note:'Public collection office for ward residents.'},
+            {name:'Kawla Naka Fire Station E-Waste Point',lat:16.7058,lng:74.2438,type:['ewaste'],address:'Kawla Naka, Kolhapur',note:'Public drop-off location in Kolhapur city.'},
+            {name:'Kasaba Bawada Pavilion Hall Center',lat:16.7349,lng:74.2433,type:['ewaste','metal'],address:'Kasaba Bawada, Kolhapur',note:'Ward collection point connected with Kasaba Bawada processing facility.'},
+            {name:'Mahadik Mal Family Welfare Center',lat:16.7248,lng:74.2664,type:['ewaste','plastic'],address:'Mahadik Mal, Kolhapur',note:'Public collection point for e-waste and hazardous dry waste.'},
+            {name:'Kasaba Bawada Processing Facility',lat:16.7365,lng:74.2477,type:['ewaste'],address:'Kasaba Bawada processing zone, Kolhapur',note:'Processing-related reference point for collected e-waste.'},
+            {name:'ServCare Kolhapur Pickup Coverage Point',lat:16.7050,lng:74.2433,type:['ewaste','plastic'],address:'Kolhapur service coverage',note:'Authorized collection coverage in Kolhapur for e-waste and plastic pickup requests.'},
+            {name:'Shiroli MIDC Scrap & Metal Cluster',lat:16.7433,lng:74.3182,type:['metal','plastic'],address:'Shiroli MIDC, Kolhapur district',note:'Industrial area with concentrated scrap and material recovery activity.'},
+            {name:'Gokul Shirgaon Industrial Scrap Hub',lat:16.6549,lng:74.2902,type:['metal','plastic'],address:'Gokul Shirgaon MIDC, Kolhapur district',note:'Industrial recovery point for metal and plastic scrap movement.'},
+            {name:'Ujalaiwadi Dry Waste Point',lat:16.6777,lng:74.2978,type:['plastic','paper'],address:'Ujalaiwadi, Kolhapur district',note:'Representative suburban dry-waste sorting point.'},
+            {name:'Ichalkaranji Material Recovery Point',lat:16.6918,lng:74.4605,type:['plastic','paper','metal'],address:'Ichalkaranji, Kolhapur district',note:'Representative material recovery point for dry waste and scrap sorting.'},
+            {name:'Jaysingpur Scrap Recovery Point',lat:16.7762,lng:74.5548,type:['metal','plastic'],address:'Jaysingpur, Kolhapur district',note:'Scrap and recycling activity point serving the eastern belt.'},
+            {name:'Hupari Metal Recycling Point',lat:16.7630,lng:74.4675,type:['metal'],address:'Hupari, Kolhapur district',note:'Metal-focused recovery point in a well-known metal trade area.'},
+            {name:'Gadhinglaj Dry Waste Center',lat:16.2229,lng:74.3501,type:['plastic','paper','glass'],address:'Gadhinglaj, Kolhapur district',note:'Southern district collection point for mixed dry recyclables.'},
+            {name:'Kagal Municipal Dry Waste Point',lat:16.5770,lng:74.3154,type:['plastic','paper','glass'],address:'Kagal, Kolhapur district',note:'Municipal-side dry-waste point for local segregation and transfer.'},
+            {name:'Malkapur Scrap Collection Point',lat:16.8622,lng:74.3125,type:['metal','paper'],address:'Malkapur, Shahuwadi taluka, Kolhapur district',note:'Recovery point for paper and metal scrap from nearby settlements.'},
+            {name:'Ajara Recycling Collection Point',lat:16.1170,lng:74.2107,type:['plastic','glass'],address:'Ajara, Kolhapur district',note:'Representative western belt collection point for dry recyclable waste.'}
+        ];
         
-        card.addEventListener('click',()=>focusCenter(center,marker,card));
-        marker.on('click',()=>focusCenter(center,marker,card));
-        listWrap.appendChild(card);
-      });
-      
-      if(bounds.length){map.fitBounds(bounds,{padding:[35,35]})}else{map.setView([16.705,74.2433],11)}
-    }
-    
-    document.querySelectorAll('.filter-chip').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.dataset.filter;render()}));
-    document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const view=btn.dataset.view;document.body.classList.remove('view-both','view-map-only','view-list-only');if(view==='map')document.body.classList.add('view-map-only');else if(view==='list')document.body.classList.add('view-list-only');else document.body.classList.add('view-both');setTimeout(()=>map.invalidateSize(),250)}));
-    
-    renderLegend();
-    render();
-  </script>
+        // Updated vibrant colors for the new UI
+        const typeColors = {plastic:'#4caf50', paper:'#ffb300', glass:'#03a9f4', metal:'#7e57c2', ewaste:'#f44336'};
+        const typeLabels = {plastic:'Plastic', paper:'Paper', glass:'Glass', metal:'Metal', ewaste:'E-waste'};
+        
+        const map = L.map('map', {zoomControl:true}).setView([16.705, 74.2433], 11);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(map);
+        
+        const markerLayer = L.layerGroup().addTo(map);
+        const listWrap = document.getElementById('centerList');
+        const legend = document.getElementById('legend');
+        let activeFilter = 'all';
+        
+        function makeIcon(color){
+            return L.divIcon({
+                className:'custom-marker',
+                html:`<div style="width:20px;height:20px;border-radius:50%;background:${color};border:3px solid white;box-shadow:0 4px 10px rgba(0,0,0,0.3)"></div>`,
+                iconSize:[20,20],
+                iconAnchor:[10,10],
+                popupAnchor:[0,-10]
+            });
+        }
+        
+        function primaryType(center){ return center.type[0]; }
+        function filteredCenters(){ return activeFilter==='all' ? centers : centers.filter(c=>c.type.includes(activeFilter)); }
+        
+        function renderLegend(){
+            legend.innerHTML = Object.entries(typeLabels).map(([key,label])=>`
+                <span class="legend-item"><span class="legend-dot" style="background:${typeColors[key]}"></span>${label}</span>
+            `).join('');
+        }
+        
+        function focusCenter(center, marker, card){
+            map.flyTo([center.lat, center.lng], 14, {duration: 0.8});
+            marker.openPopup();
+            document.querySelectorAll('.location-card').forEach(el=>el.classList.remove('active'));
+            if(card) {
+                card.classList.add('active');
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+        
+        function render(){
+            markerLayer.clearLayers();
+            listWrap.innerHTML='';
+            const items = filteredCenters();
+            const bounds = [];
+            
+            if(items.length === 0) {
+                listWrap.innerHTML = '<div style="padding:20px;text-align:center;color:#888;">No centers found matching this filter.</div>';
+                return;
+            }
+
+            items.forEach(center => {
+                const color = typeColors[primaryType(center)] || '#5bb46b';
+                const marker = L.marker([center.lat, center.lng], {icon: makeIcon(color)});
+                
+                marker.bindPopup(`
+                    <div class="popup-title">${center.name}</div>
+                    <div class="popup-meta">
+                        ${center.address}<br>
+                        <strong>Accepts:</strong> ${center.type.map(t=>typeLabels[t]).join(', ')}
+                    </div>
+                `);
+                
+                marker.addTo(markerLayer);
+                bounds.push([center.lat, center.lng]);
+                
+                const card = document.createElement('div');
+                card.className = 'location-card';
+                
+                const linkUrl = center.url ? center.url : '#';
+                
+                // Generate pill HTML
+                const pillsHtml = center.type.map(t => {
+                    const pillColor = typeColors[t];
+                    // Create a very light version of the hex color for the background
+                    return `<span class="type-pill" style="color:${pillColor}; border-color:${pillColor}; background-color:${pillColor}15;">${typeLabels[t]}</span>`;
+                }).join('');
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">${center.name}</h3>
+                    </div>
+                    <div class="card-address">📍 ${center.address}</div>
+                    <div class="pill-group">
+                        ${pillsHtml}
+                    </div>
+                    <a href="${linkUrl}" class="btn-view-details" onclick="event.stopPropagation()">View Details &rarr;</a>
+                `;
+                
+                card.addEventListener('click', () => focusCenter(center, marker, card));
+                marker.on('click', () => focusCenter(center, marker, card));
+                listWrap.appendChild(card);
+            });
+            
+            if(bounds.length) {
+                map.fitBounds(bounds, {padding:[40,40]});
+            }
+        }
+        
+        // Event Listeners for Filters
+        document.querySelectorAll('.chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                render();
+            });
+        });
+
+        // Event Listeners for View Toggles
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const view = btn.dataset.view;
+                document.body.classList.remove('view-both','view-map-only','view-list-only');
+                
+                if(view === 'map') document.body.classList.add('view-map-only');
+                else if(view === 'list') document.body.classList.add('view-list-only');
+                else document.body.classList.add('view-both');
+                
+                // Tell Leaflet map size changed so it renders tiles correctly
+                setTimeout(() => map.invalidateSize(), 300);
+            });
+        });
+        
+        // Initialize
+        renderLegend();
+        render();
+    </script>
 </body>
 </html>

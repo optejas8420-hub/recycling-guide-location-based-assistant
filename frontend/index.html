@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RecycleAssist - Home</title>
+    <title>Recycle Smart - Home</title>
     <style>
- 
-
+        /* --- Base Styles --- */
         body {
             margin: 0;
             padding: 0;
@@ -14,6 +13,8 @@
             color: #333;
             background-color: #ffffff;
             line-height: 1.6;
+            padding-top: 70px; /* Space for fixed navbar */
+            overflow-x: hidden;
         }
 
         a {
@@ -27,6 +28,7 @@
             margin: 0 auto;
         }
 
+        /* --- Buttons --- */
         .btn-primary {
             background-color: #5bb46b;
             color: white;
@@ -59,102 +61,220 @@
             color: white;
         }
 
-        header {
-            background-color: #f0fdf4;
-            padding: 20px 0;
+        /* --- Navigation Bar --- */
+        nav {
+            background-color: #2c7a3f;
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .header-content {
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            color: #2c7a3f;
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
         }
 
         .nav-links a {
-            margin: 0 15px;
             font-weight: bold;
-            color: #333;
+            color: #e8f5e9;
+            transition: color 0.2s;
+            font-size: 15px;
         }
 
         .nav-links a:hover {
-            color: #5bb46b;
+            color: #ffffff;
+            text-decoration: underline;
         }
 
-        .hero {
+        /* User Profile Icon */
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            color: #2c7a3f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .user-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Sidebar & Overlay --- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -320px; /* Hidden by default */
+            width: 280px;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 2000;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
             background-color: #f0fdf4;
-            padding: 60px 0;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-        }
-
-        .hero-content {
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .hero-text {
-            width: 45%;
+        .sidebar-header h3 {
+            margin: 0;
+            color: #2c7a3f;
+            font-size: 20px;
         }
 
-        .hero-text h1 {
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 18px 20px;
+            color: #333;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #5bb46b;
+            color: #ffffff;
+        }
+
+        .sidebar-menu .mobile-only {
+            display: none; /* Hidden on desktop */
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: #f0fdf4;
+            padding: 80px 0 60px 0;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .hero h1 {
             font-size: 48px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #1a1a1a;
+            line-height: 1.2;
         }
 
-        .hero-text p {
+        .hero p {
             font-size: 18px;
             margin-bottom: 30px;
             color: #555;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-image-container {
-            width: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-image {
-            max-width: 60%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-        }
-
+        /* --- Search Bar --- */
         .search-section {
             display: flex;
             justify-content: center;
-            margin: 40px auto;
+            margin: -30px auto 40px;
+            position: relative;
+            z-index: 10;
         }
 
         .search-bar {
-            width: 60%;
+            width: 80%;
             max-width: 600px;
-            padding: 15px 25px;
+            padding: 18px 25px;
             font-size: 16px;
-            border: 1px solid #5bb46b;
+            border: 2px solid #5bb46b;
             border-radius: 30px;
             outline: none;
-            transition: border-color 0.2s;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s;
         }
 
         .search-bar:focus {
-            border-color: #3d8749;
-            box-shadow: 0 0 5px rgba(91, 180, 107, 0.3);
+            box-shadow: 0 6px 20px rgba(91, 180, 107, 0.2);
         }
 
+        /* --- Materials Section --- */
         .materials-section {
             text-align: center;
             padding: 40px 0;
+        }
+
+        .materials-section h2 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
         }
 
         .materials-grid {
@@ -162,7 +282,6 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 30px;
         }
 
         .material-card {
@@ -180,7 +299,7 @@
         .material-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-            border-color: #e0e0e0;
+            border-color: #5bb46b;
         }
 
         .material-icon {
@@ -200,38 +319,7 @@
             margin: 0;
         }
 
-        .features-section {
-            padding: 60px 0;
-        }
-
-        .features-section h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .feature-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 60px;
-        }
-
-        .feature-text {
-            width: 45%;
-        }
-
-        .feature-placeholder {
-            width: 45%;
-            height: 250px;
-            background-color: #e8f5e9;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #5bb46b;
-            font-weight: bold;
-        }
-
+        /* --- Tips Section --- */
         .tips-section {
             padding: 50px 0 60px 0;
             background-color: #fafafa;
@@ -240,6 +328,7 @@
         .tips-section h2 {
             text-align: center;
             margin-bottom: 30px;
+            color: #1a1a1a;
         }
 
         .tips-box {
@@ -251,6 +340,8 @@
             justify-content: space-between;
             flex-wrap: wrap;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .tip-item {
@@ -263,6 +354,7 @@
             gap: 10px;
         }
 
+        /* --- Footer --- */
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -271,97 +363,113 @@
             color: #555;
         }
 
-        .footer-contact h4 {
-            margin: 0 0 10px 0;
-            color: #333;
-            font-size: 18px;
-        }
-
-        .footer-contact p {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-        }
-
-        .social-links {
-            margin-bottom: 25px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 15px;
-            color: #5bb46b;
-            font-weight: bold;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: #3d8749;
-            text-decoration: underline;
-        }
-
         .copyright {
             color: #888;
             font-size: 13px;
-            border-top: 1px solid #ddd;
             padding-top: 20px;
             margin: 0;
         }
+
+        /* --- Mobile Responsive Rules --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide top nav links on mobile */
+            }
+            .sidebar-menu .mobile-only {
+                display: block; /* Show them in the sidebar instead */
+                background-color: #fafafa;
+            }
+            .hero {
+                padding: 60px 0 50px 0;
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            .search-bar {
+                width: 90%;
+            }
+            .material-card {
+                width: 40%; /* 2 columns on mobile */
+                padding: 20px 10px;
+            }
+            .tips-box {
+                padding: 20px;
+            }
+            .tip-item {
+                width: 100%; /* 1 column on mobile */
+            }
+            .btn-outline, .btn-primary {
+                margin-bottom: 10px;
+                width: 80%; /* Stack buttons on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .material-card {
+                width: 100%; /* 1 column on very small screens */
+            }
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
     </style>
-
-<style id="mobile-responsive-fix">
-@media (max-width: 768px){
-  html,body{width:100%;overflow-x:hidden;}
-  body{padding-top:72px !important;}
-  .back-button{top:12px;left:12px;padding:10px 14px;font-size:13px;max-width:calc(100vw - 24px);}
-  img,svg,video,canvas,iframe{max-width:100%;height:auto;}
-  .container,.wrapper,.content,.hero,.section,.card-grid,.grid,.row,[class*="container"],[class*="wrapper"]{width:min(100%,calc(100vw - 24px)) !important;max-width:100% !important;margin-left:auto !important;margin-right:auto !important;}
-  .grid,.row,[class*="grid"],[class*="cards"],[class*="items"],[class*="list"]{display:grid !important;grid-template-columns:1fr !important;gap:16px !important;}
-  h1{font-size:clamp(1.8rem,7vw,2.5rem) !important;line-height:1.2 !important;}
-  h2{font-size:clamp(1.4rem,5.8vw,2rem) !important;line-height:1.25 !important;}
-  h3{font-size:clamp(1.1rem,4.8vw,1.4rem) !important;}
-  p,li,a,button,input,textarea,select{font-size:16px !important;}
-  section,header,main,footer,nav,article,aside,div{max-width:100%;}
-  table{display:block;overflow-x:auto;white-space:nowrap;}
-  [style*="width:"]{max-width:100% !important;}
-}
-@media (max-width: 480px){
-  body{padding-top:76px !important;}
-  .back-button{border-radius:14px;}
-}
-</style>
-
 </head>
 <body>
 
-    <header>
-        <div class="container header-content">
-            <a href="index.html" class="logo">🍃 RecycleAssist</a>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="materials.html">Materials</a>
-                <a href="recycling-areas.html">Map</a>
-                <a href="recycling-guide.html">Guides</a>
-            </nav>
-            <button class="btn-primary">Get Started</button>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Recycle Smarter,<br>Not Harder 🌿</h1>
-                <p>Get your minimal mopage for Recycling Guide & Location-Based Recycling Assistant.</p>
-                <div>
-                    <button class="btn-outline">[ Explore Materials ]</button>
-                    <button class="btn-outline"><a href="recycling-areas.html">[ Find Centers ]</a></button>
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">🍃 Recycle Smart</a>
+            
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="materials.html">Materials</a>
+                    <a href="recycling-areas.html">Map</a>
+                    <a href="recycling-guide.html">Guides</a>
+                </div>
+                <div class="user-icon" id="userIcon" title="Open Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
             </div>
-            
-            <div class="hero-image-container">
-                <img src="12.png" alt="RecycleAssist Dashboard Preview" class="hero-image">
-            </div>
+        </div>
+    </nav>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Welcome!</h3>
+            <button class="close-btn" id="closeBtn">&times;</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="login.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
+            <li><a href="#">📊 My Recycling Stats</a></li>
+            <li><a href="#">🔖 Saved Guides</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            
+            <li class="mobile-only"><a href="index.html">🏠 Home</a></li>
+            <li class="mobile-only"><a href="materials.html">📦 Materials</a></li>
+            <li class="mobile-only"><a href="recycling-areas.html">🗺️ Map</a></li>
+            <li class="mobile-only"><a href="recycling-guide.html">📚 Guides</a></li>
+        </ul>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Recycle Smarter,<br>Not Harder 🌿</h1>
+            <p>Your location-based recycling assistant and simple guide to sorting materials correctly.</p>
+            <div style="margin-top: 20px;">
+                <button class="btn-primary">Explore Materials</button>
+                <button class="btn-outline">Find Centers</button>
+            </div>
         </div>
     </section>
 
@@ -375,94 +483,80 @@
             <a href="plastic.html" class="material-card">
                 <div class="material-icon">💧</div>
                 <h3>Plastic</h3>
-                <p>Plastic containers to plastic cobrocenes or plastic bottles.</p>
+                <p>Bottles, containers, and packaging rules.</p>
             </a>
             
             <a href="paper.html" class="material-card">
                 <div class="material-icon">📄</div>
                 <h3>Paper</h3>
-                <p>Plastic containers to materials r companies or paper stactices.</p>
+                <p>Cardboard, newspaper, and mixed paper.</p>
             </a>
             
             <a href="glass.html" class="material-card">
                 <div class="material-icon">🍾</div>
                 <h3>Glass</h3>
-                <p>Plastic containers to apecissciee wms glass glass bottles.</p>
+                <p>Jars, bottles, and handling broken glass.</p>
             </a>
-            
+
             <a href="metal.html" class="material-card">
                 <div class="material-icon">🥫</div>
                 <h3>Metal</h3>
-                <p>Plastic containers to electroni contauaes or metal can.</p>
+                <p>Aluminum cans, foil, and steel items.</p>
             </a>
             
             <a href="electronics.html" class="material-card">
                 <div class="material-icon">💻</div>
                 <h3>Electronics</h3>
-                <p>Electronics containersire upa nooslons types of electronics with apps.</p>
+                <p>E-waste, batteries, and old appliances.</p>
             </a>
-        </div>
-    </section>
-
-    <section class="features-section container">
-        <h2>Features Section</h2>
-        
-        <div class="feature-row">
-            <div class="feature-placeholder" style="background-color: #e0f2f1;">
-                [ Map Image Placeholder ]
-            </div>
-            <div class="feature-text">
-                <h3>Find Recycling Centers Near You 📍</h3>
-                <p>Find recycling centers near you, havanst impact your materials ar doorming, and orrawares.</p>
-                <button class="btn-outline" style="margin-top:15px;">Find Recycling Centers</button>
-            </div>
-        </div>
-
-        <div class="feature-row">
-            <div class="feature-text">
-                <h3>Understand Materials Easily</h3>
-                <p>Understand materials easily, anderove and kinderstang materials, visualiztasi summerty and more.</p>
-                <button class="btn-outline" style="margin-top:15px;">Understand Material</button>
-            </div>
-            <div class="feature-placeholder">
-                [ Dashboard Chart Placeholder ]
-            </div>
         </div>
     </section>
 
     <section class="tips-section">
         <div class="container">
-            <h2>Quick Tips</h2>
+            <h2>Quick Recycling Tips</h2>
             <div class="tips-box">
-                <div class="tip-item"><span>✅</span> Tips for enecration as a plastic bottles</div>
-                <div class="tip-item"><span>✅</span> Tips to iacove consitant inprost plastic</div>
-                <div class="tip-item"><span>✅</span> Tips to aure conconel votorial</div>
-                <div class="tip-item"><span>✅</span> Tips to more islem/es and datar recycling</div>
-                <div class="tip-item"><span>✅</span> Tips to detourgety content plant</div>
-                <div class="tip-item"><span>✅</span> Tips to resonsize and conomak pradomers</div>
-                <div class="tip-item"><span>✅</span> Tips to animate a donthbam's onions</div>
+                <div class="tip-item"><span>✅</span> Clean and dry all containers before tossing them in the bin.</div>
+                <div class="tip-item"><span>✅</span> Never bag your recyclables; keep them loose in the bin.</div>
+                <div class="tip-item"><span>✅</span> Flatten cardboard boxes to save space for other materials.</div>
+                <div class="tip-item"><span>✅</span> Keep hazardous materials like paint and chemicals out of standard bins.</div>
+                <div class="tip-item"><span>✅</span> When in doubt, throw it out to avoid contaminating the batch.</div>
+                <div class="tip-item"><span>✅</span> Leave caps on plastic bottles, but remove them from glass jars.</div>
             </div>
         </div>
     </section>
 
     <footer class="simple-footer">
         <div class="container">
-            
-            <div class="footer-contact">
-                <h4>Contact Our Team</h4>
-                <p>Email: recycleassist@.com &nbsp;|&nbsp; Phone: xxxx854613</p>
-            </div>
-
-            <div class="social-links">
-                <a href="#" title="Instagram">📸 Instagram</a>
-                <a href="#" title="Twitter">🐦 Twitter</a>
-                <a href="#" title="LinkedIn">💼 LinkedIn</a>
-            </div>
-
-            <p class="copyright">&copy; 2026 RecycleAssist. All rights reserved.</p>
-            
+            <p class="copyright">&copy; 2026 Recycle Smart. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const userIcon = document.getElementById('userIcon');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // Function to open sidebar
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        // Function to close sidebar
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Event Listeners
+        userIcon.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar); // Close when clicking outside
+    </script>
 
 </body>
 </html>

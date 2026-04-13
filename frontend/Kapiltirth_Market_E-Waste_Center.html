@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kapiltirth Market E-Waste Center - RecycleAssist</title>
+    <title>Kapiltirth Market E-Waste Center - Recycle Smart</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
+        /* --- Base Styles --- */
         body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             color: #333;
             background-color: #f7fbf8; 
             line-height: 1.6;
+            padding-top: 70px; /* Restored to match index.html */
+            overflow-x: hidden;
         }
 
         a {
@@ -25,58 +24,169 @@
 
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1200px; /* Restored to match index.html */
             margin: 0 auto;
-            padding-bottom: 50px;
+            /* Removed the problematic padding-bottom that bloated the navbar */
         }
 
-        header {
-            background-color: #ffffff;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
+        /* --- Navigation Bar (Exact match to index.html) --- */
+        nav {
+            background-color: #2c7a3f;
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .header-content {
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 90%;
         }
 
         .logo {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            color: #2c7a3f;
+            color: #ffffff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
 
         .nav-links a {
             font-weight: bold;
-            color: #555;
-            padding-bottom: 5px;
+            color: #e8f5e9;
+            transition: color 0.2s;
+            font-size: 15px;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: #4a9e59;
+        .nav-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
         }
 
-        .btn-header {
-            background-color: #5bb46b;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        /* User Profile Icon */
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            color: #2c7a3f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
         }
 
-       
+        .user-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Sidebar & Overlay --- */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -320px; 
+            width: 280px;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 2000;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            background-color: #f0fdf4;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            color: #2c7a3f;
+            font-size: 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 18px 20px;
+            color: #333;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .sidebar-menu a:hover {
+            background-color: #5bb46b;
+            color: #ffffff;
+        }
+
+        .sidebar-menu .mobile-only {
+            display: none;
+        }
+
+        /* --- Page Content Styles --- */
+        .page-wrapper {
+            padding-bottom: 50px; /* Safe padding specifically for content */
+        }
+
         .page-top {
             padding: 30px 0 20px;
         }
@@ -90,6 +200,7 @@
         .page-title {
             font-size: 32px;
             margin: 0 0 10px 0;
+            color: #1a1a1a;
         }
 
         .badge-open {
@@ -109,7 +220,6 @@
             margin-bottom: 40px;
         }
 
-      
         .map-box {
             flex: 2; 
             background-color: #e0f2f1;
@@ -156,6 +266,7 @@
         .info-card h3 {
             margin: 0 0 10px 0;
             font-size: 18px;
+            color: #1a1a1a;
         }
 
         .info-card p {
@@ -170,7 +281,6 @@
             font-size: 13px !important;
         }
 
-       
         .button-group {
             display: flex;
             gap: 10px;
@@ -181,8 +291,8 @@
             background-color: #5bb46b;
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             flex: 1;
@@ -190,14 +300,19 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-navigate:hover {
+            background-color: #4a9e59;
         }
 
         .btn-save {
             background-color: transparent;
             color: #333;
             border: 1px solid #ccc;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 15px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             flex: 1;
@@ -227,6 +342,7 @@
         .section-title {
             font-size: 22px;
             margin: 30px 0 15px 0;
+            color: #1a1a1a;
         }
 
         .materials-grid {
@@ -288,7 +404,6 @@
             color: #555;
         }
 
-        
         .nearby-list {
             display: flex;
             gap: 20px;
@@ -335,229 +450,254 @@
             margin-bottom: 20px;
         }
 
-         .simple-footer {
+        /* --- Footer --- */
+        .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
             padding: 40px 0 20px 0;
             text-align: center;
             color: #555;
-            margin-top: 40px; 
-        }
-
-        .footer-contact h4 {
-            margin: 0 0 10px 0;
-            color: #333;
-            font-size: 18px;
-        }
-
-        .footer-contact p {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-        }
-
-        .social-links {
-            margin-bottom: 25px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 15px;
-            color: #5bb46b;
-            font-weight: bold;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: #3d8749;
-            text-decoration: underline;
         }
 
         .copyright {
             color: #888;
             font-size: 13px;
-            border-top: 1px solid #ddd;
             padding-top: 20px;
             margin: 0;
         }
+
+        /* --- Mobile Responsive Rules --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .sidebar-menu .mobile-only {
+                display: block; 
+                background-color: #fafafa;
+            }
+            .page-title {
+                font-size: 26px;
+            }
+            .hero-section {
+                flex-direction: column;
+            }
+            .map-box {
+                min-height: 300px;
+                width: 100%;
+            }
+            .info-sidebar {
+                width: 100%;
+            }
+            .materials-grid {
+                justify-content: center;
+            }
+            .material-item {
+                width: 45%; 
+            }
+            .user-tips-box {
+                width: 100%;
+            }
+            .nearby-list {
+                flex-direction: column;
+            }
+            .nearby-card {
+                width: 100%;
+            }
+        }
     </style>
-
-<style id="mobile-responsive-fix">
-@media (max-width: 768px){
-  html,body{width:100%;overflow-x:hidden;}
-  body{padding-top:72px !important;}
-  .back-button{top:12px;left:12px;padding:10px 14px;font-size:13px;max-width:calc(100vw - 24px);}
-  img,svg,video,canvas,iframe{max-width:100%;height:auto;}
-  .container,.wrapper,.content,.hero,.section,.card-grid,.grid,.row,[class*="container"],[class*="wrapper"]{width:min(100%,calc(100vw - 24px)) !important;max-width:100% !important;margin-left:auto !important;margin-right:auto !important;}
-  .grid,.row,[class*="grid"],[class*="cards"],[class*="items"],[class*="list"]{display:grid !important;grid-template-columns:1fr !important;gap:16px !important;}
-  h1{font-size:clamp(1.8rem,7vw,2.5rem) !important;line-height:1.2 !important;}
-  h2{font-size:clamp(1.4rem,5.8vw,2rem) !important;line-height:1.25 !important;}
-  h3{font-size:clamp(1.1rem,4.8vw,1.4rem) !important;}
-  p,li,a,button,input,textarea,select{font-size:16px !important;}
-  section,header,main,footer,nav,article,aside,div{max-width:100%;}
-  table{display:block;overflow-x:auto;white-space:nowrap;}
-  [style*="width:"]{max-width:100% !important;}
-}
-@media (max-width: 480px){
-  body{padding-top:76px !important;}
-  .back-button{border-radius:14px;}
-}
-</style>
-
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">🍃 RecycleAssist</a>
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="materials.html">Materials</a>
-                <a href="#" class="active">Map</a>
-                <a href="#">Guides</a>
-            </nav>
-            <button class="btn-header">Get Started</button>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <div class="page-top">
-            <div class="breadcrumbs">
-                Home > Map > Recycling Centers > Kolhapur > Kapiltirth Market
-            </div>
-            <h1 class="page-title">Kapiltirth Market E-Waste Center</h1>
-            <div class="badge-open">🕒 Open Now</div>
-        </div>
-
-        <div class="hero-section">
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">🍃 Recycle Smart</a>
             
-            <div class="map-box">
-                <div class="street-line" style="width: 100%; height: 12px; top: 40%; transform: rotate(10deg);"></div>
-                <div class="street-line" style="width: 12px; height: 100%; left: 45%; transform: rotate(-5deg);"></div>
-                <div class="street-line" style="width: 100%; height: 8px; top: 75%; transform: rotate(-12deg);"></div>
-                
-                <div class="map-pin">📍</div>
-            </div>
-
-            <div class="info-sidebar">
-                
-                <div class="info-card">
-                    <h3>Center Info</h3>
-                    <p>Kapiltirth Market, near Mahalakshmi Temple,<br>Kolhapur, Maharashtra</p>
-                    <p class="distance-text">Municipal e-waste collection point</p>
-                    
-                    <div class="button-group">
-                        <button class="btn-navigate">↗ Navigate</button>
-                        <button class="btn-save">🔖 Save</button>
-                    </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="materials.html">Materials</a>
+                    <a href="recycling-areas.html" style="text-decoration: underline;">Map</a>
+                    <a href="recycling-guide.html">Guides</a>
                 </div>
-
-                <div class="info-card">
-                    <h3>Working Hours</h3>
-                    <p>Mon-Sat: 10:00 AM - 5:00 PM</p>
-                    <p>Sunday: Closed</p>
-                    
-                    <h3 style="margin-top: 15px;">Contact</h3>
-                    <p>KMC Helpline: 1800-233-xxxx</p>
-
-                    <h3 style="margin-top: 15px;">Accepted Materials</h3>
-                    <div class="pill-group">
-                        <span class="pill">E-waste</span>
-                        <span class="pill">Batteries</span>
-                        <span class="pill">Small Appliances</span>
-                    </div>
+                <div class="user-icon" id="userIcon" title="Open Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
-
             </div>
         </div>
+    </nav>
 
-        <h2 class="section-title">Accepted E-Waste</h2>
-        <div class="materials-grid">
-            <div class="material-item">
-                <div class="material-img">📱</div>
-                <p>Mobile Phones</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">💻</div>
-                <p>Laptops & PCs</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">🔋</div>
-                <p>Batteries</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">🔌</div>
-                <p>Cables & Wires</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">📺</div>
-                <p>Monitors & TVs</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">🖨️</div>
-                <p>Printers & Scanners</p>
-            </div>
-            <div class="material-item">
-                <div class="material-img">🖱️</div>
-                <p>Computer Peripherals</p>
-            </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Welcome!</h3>
+            <button class="close-btn" id="closeBtn">&times;</button>
         </div>
-
-        <p class="location-desc">This center is a verified municipal collection point located in the bustling Kapiltirth Market, making it highly accessible for residents visiting the city center.</p>
-
-        <div class="user-tips-box">
-            <h4>Security & Privacy Tips</h4>
-            <p>Always remember to factory reset your mobile phones and computers to wipe personal data before dropping them off. Remove any SIM cards or SD cards.</p>
-        </div>
-
-        <h2 class="section-title">Other Nearby Centers in Kolhapur</h2>
-        <div class="nearby-list">
+        <ul class="sidebar-menu">
+            <li><a href="login.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
+            <li><a href="#">📊 My Recycling Stats</a></li>
+            <li><a href="#">🔖 Saved Guides</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
             
-            <div class="nearby-card">
-                <h4>Tararani Vidyalaya Center</h4>
-                <p>Near Shahu Bank</p>
-                <div class="info-link">ⓘ View details &rarr;</div>
-            </div>
-
-            <div class="nearby-card">
-                <h4>Padmaraje Vidyalaya</h4>
-                <p>Near Khol Khandoba Temple</p>
-                <div class="info-link">ⓘ View details &rarr;</div>
-            </div>
-
-            <div class="nearby-card">
-                <h4>Shastrinagar Fire Station</h4>
-                <p>Opposite Fire Station Ground</p>
-                <div class="info-link">ⓘ View details &rarr;</div>
-            </div>
-
-        </div>
-
-        <div class="bottom-tip">
-            Safety Warning: Do NOT attempt to dismantle lithium-ion batteries yourself, as they can catch fire. Bring them whole to the center. ⚠️
-        </div>
-
+            <li class="mobile-only"><a href="index.html">🏠 Home</a></li>
+            <li class="mobile-only"><a href="materials.html">📦 Materials</a></li>
+            <li class="mobile-only"><a href="recycling-areas.html">🗺️ Map</a></li>
+            <li class="mobile-only"><a href="recycling-guide.html">📚 Guides</a></li>
+        </ul>
     </div>
 
-       <footer class="simple-footer">
+    <div class="page-wrapper">
         <div class="container">
             
-            <div class="footer-contact">
-                <h4>Contact Our Team</h4>
-                <p>Email: hello@recycleassist.com &nbsp;|&nbsp; Phone: (555) 123-4567</p>
+            <div class="page-top">
+                <div class="breadcrumbs">
+                    Home > Map > Recycling Centers > Kolhapur > Kapiltirth Market
+                </div>
+                <h1 class="page-title">Kapiltirth Market E-Waste Center</h1>
+                <div class="badge-open">🕒 Open Now</div>
             </div>
 
-            <div class="social-links">
-                <a href="#" title="Instagram">📸 Instagram</a>
-                <a href="#" title="Twitter">🐦 Twitter</a>
-                <a href="#" title="LinkedIn">💼 LinkedIn</a>
+            <div class="hero-section">
+                
+                <div class="map-box">
+                    <div class="street-line" style="width: 100%; height: 12px; top: 40%; transform: rotate(10deg);"></div>
+                    <div class="street-line" style="width: 12px; height: 100%; left: 45%; transform: rotate(-5deg);"></div>
+                    <div class="street-line" style="width: 100%; height: 8px; top: 75%; transform: rotate(-12deg);"></div>
+                    
+                    <div class="map-pin">📍</div>
+                </div>
+
+                <div class="info-sidebar">
+                    
+                    <div class="info-card">
+                        <h3>Center Info</h3>
+                        <p>Kapiltirth Market, near Mahalakshmi Temple,<br>Kolhapur, Maharashtra</p>
+                        <p class="distance-text">Municipal e-waste collection point</p>
+                        
+                        <div class="button-group">
+                            <button class="btn-navigate">↗ Navigate</button>
+                            <button class="btn-save">🔖 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Working Hours</h3>
+                        <p>Mon-Sat: 10:00 AM - 5:00 PM</p>
+                        <p>Sunday: Closed</p>
+                        
+                        <h3 style="margin-top: 15px;">Contact</h3>
+                        <p>KMC Helpline: 1800-233-xxxx</p>
+
+                        <h3 style="margin-top: 15px;">Accepted Materials</h3>
+                        <div class="pill-group">
+                            <span class="pill">E-waste</span>
+                            <span class="pill">Batteries</span>
+                            <span class="pill">Small Appliances</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <p class="copyright">&copy; 2026 RecycleAssist. All rights reserved.</p>
-            
+            <h2 class="section-title">Accepted E-Waste</h2>
+            <div class="materials-grid">
+                <div class="material-item">
+                    <div class="material-img">📱</div>
+                    <p>Mobile Phones</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">💻</div>
+                    <p>Laptops & PCs</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">🔋</div>
+                    <p>Batteries</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">🔌</div>
+                    <p>Cables & Wires</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">📺</div>
+                    <p>Monitors & TVs</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">🖨️</div>
+                    <p>Printers & Scanners</p>
+                </div>
+                <div class="material-item">
+                    <div class="material-img">🖱️</div>
+                    <p>Computer Peripherals</p>
+                </div>
+            </div>
+
+            <p class="location-desc">This center is a verified municipal collection point located in the bustling Kapiltirth Market, making it highly accessible for residents visiting the city center.</p>
+
+            <div class="user-tips-box">
+                <h4>Security & Privacy Tips</h4>
+                <p>Always remember to factory reset your mobile phones and computers to wipe personal data before dropping them off. Remove any SIM cards or SD cards.</p>
+            </div>
+
+            <h2 class="section-title">Other Nearby Centers in Kolhapur</h2>
+            <div class="nearby-list">
+                
+                <div class="nearby-card">
+                    <h4>Tararani Vidyalaya Center</h4>
+                    <p>Near Shahu Bank</p>
+                    <div class="info-link">ⓘ View details &rarr;</div>
+                </div>
+
+                <div class="nearby-card">
+                    <h4>Padmaraje Vidyalaya</h4>
+                    <p>Near Khol Khandoba Temple</p>
+                    <div class="info-link">ⓘ View details &rarr;</div>
+                </div>
+
+                <div class="nearby-card">
+                    <h4>Shastrinagar Fire Station</h4>
+                    <p>Opposite Fire Station Ground</p>
+                    <div class="info-link">ⓘ View details &rarr;</div>
+                </div>
+
+            </div>
+
+            <div class="bottom-tip">
+                Safety Warning: Do NOT attempt to dismantle lithium-ion batteries yourself, as they can catch fire. Bring them whole to the center. ⚠️
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <p class="copyright">&copy; 2026 Recycle Smart. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const userIcon = document.getElementById('userIcon');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const closeBtn = document.getElementById('closeBtn');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        userIcon.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+    </script>
 
 </body>
 </html>
