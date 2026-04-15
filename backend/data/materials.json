@@ -1,0 +1,14 @@
+[
+  { "type": "plastic", "recyclable": true, "icon": "🧴", "name": "PET Bottle", "badge": "✓ Recyclable", "description": "Empty, crush slightly, and leave the cap attached.", "link": "PET-bottel.html" },
+  { "type": "plastic", "recyclable": false, "icon": "🥤", "name": "Styrofoam Cup", "badge": "✕ Not recyclable", "description": "Cannot be processed in standard curbside bins. Throw in trash.", "link": "#" },
+  { "type": "plastic", "recyclable": true, "icon": "🥛", "name": "HDPE Milk Jug", "badge": "✓ Recyclable", "description": "Rinse out all milk residue completely before recycling.", "link": "#" },
+  { "type": "plastic", "recyclable": false, "icon": "🧃", "name": "Plastic Straws", "badge": "✕ Not recyclable", "description": "Too small for sorting machines. Must go in the trash.", "link": "#" },
+  { "type": "plastic", "recyclable": true, "icon": "🥡", "name": "PP Food Container", "badge": "✓ Recyclable", "description": "Wash out all grease and leftover food before binning.", "link": "#" },
+  { "type": "plastic", "recyclable": false, "icon": "🚰", "name": "PVC Pipe", "badge": "✕ Not recyclable", "description": "Requires specialized drop-off facilities or hardware stores.", "link": "#" },
+  { "type": "plastic", "recyclable": false, "icon": "🫧", "name": "Bubble Wrap", "badge": "✕ Not recyclable", "description": "Do not put in curbside bins. Take to grocery store drop-offs.", "link": "#" },
+  { "type": "plastic", "recyclable": true, "icon": "🍦", "name": "Yogurt Cup", "badge": "✓ Recyclable", "description": "Rinse clean. Foil lids must go in the trash bin separately.", "link": "#" },
+  { "type": "plastic", "recyclable": false, "icon": "🍴", "name": "Plastic Cutlery", "badge": "✕ Not recyclable", "description": "Cannot be sorted due to size and material. Throw in trash.", "link": "#" },
+  { "type": "plastic", "recyclable": true, "icon": "🫙", "name": "Plastic Jug", "badge": "✓ Recyclable", "description": "Empty liquid, rinse thoroughly, and keep the cap screwed on.", "link": "#" },
+  { "type": "plastic", "recyclable": true, "icon": "🪣", "name": "Plastic Tub", "badge": "✓ Recyclable", "description": "Usually accepted, but must be completely clean and dry.", "link": "#" },
+  { "type": "plastic", "recyclable": false, "icon": "🥄", "name": "Plastic Spoons", "badge": "✕ Not recyclable", "description": "Too small for sorting machinery. Please put in regular trash.", "link": "#" }
+]

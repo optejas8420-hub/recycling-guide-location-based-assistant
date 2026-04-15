@@ -673,106 +673,10 @@
         </div>
 
         <section class="material-grid" id="materialGrid">
-            
             <div class="no-results" id="noResultsMsg">
                 No materials found matching your current filters.
             </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🧴</div>
-                <h3>PET Bottle</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Empty, crush slightly, and leave the cap attached.</p>
-                <a href="PET-bottel.html" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🥤</div>
-                <h3>Styrofoam Cup</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Cannot be processed in standard curbside bins. Throw in trash.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🥛</div>
-                <h3>HDPE Milk Jug</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Rinse out all milk residue completely before recycling.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🧃</div>
-                <h3>Plastic Straws</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Too small for sorting machines. Must go in the trash.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🥡</div>
-                <h3>PP Food Container</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Wash out all grease and leftover food before binning.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🚰</div>
-                <h3>PVC Pipe</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Requires specialized drop-off facilities or hardware stores.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🫧</div>
-                <h3>Bubble Wrap</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Do not put in curbside bins. Take to grocery store drop-offs.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🍦</div>
-                <h3>Yogurt Cup</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Rinse clean. Foil lids must go in the trash bin separately.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🍴</div>
-                <h3>Plastic Cutlery</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Cannot be sorted due to size and material. Throw in trash.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🫙</div>
-                <h3>Plastic Jug</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Empty liquid, rinse thoroughly, and keep the cap screwed on.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="true">
-                <div class="item-image">🪣</div>
-                <h3>Plastic Tub</h3>
-                <span class="badge recyclable">✓ Recyclable</span>
-                <p>Usually accepted, but must be completely clean and dry.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
-
-            <div class="item-card" data-type="plastic" data-recyclable="false">
-                <div class="item-image">🥄</div>
-                <h3>Plastic Spoons</h3>
-                <span class="badge not-recyclable">✕ Not recyclable</span>
-                <p>Too small for sorting machinery. Please put in regular trash.</p>
-                <a href="#" class="btn-view-more">View More</a>
-            </div>
+            <!-- Dynamic materials will be injected here -->
 
         </section>
 
@@ -841,17 +745,48 @@
             const noResultsMsg = document.getElementById('noResultsMsg');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             
-            // Convert Nodelist to Array so we can easily filter and sort
-            const cards = Array.from(document.querySelectorAll('.item-card'));
+            let cards = [];
             
-            // Store original index to allow reverting to "Most Common" sorting
-            cards.forEach((card, index) => {
-                card.dataset.index = index;
-            });
-
             // Settings
             const CARDS_PER_PAGE = 8;
             let currentVisible = CARDS_PER_PAGE;
+
+            // Fetch materials from API
+            fetch('/api/materials')
+                .then(res => res.json())
+                .then(data => {
+                    renderCardsFromData(data);
+                })
+                .catch(err => {
+                    console.error('Error fetching materials:', err);
+                    grid.innerHTML += '<div style="padding:20px;text-align:center;color:red;width:100%;">Error loading materials.</div>';
+                });
+
+            function renderCardsFromData(materialsData) {
+                materialsData.forEach((mat, index) => {
+                    const el = document.createElement('div');
+                    el.className = 'item-card';
+                    el.dataset.type = mat.type;
+                    el.dataset.recyclable = mat.recyclable;
+                    el.dataset.index = index;
+                    
+                    const badgeClass = mat.recyclable ? 'badge recyclable' : 'badge not-recyclable';
+
+                    el.innerHTML = `
+                        <div class="item-image">${mat.icon}</div>
+                        <h3>${mat.name}</h3>
+                        <span class="${badgeClass}">${mat.badge}</span>
+                        <p>${mat.description}</p>
+                        <a href="${mat.link}" class="btn-view-more">View More</a>
+                    `;
+                    el.style.display = 'none'; // hidden initially
+                    grid.appendChild(el);
+                    cards.push(el);
+                });
+                
+                // Trigger initial render
+                filterAndRender();
+            }
 
             // Core function to calculate and render the grid
             function filterAndRender() {
