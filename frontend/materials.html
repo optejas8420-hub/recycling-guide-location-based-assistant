@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Plastic Materials - Recycle Smart</title>
+    <title>Materials Directory - Recycle Smart</title>
     <style>
-        /* --- Base Styles --- */
+       
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -33,7 +33,6 @@
             margin: 0 auto;
         }
 
-        /* --- Navigation Bar --- */
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
@@ -93,7 +92,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* --- Sidebar & Overlay (Mobile Nav) --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -183,7 +181,6 @@
             display: none;
         }
 
-        /* --- Page Header Content --- */
         .page-top {
             padding: 30px 0 20px;
         }
@@ -212,7 +209,6 @@
             font-size: 16px;
         }
 
-        /* --- Search & Filter Top Bar --- */
         .search-filter-container {
             display: flex;
             background-color: white;
@@ -266,7 +262,6 @@
             background-color: #e4e4e4;
         }
 
-        /* --- Horizontal Filter Bar --- */
         .top-filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -329,7 +324,6 @@
             background-color: #4a9e59;
         }
 
-        /* --- Materials Grid --- */
         .material-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -420,7 +414,7 @@
             color: white;
         }
 
-        /* Message when no results match filters */
+        
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -433,7 +427,6 @@
             display: none;
         }
 
-        /* --- Bottom Actions --- */
         .bottom-actions {
             display: flex;
             flex-direction: column;
@@ -474,7 +467,6 @@
             font-size: 15px;
         }
 
-        /* --- Footer --- */
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -564,8 +556,7 @@
                 width: 100%;
                 margin-top: 5px;
             }
-            
-            /* Grid adjustments */
+           
             .material-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
@@ -627,8 +618,8 @@
                 <a href="index.html">Home</a> > <a href="materials.html">Materials</a>
             </div>
             <div class="page-title">
-                <h1>Plastic Materials</h1>
-                <p>Browse recyclable and non-recyclable plastic items.</p>
+                <h1 id="dynamicTitle">Materials Directory</h1>
+                <p>Browse recyclable and non-recyclable items.</p>
             </div>
         </div>
 
@@ -646,8 +637,8 @@
             <div class="filter-group">
                 <label>Material Type</label>
                 <select id="typeSelect">
-                    <option value="any">All Materials</option>
-                    <option value="plastic" selected>Plastic</option>
+                    <option value="any" selected>All Materials</option>
+                    <option value="plastic">Plastic</option>
                     <option value="paper">Paper</option>
                     <option value="glass">Glass</option>
                     <option value="metal">Metal</option>
@@ -683,7 +674,7 @@
                 <h3>PET Bottle</h3>
                 <span class="badge recyclable">✓ Recyclable</span>
                 <p>Empty, crush slightly, and leave the cap attached.</p>
-                <a href="PET-bottel.html" class="btn-view-more">View More</a>
+           <a href="item.html?id=pet-bottle" class="btn-view-more">View More</a>
             </div>
 
             <div class="item-card" data-type="plastic" data-recyclable="false">
@@ -691,7 +682,7 @@
                 <h3>Styrofoam Cup</h3>
                 <span class="badge not-recyclable">✕ Not recyclable</span>
                 <p>Cannot be processed in standard curbside bins. Throw in trash.</p>
-                <a href="#" class="btn-view-more">View More</a>
+            <a href="item.html?id=styrofoam-cup" class="btn-view-more">View More</a>
             </div>
 
             <div class="item-card" data-type="plastic" data-recyclable="true">
@@ -836,6 +827,7 @@
             const statusSelect = document.getElementById('statusSelect');
             const sortSelect = document.getElementById('sortSelect');
             const applyFiltersBtn = document.getElementById('applyFiltersBtn');
+            const dynamicTitle = document.getElementById('dynamicTitle');
             
             const grid = document.getElementById('materialGrid');
             const noResultsMsg = document.getElementById('noResultsMsg');
@@ -853,7 +845,26 @@
             const CARDS_PER_PAGE = 8;
             let currentVisible = CARDS_PER_PAGE;
 
-            // Core function to calculate and render the grid
+            // --- URL PARAMETER LOGIC START ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlType = urlParams.get('type');
+            
+            if (urlType) {
+                // Check if the parameter passed actually exists in our dropdown
+                const optionExists = Array.from(typeSelect.options).some(opt => opt.value === urlType);
+                if (optionExists) {
+                    typeSelect.value = urlType;
+                    // Update the page title dynamically
+                    const titleText = urlType.charAt(0).toUpperCase() + urlType.slice(1);
+                    dynamicTitle.textContent = `${titleText} Materials`;
+                }
+            } else {
+                
+                typeSelect.value = "any";
+                dynamicTitle.textContent = "Materials Directory";
+            }
+            //URL PARAMETER LOGIC END
+
             function filterAndRender() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 const activeChip = document.querySelector('.chip.active').dataset.value;
@@ -890,15 +901,15 @@
 
                 // Step 2: Sort
                 if (selectedSort === 'alpha') {
-                    // Sort A to Z
+                   
                     filteredCards.sort((a, b) => a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent));
                 } else {
-                    // Sort by original DOM index (Most Common)
+                    
                     filteredCards.sort((a, b) => parseInt(a.dataset.index) - parseInt(b.dataset.index));
                 }
 
-                // Step 3: Render (Detach all, then attach the visible ones in order)
-                cards.forEach(card => card.style.display = 'none'); // hide all initially
+                // Step 3: Render
+                cards.forEach(card => card.style.display = 'none'); 
                 
                 if (filteredCards.length === 0) {
                     noResultsMsg.style.display = 'block';
@@ -909,11 +920,11 @@
                     filteredCards.forEach((card, index) => {
                         if (index < currentVisible) {
                             card.style.display = 'flex';
-                            grid.appendChild(card); // append child reshuffles them visually based on sort order
+                            grid.appendChild(card); 
                         }
                     });
 
-                    // Manage "Load More" button visibility
+                    // Manage 
                     if (currentVisible >= filteredCards.length) {
                         loadMoreBtn.style.display = 'none';
                     } else {
@@ -922,9 +933,9 @@
                 }
             }
 
-            // Event Listeners for Interactive Elements
+           
             
-            // Search Bar (Live filtering)
+            // Search Bar 
             searchInput.addEventListener('input', () => {
                 currentVisible = CARDS_PER_PAGE; // reset pagination
                 filterAndRender();
@@ -933,7 +944,7 @@
             // Quick Chips
             filterChips.forEach(chip => {
                 chip.addEventListener('click', (e) => {
-                    // Update active state
+                   
                     filterChips.forEach(c => c.classList.remove('active'));
                     e.target.classList.add('active');
                     
@@ -959,16 +970,24 @@
                 if(currentStatus === 'recyclable') filterChips[1].classList.add('active');
                 if(currentStatus === 'non-recyclable') filterChips[2].classList.add('active');
 
+                // Update Dynamic Title if dropdown changes
+                if(typeSelect.value === 'any') {
+                    dynamicTitle.textContent = "Materials Directory";
+                } else {
+                    const titleText = typeSelect.value.charAt(0).toUpperCase() + typeSelect.value.slice(1);
+                    dynamicTitle.textContent = `${titleText} Materials`;
+                }
+
                 filterAndRender();
             });
 
-            // Load More Button
+          
             loadMoreBtn.addEventListener('click', () => {
                 currentVisible += CARDS_PER_PAGE;
                 filterAndRender();
             });
 
-            // Run once on load to establish the baseline pagination (show 8 items initially)
+            // Run once on load to establish the baseline pagination
             filterAndRender();
         });
     </script>

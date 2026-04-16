@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <style>
-        /* --- Base Styles --- */
+    
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -36,14 +36,14 @@
             margin: 0 auto;
         }
 
-        /* --- Navigation Bar --- */
+    
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 2000; /* Increased to stay above Leaflet map */
+            z-index: 2000; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
@@ -105,7 +105,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* --- Sidebar (Mobile Nav) --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -195,7 +194,6 @@
             display: none;
         }
 
-        /* --- Page Header & Stats --- */
         .page-header {
             padding: 30px 0 20px;
         }
@@ -258,7 +256,6 @@
             color: #888;
         }
 
-        /* --- Toolbar (Controls & Filters) --- */
         .toolbar {
             background-color: white;
             border: 1px solid #ddd;
@@ -327,7 +324,6 @@
             border-color: #c8e6c9;
         }
 
-        /* --- Main Map/List Layout --- */
         .dashboard-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -337,7 +333,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Dynamic classes based on view toggle */
         body.view-map-only .dashboard-layout {
             grid-template-columns: 1fr;
         }
@@ -364,7 +359,7 @@
         #map {
             flex-grow: 1;
             width: 100%;
-            z-index: 1; /* Keep below navbar */
+            z-index: 1; 
         }
 
         .map-legend {
@@ -403,7 +398,6 @@
             gap: 15px;
         }
 
-        /* --- Location Cards inside List --- */
         .location-card {
             border: 1px solid #eee;
             border-radius: 10px;
@@ -478,7 +472,6 @@
             color: white;
         }
 
-        /* Leaflet Popup customization */
         .leaflet-popup-content-wrapper {
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -499,7 +492,6 @@
             line-height: 1.5;
         }
 
-        /* --- Footer --- */
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -545,7 +537,6 @@
             margin: 0;
         }
 
-        /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -829,11 +820,10 @@
                 card.className = 'location-card';
                 
                 const linkUrl = center.url ? center.url : '#';
-                
-                // Generate pill HTML
+              
                 const pillsHtml = center.type.map(t => {
                     const pillColor = typeColors[t];
-                    // Create a very light version of the hex color for the background
+                    
                     return `<span class="type-pill" style="color:${pillColor}; border-color:${pillColor}; background-color:${pillColor}15;">${typeLabels[t]}</span>`;
                 }).join('');
 
@@ -858,7 +848,7 @@
             }
         }
         
-        // Event Listeners for Filters
+     
         document.querySelectorAll('.chip').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
@@ -868,7 +858,6 @@
             });
         });
 
-        // Event Listeners for View Toggles
         document.querySelectorAll('.view-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
@@ -886,7 +875,6 @@
             });
         });
         
-        // Initialize
         renderLegend();
         render();
     </script>

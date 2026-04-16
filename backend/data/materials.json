@@ -1,0 +1,54 @@
+{
+  "pet-bottle": {
+    "title": "Plastic Bottle (PET)",
+    "recyclable": true,
+    "icon": "🧴",
+    "subtitle": "Commonly used for beverages, this type of plastic is widely accepted in curbside bins.",
+    "category": "Plastic",
+    "resinCode": "#1 (PET / PETE)",
+    "commonUses": "Water bottles, Juice bottles, Cooking oil containers",
+    "steps": [
+      "<strong>Empty the contents:</strong> Pour out any remaining liquids or food residue.",
+      "<strong>Rinse briefly:</strong> A quick swirl of water prevents sticky residue from contaminating other materials.",
+      "<strong>Crush the bottle:</strong> Squeeze the air out to save space in your bin and the collection truck.",
+      "<strong>Leave the cap ON:</strong> Screw the cap back on securely. Loose caps fall through sorting grates."
+    ],
+    "mistakes": [
+      "<strong>Leaving liquid inside:</strong> Heavy bottles can be mis-sorted by machines.",
+      "<strong>Bagging your bottles:</strong> Never put recyclables in a plastic trash bag.",
+      "<strong>Removing the label:</strong> You don't need to peel the label off."
+    ],
+    "faqs": [
+      {
+        "question": "What happens after it gets recycled?",
+        "answer": "PET bottles are sorted, cleaned, and shredded into tiny flakes to make clothing fibers or new bottles."
+      },
+      {
+        "question": "What is the environmental impact?",
+        "answer": "Recycling a single plastic bottle can save enough energy to power a 60-watt light bulb for up to 6 hours."
+      }
+    ]
+  },
+  "styrofoam-cup": {
+    "title": "Styrofoam Cup",
+    "recyclable": false,
+    "icon": "🥤",
+    "subtitle": "Expanded polystyrene is extremely difficult to recycle locally.",
+    "category": "Plastic",
+    "resinCode": "#6 (PS)",
+    "commonUses": "Hot beverage cups, takeout containers, packing peanuts",
+    "steps": [
+      "<strong>Check local facilities:</strong> Do NOT put in curbside bins. Check if a local specialized facility accepts it.",
+      "<strong>Throw in trash:</strong> If no local facility exists, it must go in the regular trash."
+    ],
+    "mistakes": [
+      "<strong>Putting in curbside bins:</strong> It breaks into tiny pieces and contaminates the entire recycling batch."
+    ],
+    "faqs": [
+      {
+        "question": "Why is it so hard to recycle?",
+        "answer": "It is 95% air, making it very bulky and expensive to transport relative to its actual material value."
+      }
+    ]
+  }
+}

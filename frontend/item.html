@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Plastic Bottle (PET) - Recycle Smart</title>
-    <style>
-        /* --- Base Styles --- */
+    <title>Loading Material... - Recycle Smart</title>
+   <style>
+        
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -18,7 +18,7 @@
             color: #333;
             background-color: #f7fbf8; 
             line-height: 1.6;
-            padding-top: 70px; /* Space for fixed navbar */
+            padding-top: 70px; 
             overflow-x: hidden;
         }
 
@@ -27,20 +27,20 @@
             color: inherit;
         }
 
-        /* Fixed container: removed the padding-bottom that was bloating the navbar */
+       
         .container {
             width: 90%;
-            max-width: 1200px; /* Restored to 1200px to match global navbar width */
+            max-width: 1200px; 
             margin: 0 auto;
         }
 
-        /* Applied the narrower width and padding specifically to the main article area */
+       
         main.container {
             max-width: 1000px;
             padding-bottom: 50px;
         }
 
-        /* --- Buttons --- */
+    
         .btn-primary {
             background-color: #5bb46b;
             color: white;
@@ -57,7 +57,6 @@
             background-color: #4a9e59;
         }
 
-        /* --- Navigation Bar --- */
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
@@ -106,7 +105,6 @@
             color: #ffffff;
         }
 
-        /* Active Link Styling */
         .nav-links a.active {
             color: #ffffff;
             text-decoration: underline;
@@ -114,7 +112,6 @@
             text-decoration-thickness: 2px;
         }
 
-        /* User Profile Icon */
         .user-icon {
             width: 40px;
             height: 40px;
@@ -128,7 +125,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* --- Sidebar & Overlay (Mobile Nav) --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -218,7 +214,6 @@
             display: none;
         }
 
-        /* --- Page Header Content --- */
         .page-top {
             padding: 40px 0 20px;
         }
@@ -269,7 +264,6 @@
             margin-bottom: 30px;
         }
 
-        /* --- Hero Layout --- */
         .product-hero {
             display: flex;
             gap: 50px;
@@ -365,7 +359,6 @@
             flex-grow: 1;
         }
 
-        /* --- Content Sections --- */
         .section-title {
             font-size: 24px;
             margin-top: 50px;
@@ -407,7 +400,6 @@
             flex-shrink: 0;
         }
 
-        /* --- Common Mistakes Box --- */
         .mistake-list {
             list-style: none;
             padding: 0;
@@ -519,7 +511,7 @@
             line-height: 1.6;
         }
 
-        /* --- Related Grid --- */
+   
         .related-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -572,6 +564,7 @@
             font-size: 16px;
         }
 
+        /* --- Footer --- */
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -617,6 +610,7 @@
             margin: 0;
         }
 
+       
         @media (max-width: 768px) {
             .nav-links {
                 display: none; 
@@ -665,20 +659,19 @@
     </style>
 </head>
 <body>
-
-    <nav>
+      <nav>
         <div class="container nav-content">
             <a href="index.html" class="logo">🍃 Recycle Smart</a>
             
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="materials.html" class="active" style="text-decoration: underline;">Materials</a>
+                    <a href="materials.html">Materials</a>
                     <a href="recycling-areas.html">Map</a>
                     <a href="recycling-guide.html">Guides</a>
                 </div>
-                <div class="user-icon" id="userIcon" aria-label="Open Menu">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="user-icon" id="userIcon" title="Open Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
@@ -687,48 +680,23 @@
         </div>
     </nav>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <div class="sidebar" id="mobileMenu">
-        <div class="sidebar-header">
-            <h3>Welcome!</h3>
-            <button class="close-btn" id="closeBtn" aria-label="Close Menu">&times;</button>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="login.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
-            <li><a href="#">📊 My Recycling Stats</a></li>
-            <li><a href="#">🔖 Saved Guides</a></li>
-            <li><a href="#">⚙️ Settings</a></li>
-            
-            <li class="mobile-only"><a href="index.html">🏠 Home</a></li>
-            <li class="mobile-only"><a href="materials.html">📦 Materials</a></li>
-            <li class="mobile-only"><a href="recycling-areas.html">🗺️ Map</a></li>
-            <li class="mobile-only"><a href="recycling-guide.html">📚 Guides</a></li>
-        </ul>
-    </div>
-
-    <main class="container">
+    <main class="container" id="dynamic-content">
         
         <div class="page-top">
             <div class="breadcrumbs">
-                <a href="index.html">Home</a> > <a href="materials.html">Materials</a> > <a href="materials.html">Plastic</a> > PET Bottle
+                <a href="index.html">Home</a> > <a href="materials.html">Materials</a> > <a href="materials.html" id="breadcrumb-category">Category</a> > <span id="breadcrumb-current">Item</span>
             </div>
             
             <div class="title-row">
-                <h1>Plastic Bottle (PET)</h1>
-                <span class="badge recyclable">✓ Recyclable</span>
+                <h1 id="item-title">Loading...</h1>
+                <span id="item-badge" class="badge">Loading</span>
             </div>
-            <p class="subtitle">Commonly used for beverages, this type of plastic is widely accepted in curbside bins.</p>
+            <p class="subtitle" id="item-subtitle">Please wait while we fetch the material details.</p>
         </div>
 
         <div class="product-hero">
             <div class="gallery">
-                <div class="main-image">🧴</div>
-                <div class="thumbnails">
-                    <div class="thumb active">🧴</div>
-                    <div class="thumb">💧</div>
-                    <div class="thumb">🧊</div>
-                    <div class="thumb">♻️</div>
-                </div>
+                <div class="main-image" id="item-icon">⏳</div>
             </div>
 
             <div class="product-details">
@@ -736,99 +704,39 @@
                     <h3>Key Specifications</h3>
                     <div class="info-row">
                         <span class="info-label">Category:</span>
-                        <span class="info-value">Plastic</span>
+                        <span class="info-value" id="spec-category">...</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Resin Code:</span>
-                        <span class="info-value">#1 (PET / PETE)</span>
+                        <span class="info-value" id="spec-resin">...</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Common Uses:</span>
-                        <span class="info-value">Water bottles, Juice bottles, Cooking oil containers</span>
+                        <span class="info-value" id="spec-uses">...</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">How to Recycle Properly</h2>
-        <div class="recycle-steps">
-            <div class="step-item">
-                <span class="step-num">1</span>
-                <span><strong>Empty the contents:</strong> Pour out any remaining liquids or food residue.</span>
+        <h2 class="section-title">How to Dispose Properly</h2>
+        <div class="recycle-steps" id="recycle-steps">
             </div>
-            <div class="step-item">
-                <span class="step-num">2</span>
-                <span><strong>Rinse briefly:</strong> A quick swirl of water prevents sticky residue from contaminating other materials.</span>
-            </div>
-            <div class="step-item">
-                <span class="step-num">3</span>
-                <span><strong>Crush the bottle:</strong> Squeeze the air out to save space in your bin and the collection truck.</span>
-            </div>
-            <div class="step-item">
-                <span class="step-num">4</span>
-                <span><strong>Leave the cap ON:</strong> Screw the cap back on securely. Loose caps fall through sorting grates and end up in landfills.</span>
-            </div>
-        </div>
 
         <h2 class="section-title">Common Mistakes to Avoid</h2>
-        <ul class="mistake-list">
-            <li>
-                <span class="red-x">✕</span> 
-                <span><strong>Leaving liquid inside:</strong> Heavy bottles can be mis-sorted by machines, and liquids ruin surrounding paper/cardboard.</span>
-            </li>
-            <li>
-                <span class="red-x">✕</span> 
-                <span><strong>Bagging your bottles:</strong> Never put recyclables in a plastic trash bag. Keep them loose in the bin.</span>
-            </li>
-            <li>
-                <span class="red-x">✕</span> 
-                <span><strong>Removing the label:</strong> You don't need to peel the label off; the recycling facility burns it off during processing.</span>
-            </li>
-        </ul>
+        <ul class="mistake-list" id="mistake-list">
+            </ul>
 
         <div class="cta-banner">
             <div>
                 <h3>Need a Drop-off Location?</h3>
-                <p>Some municipalities require drop-offs for bulk plastics. Find a verified center near you.</p>
+                <p>Find a verified center near you to dispose of this material safely.</p>
             </div>
             <button class="btn-primary" onclick="window.location.href='recycling-areas.html'">Find Centers Near Me</button>
         </div>
 
         <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="accordion-wrapper">
-            <details class="accordion">
-                <summary>What happens after it gets recycled?</summary>
-                <p>PET bottles are sorted, cleaned, and shredded into tiny flakes. These flakes are melted down and reshaped into new products like clothing fibers (fleece), carpets, strapping tape, or brand new plastic containers.</p>
-            </details>
-            <details class="accordion">
-                <summary>What is the environmental impact?</summary>
-                <p>Recycling a single plastic bottle can save enough energy to power a 60-watt light bulb for up to 6 hours. It also keeps microplastics out of our oceans and reduces the need to extract raw petroleum to make new plastics.</p>
-            </details>
-            <details class="accordion">
-                <summary>Can I reuse these bottles instead?</summary>
-                <p>While you can reuse them a few times, PET bottles are designed for single-use. Over time, heat and wear can cause bacteria to build up in tiny cracks. For long-term use, switch to a stainless steel or heavy-duty reusable plastic bottle.</p>
-            </details>
-        </div>
-
-        <h2 class="section-title">Related Materials</h2>
-        <div class="related-grid">
-            <div class="related-card" onclick="window.location.href='#'">
-                <div class="img-placeholder" style="background-color: #f0f4f8;">🥛</div>
-                <p>HDPE Milk Jug</p>
+        <div class="accordion-wrapper" id="faq-accordion">
             </div>
-            <div class="related-card" onclick="window.location.href='#'">
-                <div class="img-placeholder" style="background-color: #f0fdf4;">🥡</div>
-                <p>Food Containers</p>
-            </div>
-            <div class="related-card" onclick="window.location.href='#'">
-                <div class="img-placeholder" style="background-color: #fff8e1;">🥤</div>
-                <p>Styrofoam Cups</p>
-            </div>
-            <div class="related-card" onclick="window.location.href='#'">
-                <div class="img-placeholder" style="background-color: #fce4ec;">🧃</div>
-                <p>Plastic Straws</p>
-            </div>
-        </div>
 
         <div class="tip-strip">
             💡 Tip: When in doubt, throw it out! "Wish-cycling" contaminated items ruins good batches.
@@ -836,24 +744,10 @@
 
     </main>
 
-    <footer class="simple-footer">
-        <div class="container">
-            <div class="footer-contact">
-                <h4>Contact Our Team</h4>
-                <p>Email: hello@recyclesmart.com &nbsp;|&nbsp; Phone: (555) 123-4567</p>
-            </div>
-
-            <div class="social-links">
-                <a href="#" title="Instagram">📸 Instagram</a>
-                <a href="#" title="Twitter">🐦 Twitter</a>
-                <a href="#" title="LinkedIn">💼 LinkedIn</a>
-            </div>
-
-            <p class="copyright">&copy; 2026 Recycle Smart. All rights reserved.</p>
-        </div>
-    </footer>
+    <script src="item.js"></script>
 
     <script>
+        
         const userIcon = document.getElementById('userIcon');
         const mobileMenu = document.getElementById('mobileMenu');
         const overlay = document.getElementById('sidebarOverlay');

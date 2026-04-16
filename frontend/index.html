@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recycle Smart - Home</title>
     <style>
-        /* --- Base Styles --- */
+       
         body {
             margin: 0;
             padding: 0;
@@ -13,7 +13,7 @@
             color: #333;
             background-color: #ffffff;
             line-height: 1.6;
-            padding-top: 70px; /* Space for fixed navbar */
+            padding-top: 70px; 
             overflow-x: hidden;
         }
 
@@ -28,7 +28,7 @@
             margin: 0 auto;
         }
 
-        /* --- Buttons --- */
+       
         .btn-primary {
             background-color: #5bb46b;
             color: white;
@@ -61,7 +61,7 @@
             color: white;
         }
 
-        /* --- Navigation Bar --- */
+       
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
@@ -126,7 +126,6 @@
             transform: scale(1.05);
         }
 
-        /* --- Sidebar & Overlay --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -148,7 +147,7 @@
         .sidebar {
             position: fixed;
             top: 0;
-            right: -320px; /* Hidden by default */
+            right: -320px; 
             width: 280px;
             height: 100vh;
             background-color: #ffffff;
@@ -211,10 +210,10 @@
         }
 
         .sidebar-menu .mobile-only {
-            display: none; /* Hidden on desktop */
+            display: none; 
         }
 
-        /* --- Hero Section --- */
+        
         .hero {
             background-color: #f0fdf4;
             padding: 80px 0 60px 0;
@@ -239,7 +238,7 @@
             margin-right: auto;
         }
 
-        /* --- Search Bar --- */
+        
         .search-section {
             display: flex;
             justify-content: center;
@@ -265,7 +264,7 @@
             box-shadow: 0 6px 20px rgba(91, 180, 107, 0.2);
         }
 
-        /* --- Materials Section --- */
+        
         .materials-section {
             text-align: center;
             padding: 40px 0;
@@ -319,7 +318,7 @@
             margin: 0;
         }
 
-        /* --- Tips Section --- */
+       
         .tips-section {
             padding: 50px 0 60px 0;
             background-color: #fafafa;
@@ -354,7 +353,7 @@
             gap: 10px;
         }
 
-        /* --- Footer --- */
+       
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -370,13 +369,12 @@
             margin: 0;
         }
 
-        /* --- Mobile Responsive Rules --- */
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* Hide top nav links on mobile */
+                display: none; 
             }
             .sidebar-menu .mobile-only {
-                display: block; /* Show them in the sidebar instead */
+                display: block; 
                 background-color: #fafafa;
             }
             .hero {
@@ -395,24 +393,24 @@
                 width: 90%;
             }
             .material-card {
-                width: 40%; /* 2 columns on mobile */
+                width: 40%; 
                 padding: 20px 10px;
             }
             .tips-box {
                 padding: 20px;
             }
             .tip-item {
-                width: 100%; /* 1 column on mobile */
+                width: 100%; 
             }
             .btn-outline, .btn-primary {
                 margin-bottom: 10px;
-                width: 80%; /* Stack buttons on mobile */
+                width: 80%; 
             }
         }
 
         @media (max-width: 480px) {
             .material-card {
-                width: 100%; /* 1 column on very small screens */
+                width: 100%; 
             }
             .hero h1 {
                 font-size: 30px;
@@ -453,7 +451,7 @@
             <li><a href="login.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
             <li><a href="#">📊 My Recycling Stats</a></li>
             <li><a href="#">🔖 Saved Guides</a></li>
-            <li><a href="#">⚙️ Settings</a></li>
+            <li><a href="settings.html">⚙️ Settings</a></li>
             
             <li class="mobile-only"><a href="index.html">🏠 Home</a></li>
             <li class="mobile-only"><a href="materials.html">📦 Materials</a></li>
@@ -467,8 +465,8 @@
             <h1>Recycle Smarter,<br>Not Harder 🌿</h1>
             <p>Your location-based recycling assistant and simple guide to sorting materials correctly.</p>
             <div style="margin-top: 20px;">
-                <button class="btn-primary">Explore Materials</button>
-                <button class="btn-outline">Find Centers</button>
+                <button class="btn-primary" onclick="window.location.href='materials.html'">Explore Materials</button>
+                <button class="btn-outline" onclick="window.location.href='recycling-areas.html'">Find Centers</button>
             </div>
         </div>
     </section>
@@ -480,31 +478,31 @@
     <section class="materials-section container">
         <h2>Browse Materials</h2>
         <div class="materials-grid">
-            <a href="plastic.html" class="material-card">
+            <a href="materials.html?type=plastic" class="material-card">
                 <div class="material-icon">💧</div>
                 <h3>Plastic</h3>
                 <p>Bottles, containers, and packaging rules.</p>
             </a>
             
-            <a href="paper.html" class="material-card">
+            <a href="materials.html?type=paper" class="material-card">
                 <div class="material-icon">📄</div>
                 <h3>Paper</h3>
                 <p>Cardboard, newspaper, and mixed paper.</p>
             </a>
             
-            <a href="glass.html" class="material-card">
+            <a href="materials.html?type=glass" class="material-card">
                 <div class="material-icon">🍾</div>
                 <h3>Glass</h3>
                 <p>Jars, bottles, and handling broken glass.</p>
             </a>
 
-            <a href="metal.html" class="material-card">
+            <a href="materials.html?type=metal" class="material-card">
                 <div class="material-icon">🥫</div>
                 <h3>Metal</h3>
                 <p>Aluminum cans, foil, and steel items.</p>
             </a>
             
-            <a href="electronics.html" class="material-card">
+            <a href="materials.html?type=electronics" class="material-card">
                 <div class="material-icon">💻</div>
                 <h3>Electronics</h3>
                 <p>E-waste, batteries, and old appliances.</p>
@@ -538,24 +536,23 @@
         const overlay = document.getElementById('sidebarOverlay');
         const closeBtn = document.getElementById('closeBtn');
 
-        // Function to open sidebar
+      
         function openSidebar() {
             sidebar.classList.add('active');
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
-        // Function to close sidebar
         function closeSidebar() {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; 
         }
 
-        // Event Listeners
+       
         userIcon.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar); // Close when clicking outside
+        overlay.addEventListener('click', closeSidebar); 
     </script>
 
 </body>
