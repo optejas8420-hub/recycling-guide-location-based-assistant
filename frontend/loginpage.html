@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recycle Smart - Home</title>
+    <title>Recycle Smart - Login</title>
     <style>
-       
+
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             color: #333;
-            background-color: #ffffff;
+            background-color: #f0fdf4; 
             line-height: 1.6;
             padding-top: 70px; 
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         a {
@@ -28,16 +31,19 @@
             margin: 0 auto;
         }
 
-       
+        /* --- Buttons --- */
         .btn-primary {
             background-color: #5bb46b;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.2s;
+            font-size: 16px;
+            width: 100%; 
+            box-sizing: border-box;
         }
 
         .btn-primary:hover {
@@ -47,13 +53,17 @@
         .btn-outline {
             background-color: transparent;
             color: #5bb46b;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: 2px solid #5bb46b;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-right: 10px;
             transition: all 0.2s;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn-outline:hover {
@@ -61,7 +71,7 @@
             color: white;
         }
 
-       
+
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
@@ -107,7 +117,6 @@
             text-decoration: underline;
         }
 
-        /* User Profile Icon */
         .user-icon {
             width: 40px;
             height: 40px;
@@ -213,162 +222,171 @@
             display: none; 
         }
 
-        
-        .hero {
-            background-color: #f0fdf4;
-            padding: 80px 0 60px 0;
-            text-align: center;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #555;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        
-        .search-section {
+        .login-wrapper {
+            flex: 1;
             display: flex;
             justify-content: center;
-            margin: -30px auto 40px;
-            position: relative;
-            z-index: 10;
+            align-items: center;
+            padding: 40px 20px;
         }
 
-        .search-bar {
-            width: 80%;
-            max-width: 600px;
-            padding: 18px 25px;
-            font-size: 16px;
-            border: 2px solid #5bb46b;
-            border-radius: 30px;
-            outline: none;
-            background-color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: box-shadow 0.2s;
-        }
-
-        .search-bar:focus {
-            box-shadow: 0 6px 20px rgba(91, 180, 107, 0.2);
-        }
-
-        
-        .materials-section {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .materials-section h2 {
-            font-size: 28px;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-        }
-
-        .materials-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .material-card {
-            display: block;
-            width: 180px;
-            padding: 25px 20px;
-            background-color: white;
-            border: 1px solid #eee;
+        .login-card {
+            background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .login-header {
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
         }
 
-        .material-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
-            border-color: #5bb46b;
+        .login-header h1 {
+            color: #2c7a3f;
+            margin: 0 0 10px 0;
+            font-size: 28px;
         }
 
-        .material-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .material-card h3 {
-            margin: 10px 0 5px 0;
-            font-size: 18px;
-            color: #222;
-        }
-
-        .material-card p {
-            font-size: 12px;
+        .login-header p {
             color: #777;
             margin: 0;
+            font-size: 15px;
         }
 
-       
-        .tips-section {
-            padding: 50px 0 60px 0;
-            background-color: #fafafa;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .tips-section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #1a1a1a;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+            font-size: 14px;
         }
 
-        .tips-box {
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 35px;
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            border-color: #5bb46b;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(91, 180, 107, 0.2);
+        }
+
+        .form-options {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            max-width: 900px;
-            margin: 0 auto;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
 
-        .tip-item {
-            width: 45%;
-            margin-bottom: 18px;
-            font-size: 15px;
-            color: #555;
+        .remember-me {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            cursor: pointer;
         }
 
-       
-        .simple-footer {
+        .forgot-password {
+            color: #2c7a3f;
+            font-weight: bold;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .25em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .25em;
+        }
+
+        .social-login-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+
+        .btn-social:hover {
             background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn-social svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .simple-footer {
+            background-color: #ffffff;
             border-top: 1px solid #eee;
-            padding: 40px 0 20px 0;
+            padding: 20px 0;
             text-align: center;
             color: #555;
+            margin-top: auto;
         }
 
         .copyright {
             color: #888;
             font-size: 13px;
-            padding-top: 20px;
             margin: 0;
         }
 
+        /*Responsive*/
         @media (max-width: 768px) {
             .nav-links {
                 display: none; 
@@ -377,43 +395,8 @@
                 display: block; 
                 background-color: #fafafa;
             }
-            .hero {
-                padding: 60px 0 50px 0;
-                border-bottom-left-radius: 30px;
-                border-bottom-right-radius: 30px;
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 16px;
-                padding: 0 15px;
-            }
-            .search-bar {
-                width: 90%;
-            }
-            .material-card {
-                width: 40%; 
-                padding: 20px 10px;
-            }
-            .tips-box {
-                padding: 20px;
-            }
-            .tip-item {
-                width: 100%; 
-            }
-            .btn-outline, .btn-primary {
-                margin-bottom: 10px;
-                width: 80%; 
-            }
-        }
-
-        @media (max-width: 480px) {
-            .material-card {
-                width: 100%; 
-            }
-            .hero h1 {
-                font-size: 30px;
+            .login-card {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -444,12 +427,12 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3>Welcome!</h3>
+            <h3>Menu</h3>
             <button class="close-btn" id="closeBtn">&times;</button>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="loginpage.html" style="color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
-            <li><a href="recycling_stats.html">📊 My Recycling Stats</a></li>
+            <li><a href="login.html" style="background-color: #f0fdf4; color: #2c7a3f;">🔑 Log In / Sign Up</a></li>
+            <li><a href="#">📊 My Recycling Stats</a></li>
             <li><a href="#">🔖 Saved Guides</a></li>
             <li><a href="settings.html">⚙️ Settings</a></li>
             
@@ -460,83 +443,79 @@
         </ul>
     </div>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Recycle Smarter,<br>Not Harder 🌿</h1>
-            <p>Your location-based recycling assistant and simple guide to sorting materials correctly.</p>
-            <div style="margin-top: 20px;">
-                <button class="btn-primary" onclick="window.location.href='materials.html'">Explore Materials</button>
-                <button class="btn-outline" onclick="window.location.href='recycling-areas.html'">Find Centers</button>
+    <!-- Login Main Content -->
+    <main class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Welcome Back!</h1>
+                <p>Log in to track your recycling goals.</p>
             </div>
-        </div>
-    </section>
 
-    <section class="search-section container">
-        <input type="text" class="search-bar" placeholder="🔍 Search materials, centers, guides...">
-    </section>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); window.location.href='index.html';">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
 
-    <section class="materials-section container">
-        <h2>Browse Materials</h2>
-        <div class="materials-grid">
-            <a href="materials.html?type=plastic" class="material-card">
-                <div class="material-icon">💧</div>
-                <h3>Plastic</h3>
-                <p>Bottles, containers, and packaging rules.</p>
-            </a>
-            
-            <a href="materials.html?type=paper" class="material-card">
-                <div class="material-icon">📄</div>
-                <h3>Paper</h3>
-                <p>Cardboard, newspaper, and mixed paper.</p>
-            </a>
-            
-            <a href="materials.html?type=glass" class="material-card">
-                <div class="material-icon">🍾</div>
-                <h3>Glass</h3>
-                <p>Jars, bottles, and handling broken glass.</p>
-            </a>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
 
-            <a href="materials.html?type=metal" class="material-card">
-                <div class="material-icon">🥫</div>
-                <h3>Metal</h3>
-                <p>Aluminum cans, foil, and steel items.</p>
-            </a>
-            
-            <a href="materials.html?type=electronics" class="material-card">
-                <div class="material-icon">💻</div>
-                <h3>Electronics</h3>
-                <p>E-waste, batteries, and old appliances.</p>
-            </a>
-        </div>
-    </section>
+                <button type="submit" class="btn-primary">Log In</button>
+            </form>
 
-    <section class="tips-section">
-        <div class="container">
-            <h2>Quick Recycling Tips</h2>
-            <div class="tips-box">
-                <div class="tip-item"><span>✅</span> Clean and dry all containers before tossing them in the bin.</div>
-                <div class="tip-item"><span>✅</span> Never bag your recyclables; keep them loose in the bin.</div>
-                <div class="tip-item"><span>✅</span> Flatten cardboard boxes to save space for other materials.</div>
-                <div class="tip-item"><span>✅</span> Keep hazardous materials like paint and chemicals out of standard bins.</div>
-                <div class="tip-item"><span>✅</span> When in doubt, throw it out to avoid contaminating the batch.</div>
-                <div class="tip-item"><span>✅</span> Leave caps on plastic bottles, but remove them from glass jars.</div>
+            <div class="divider">OR</div>
+
+            <div class="social-login-container">
+                <button class="btn-social">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Continue with Google
+                </button>
+                <button class="btn-social">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#1877F2">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Continue with Facebook
+                </button>
+                <button class="btn-social">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                        <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.89-1.99 1.57-2.969 1.57-.104 0-.21-.01-.32-.03-.03-1.04.46-2.13 1.14-2.97.67-.84 1.84-1.53 2.91-1.61.03.33.04.64.04.96zM17.51 16.32c-.08.24-.78 2.25-2.4 4.56-1.53 2.18-3.08 4.34-5.32 4.35-2.18 0-2.88-1.32-5.35-1.32-2.49 0-3.23 1.3-5.32 1.34-2.16.03-3.92-2.35-5.46-4.56-3.13-4.52-5.33-11.45-2.09-15.65 1.6-2.07 3.96-3.38 6.54-3.42 2.1-.03 4.09 1.42 5.38 1.42 1.28 0 3.65-1.74 6.13-1.5 1.05.04 4.01.42 5.92 3.21-4.93 2.82-4.13 9.61 1.97 11.57z"/>
+                    </svg>
+                    Continue with Apple
+                </button>
             </div>
-        </div>
-    </section>
 
+            <a href="#" class="btn-outline">Create an Account</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer class="simple-footer">
         <div class="container">
             <p class="copyright">&copy; 2026 Recycle Smart. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Script for Sidebar -->
     <script>
         const userIcon = document.getElementById('userIcon');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         const closeBtn = document.getElementById('closeBtn');
 
-      
         function openSidebar() {
             sidebar.classList.add('active');
             overlay.classList.add('active');
@@ -549,7 +528,6 @@
             document.body.style.overflow = 'auto'; 
         }
 
-       
         userIcon.addEventListener('click', openSidebar);
         closeBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar); 

@@ -1,9 +1,9 @@
 {
   "pet-bottle": {
-    "title": "Plastic Bottle (PET)",
+    "title": "PET Bottle",
     "recyclable": true,
     "icon": "🧴",
-    "subtitle": "Commonly used for beverages, this type of plastic is widely accepted in curbside bins.",
+    "subtitle": "Empty, crush slightly, and leave the cap attached.",
     "category": "Plastic",
     "resinCode": "#1 (PET / PETE)",
     "commonUses": "Water bottles, Juice bottles, Cooking oil containers",
@@ -33,21 +33,432 @@
     "title": "Styrofoam Cup",
     "recyclable": false,
     "icon": "🥤",
-    "subtitle": "Expanded polystyrene is extremely difficult to recycle locally.",
+    "subtitle": "Cannot be processed in standard curbside bins. Throw in trash.",
     "category": "Plastic",
     "resinCode": "#6 (PS)",
     "commonUses": "Hot beverage cups, takeout containers, packing peanuts",
     "steps": [
-      "<strong>Check local facilities:</strong> Do NOT put in curbside bins. Check if a local specialized facility accepts it.",
-      "<strong>Throw in trash:</strong> If no local facility exists, it must go in the regular trash."
+      "<strong>Check local facilities:</strong> Do NOT put in curbside bins. Check if a local specialized facility accepts expanded polystyrene.",
+      "<strong>Throw in trash:</strong> If no local facility exists, it must go in the regular household trash."
     ],
     "mistakes": [
-      "<strong>Putting in curbside bins:</strong> It breaks into tiny pieces and contaminates the entire recycling batch."
+      "<strong>Putting in curbside bins:</strong> It breaks into tiny pieces, contaminating the entire recycling batch and ruining good paper and plastic."
     ],
     "faqs": [
       {
         "question": "Why is it so hard to recycle?",
         "answer": "It is 95% air, making it very bulky and expensive to transport relative to its actual material value."
+      }
+    ]
+  },
+  "hdpe-milk-jug": {
+    "title": "HDPE Milk Jug",
+    "recyclable": true,
+    "icon": "🥛",
+    "subtitle": "Rinse out all milk residue completely before recycling.",
+    "category": "Plastic",
+    "resinCode": "#2 (HDPE)",
+    "commonUses": "Milk jugs, juice jugs, heavy-duty cleaning containers",
+    "steps": [
+      "<strong>Empty and rinse thoroughly:</strong> Milk residue spoils quickly, smells terrible, and contaminates the recycling bin.",
+      "<strong>Crush to save space:</strong> Push the air out so it takes up less room in your bin.",
+      "<strong>Cap it:</strong> Put the plastic cap back on so it gets recycled too."
+    ],
+    "mistakes": [
+      "<strong>Leaving dairy inside:</strong> Rotten dairy creates hazardous conditions for sorting facility workers and attracts pests."
+    ],
+    "faqs": [
+      {
+        "question": "What gets made from recycled HDPE?",
+        "answer": "Recycled milk jugs are often turned into durable plastic lumber, picnic tables, and park benches."
+      }
+    ]
+  },
+  "plastic-straws": {
+    "title": "Plastic Straws",
+    "recyclable": false,
+    "icon": "🧃",
+    "subtitle": "Too small for sorting machines. Must go in the trash.",
+    "category": "Plastic",
+    "resinCode": "#5 (PP) or Mixed",
+    "commonUses": "Beverages, fast food cups, juice boxes",
+    "steps": [
+      "<strong>Throw them in the trash:</strong> Plastic straws cannot be recycled curbside.",
+      "<strong>Opt for reusables:</strong> Consider switching to metal, glass, or silicone straws for home use."
+    ],
+    "mistakes": [
+      "<strong>Wish-cycling:</strong> Putting them in the recycling bin hoping they get recycled. They just cause jams or fall through."
+    ],
+    "faqs": [
+      {
+        "question": "Why can't small items be recycled?",
+        "answer": "Recycling facilities use large mechanical screens to sort materials. Small items like straws fall right through the gaps and end up as garbage anyway."
+      }
+    ]
+  },
+  "pp-food-container": {
+    "title": "PP Food Container",
+    "recyclable": true,
+    "icon": "🥡",
+    "subtitle": "Wash out all grease and leftover food before binning.",
+    "category": "Plastic",
+    "resinCode": "#5 (PP)",
+    "commonUses": "Takeout boxes, Tupperware, meal prep containers",
+    "steps": [
+      "<strong>Scrape out food:</strong> Use a spatula to get all solid food out.",
+      "<strong>Wash with soap:</strong> Ensure all oil and grease are removed.",
+      "<strong>Dry it:</strong> Shake out excess water before putting it in the bin."
+    ],
+    "mistakes": [
+      "<strong>Leaving sauce inside:</strong> Grease ruins the plastic melting process and can contaminate surrounding paper in the collection truck."
+    ],
+    "faqs": [
+      {
+        "question": "Can I recycle black plastic food containers?",
+        "answer": "Usually no. The optical sorting lasers at recycling plants cannot 'see' black plastic against the black conveyor belts, so it gets sorted as trash."
+      }
+    ]
+  },
+  "pvc-pipe": {
+    "title": "PVC Pipe",
+    "recyclable": false,
+    "icon": "🚰",
+    "subtitle": "Requires specialized drop-off facilities or hardware stores.",
+    "category": "Plastic",
+    "resinCode": "#3 (PVC)",
+    "commonUses": "Plumbing, construction, irrigation lines",
+    "steps": [
+      "<strong>Do not put in curbside bins:</strong> PVC requires a completely different melting point than standard household plastics.",
+      "<strong>Find a drop-off:</strong> Check local hardware stores or municipal construction waste centers.",
+      "<strong>Donate:</strong> If the pipe is clean and usable, donate it to a local Habitat for Humanity ReStore."
+    ],
+    "mistakes": [
+      "<strong>Mixing with PET:</strong> Even a tiny amount of PVC can ruin an entire batch of recycled PET plastic by burning and releasing toxic gas."
+    ],
+    "faqs": [
+      {
+        "question": "Why is PVC so problematic?",
+        "answer": "PVC contains chlorine. When melted with other plastics, it creates hazardous acids that ruin the batch and damage machinery."
+      }
+    ]
+  },
+  "bubble-wrap": {
+    "title": "Bubble Wrap",
+    "recyclable": false,
+    "icon": "🫧",
+    "subtitle": "Do not put in curbside bins. Take to grocery store drop-offs.",
+    "category": "Plastic",
+    "resinCode": "#4 (LDPE)",
+    "commonUses": "Shipping, moving, fragile packaging",
+    "steps": [
+      "<strong>Pop or deflate:</strong> Flatten it out to save space.",
+      "<strong>Take to a store:</strong> Drop it off at the 'Plastic Film' collection bins located at the entrance of most major grocery stores."
+    ],
+    "mistakes": [
+      "<strong>Putting it in curbside bins:</strong> Thin film plastics wrap around the spinning gears of recycling sorting machines, causing massive plant shutdowns."
+    ],
+    "faqs": [
+      {
+        "question": "Can I recycle it if the bubbles are popped?",
+        "answer": "No. The issue is the thin, stretchy nature of the film, not the air bubbles. It must always go to store drop-offs."
+      }
+    ]
+  },
+  "yogurt-cup": {
+    "title": "Yogurt Cup",
+    "recyclable": true,
+    "icon": "🍦",
+    "subtitle": "Rinse clean. Foil lids must go in the trash bin separately.",
+    "category": "Plastic",
+    "resinCode": "#5 (PP)",
+    "commonUses": "Yogurt, pudding, single-serve snacks",
+    "steps": [
+      "<strong>Remove the foil lid:</strong> The lid is often a mix of foil and plastic and must go in the trash.",
+      "<strong>Rinse the cup:</strong> Make sure no dairy is left inside.",
+      "<strong>Recycle the cup:</strong> Place the clean plastic cup in your bin."
+    ],
+    "mistakes": [
+      "<strong>Leaving the foil lid on:</strong> Mixed materials confuse the sorting machines and lower the quality of the recycled plastic."
+    ],
+    "faqs": [
+      {
+        "question": "Do I need to run it through the dishwasher?",
+        "answer": "No, a quick but thorough rinse in the sink is perfectly fine!"
+      }
+    ]
+  },
+  "plastic-cutlery": {
+    "title": "Plastic Cutlery",
+    "recyclable": false,
+    "icon": "🍴",
+    "subtitle": "Cannot be sorted due to size and material. Throw in trash.",
+    "category": "Plastic",
+    "resinCode": "#6 (PS) or Mixed",
+    "commonUses": "Takeout food, picnics, catering events",
+    "steps": [
+      "<strong>Wash and reuse:</strong> If they are durable enough, wash them and reuse them for future picnics.",
+      "<strong>Throw in trash:</strong> If broken or unwanted, they must go in the garbage."
+    ],
+    "mistakes": [
+      "<strong>Putting them in recycling:</strong> Their odd shapes and small profiles mean they jam machinery or fall through the cracks."
+    ],
+    "faqs": [
+      {
+        "question": "What if they are labeled 'compostable'?",
+        "answer": "Compostable cutlery must go to an industrial composting facility. Do NOT put compostable plastics in your standard recycling bin."
+      }
+    ]
+  },
+  "plastic-jug": {
+    "title": "Plastic Jug",
+    "recyclable": true,
+    "icon": "🫙",
+    "subtitle": "Empty liquid, rinse thoroughly, and keep the cap screwed on.",
+    "category": "Plastic",
+    "resinCode": "#2 (HDPE)",
+    "commonUses": "Laundry detergent, fabric softener, heavy household cleaners",
+    "steps": [
+      "<strong>Empty completely:</strong> Ensure no soap or chemicals remain inside.",
+      "<strong>Rinse it out:</strong> Add a little water, shake it, and pour it out.",
+      "<strong>Replace cap:</strong> Leave the heavy plastic cap screwed securely back on."
+    ],
+    "mistakes": [
+      "<strong>Leaving soap inside:</strong> Detergent can leak onto paper and cardboard in the recycling truck, rendering the paper un-recyclable."
+    ],
+    "faqs": [
+      {
+        "question": "Can I recycle jugs that held motor oil?",
+        "answer": "No. Plastic that held motor oil, antifreeze, or hazardous chemicals must be treated as hazardous waste."
+      }
+    ]
+  },
+  "plastic-tub": {
+    "title": "Plastic Tub",
+    "recyclable": true,
+    "icon": "🪣",
+    "subtitle": "Usually accepted, but must be completely clean and dry.",
+    "category": "Plastic",
+    "resinCode": "#5 (PP)",
+    "commonUses": "Butter, sour cream, cream cheese containers",
+    "steps": [
+      "<strong>Clean it:</strong> Wash the tub with soap to remove all grease and dairy.",
+      "<strong>Dry it:</strong> Shake it out.",
+      "<strong>Recycle tub and lid:</strong> Both the tub and the plastic lid are usually recyclable. Leave the lid attached."
+    ],
+    "mistakes": [
+      "<strong>Nesting them together:</strong> Don't stack the tubs tightly inside one another. Keep them loose so the scanners can read them."
+    ],
+    "faqs": [
+      {
+        "question": "Can I recycle it if the print is directly on the plastic?",
+        "answer": "Yes! The ink is burned off or separated during the high-heat recycling process."
+      }
+    ]
+  },
+  "plastic-spoons": {
+    "title": "Plastic Spoons",
+    "recyclable": false,
+    "icon": "🥄",
+    "subtitle": "Too small for sorting machinery. Please put in regular trash.",
+    "category": "Plastic",
+    "resinCode": "#6 (PS) or Mixed",
+    "commonUses": "Soups, ice cream, takeout desserts",
+    "steps": [
+      "<strong>Throw in trash:</strong> Just like forks and knives, spoons cannot be processed curbside.",
+      "<strong>Request 'No Utensils':</strong> When ordering food delivery, check the box asking them not to include plastic cutlery to prevent waste."
+    ],
+    "mistakes": [
+      "<strong>Assuming all plastic is recyclable:</strong> Shape and size matter just as much as the resin code. Spoons are simply too small."
+    ],
+    "faqs": [
+      {
+        "question": "Why are some plastics just not recyclable?",
+        "answer": "Recycling is a business. If it costs more money to sort, clean, and melt a cheap plastic spoon than the resulting material is worth, facilities won't process it."
+      }
+    ]
+  },
+  "cardboard-box": {
+    "title": "Cardboard Box",
+    "recyclable": true,
+    "icon": "📦",
+    "subtitle": "Flatten completely, remove packing peanuts, and keep dry.",
+    "category": "Paper",
+    "resinCode": "Corrugated Cardboard (OCC)",
+    "commonUses": "Shipping boxes, moving boxes, appliance packaging",
+    "steps": [
+      "<strong>Empty it out:</strong> Ensure no packing peanuts, foam, or plastic film remains inside.",
+      "<strong>Flatten completely:</strong> Break the box down flat to save space in bins and collection trucks.",
+      "<strong>Keep it dry:</strong> Wet cardboard loses its structural integrity and may be rejected."
+    ],
+    "mistakes": [
+      "<strong>Leaving it unflattened:</strong> Taking up too much volume causes recycling trucks to fill up faster, increasing emissions.",
+      "<strong>Getting it wet:</strong> Moldy or soggy cardboard cannot be pulped properly."
+    ],
+    "faqs": [
+      {
+        "question": "Do I need to remove all the tape?",
+        "answer": "Most modern recycling facilities can handle some tape, but it is best to pull off large strips of plastic packing tape if possible."
+      }
+    ]
+  },
+  "pizza-box": {
+    "title": "Greasy Pizza Box",
+    "recyclable": false,
+    "icon": "🍕",
+    "subtitle": "Grease ruins paper fibers. Throw the greasy half in the trash.",
+    "category": "Paper",
+    "resinCode": "Contaminated Paper",
+    "commonUses": "Takeout pizza, oily baked goods delivery",
+    "steps": [
+      "<strong>Tear off the lid:</strong> If the top half of the box is clean and grease-free, tear it off and recycle it.",
+      "<strong>Trash the bottom:</strong> Throw the greasy, cheese-stained bottom half into the regular trash or a municipal compost bin (if accepted locally)."
+    ],
+    "mistakes": [
+      "<strong>Recycling the whole box:</strong> A heavily greased pizza box can contaminate an entire bale of clean paper, causing it to be sent to a landfill."
+    ],
+    "faqs": [
+      {
+        "question": "Why is grease so bad for paper recycling?",
+        "answer": "Paper recycling involves mixing the paper with water to make a slurry. Since oil and water don't mix, the grease separates and creates oily spots, ruining the newly formed paper."
+      }
+    ]
+  },
+  "glass-bottle": {
+    "title": "Glass Bottle",
+    "recyclable": true,
+    "icon": "🍾",
+    "subtitle": "Empty contents and rinse. Glass can be recycled infinitely.",
+    "category": "Glass",
+    "resinCode": "Container Glass",
+    "commonUses": "Wine bottles, beer bottles, pasta sauce jars",
+    "steps": [
+      "<strong>Empty and rinse:</strong> Make sure no liquid or food residue is left inside.",
+      "<strong>Remove caps/lids:</strong> Metal or plastic caps should be removed and sorted into their respective bins.",
+      "<strong>Place gently in bin:</strong> Try not to break the glass when dropping it in your recycling bin."
+    ],
+    "mistakes": [
+      "<strong>Breaking it intentionally:</strong> Broken glass is dangerous for sanitation workers and makes sorting by color much more difficult."
+    ],
+    "faqs": [
+      {
+        "question": "Do I need to peel off the paper labels?",
+        "answer": "No! The labels are burned off easily during the high-heat melting process."
+      }
+    ]
+  },
+  "window-glass": {
+    "title": "Broken Window Glass",
+    "recyclable": false,
+    "icon": "🪟",
+    "subtitle": "Treated window glass melts differently than bottles. Do not bin.",
+    "category": "Glass",
+    "resinCode": "Treated/Tempered Glass",
+    "commonUses": "House windows, mirrors, drinking glasses, Pyrex",
+    "steps": [
+      "<strong>Handle safely:</strong> Sweep up broken pieces carefully.",
+      "<strong>Wrap it up:</strong> Wrap the shards in heavy newspaper or put them in a sealed cardboard box.",
+      "<strong>Label and trash:</strong> Label the box 'Broken Glass' and place it in the regular household trash."
+    ],
+    "mistakes": [
+      "<strong>Mixing it with bottle glass:</strong> Do not put window glass, mirrors, or lightbulbs in the glass recycling bin."
+    ],
+    "faqs": [
+      {
+        "question": "Why can't it be recycled with regular bottles?",
+        "answer": "Window glass and mirrors are treated with chemical additives to make them durable. They have a different melting point than container glass, and mixing them will ruin a newly recycled batch."
+      }
+    ]
+  },
+  "aluminum-can": {
+    "title": "Aluminum Can",
+    "recyclable": true,
+    "icon": "🥫",
+    "subtitle": "Do not crush. Rinse lightly and place directly in the bin.",
+    "category": "Metal",
+    "resinCode": "Aluminum",
+    "commonUses": "Soda cans, sparkling water, beer cans",
+    "steps": [
+      "<strong>Empty contents:</strong> Pour out any remaining sugary liquid to avoid attracting bees and pests.",
+      "<strong>Do NOT crush:</strong> Keep the can in its 3D shape unless your specific local rules tell you otherwise.",
+      "<strong>Toss in bin:</strong> Place the whole can directly into your curbside recycling."
+    ],
+    "mistakes": [
+      "<strong>Crushing the cans:</strong> Many modern sorting facilities use optical scanners. If you crush an aluminum can flat, the machine might mistake it for paper and sort it incorrectly."
+    ],
+    "faqs": [
+      {
+        "question": "How efficient is aluminum recycling?",
+        "answer": "Incredibly efficient! Recycling an aluminum can saves 95% of the energy required to make a new can from raw bauxite ore."
+      }
+    ]
+  },
+  "scrap-metal": {
+    "title": "Scrap Metal & Nails",
+    "recyclable": false,
+    "icon": "📎",
+    "subtitle": "Too sharp and small for sorting machines. Take to a scrap yard.",
+    "category": "Metal",
+    "resinCode": "Mixed Scrap Metal",
+    "commonUses": "Construction debris, broken tools, loose hardware",
+    "steps": [
+      "<strong>Collect safely:</strong> Store sharp nails, screws, and broken metal tools in a dedicated container.",
+      "<strong>Take to a scrap yard:</strong> Local scrap metal dealers will often take these items (and sometimes pay you for them).",
+      "<strong>Do NOT bin:</strong> Never put loose scrap metal in your curbside recycling bin."
+    ],
+    "mistakes": [
+      "<strong>Throwing loose nails in the recycling bin:</strong> Sharp metal pieces can puncture the tires of collection trucks and severely injure workers."
+    ],
+    "faqs": [
+      {
+        "question": "Are small items like paperclips recyclable?",
+        "answer": "Usually no. They are too small and will fall straight through the gaps in the sorting screens, ending up as landfill waste."
+      }
+    ]
+  },
+  "smartphone": {
+    "title": "Old Smartphone",
+    "recyclable": true,
+    "icon": "📱",
+    "subtitle": "Take to specialized e-waste drop-off. Wipe your data first.",
+    "category": "Electronics",
+    "resinCode": "E-Waste",
+    "commonUses": "Communication, mobile computing",
+    "steps": [
+      "<strong>Back up data:</strong> Save your photos and contacts to the cloud or a computer.",
+      "<strong>Factory Reset:</strong> Completely wipe the device to protect your privacy.",
+      "<strong>Remove cards:</strong> Take out any SIM cards or external MicroSD cards.",
+      "<strong>Drop off safely:</strong> Take the phone to a certified e-waste recycling center or retail store drop-box."
+    ],
+    "mistakes": [
+      "<strong>Throwing it in the regular trash:</strong> Phones contain toxic heavy metals like lead and mercury that will leach into the soil and groundwater if sent to a landfill."
+    ],
+    "faqs": [
+      {
+        "question": "What materials are actually recovered from phones?",
+        "answer": "E-waste recyclers extract precious metals like gold, silver, copper, and rare earth elements so they can be reused in new electronics."
+      }
+    ]
+  },
+  "swollen-battery": {
+    "title": "Swollen Battery",
+    "recyclable": false,
+    "icon": "🔋",
+    "subtitle": "Severe fire hazard! Do not bin. Take to hazardous waste facility.",
+    "category": "Electronics",
+    "resinCode": "Hazardous Waste (Lithium-Ion)",
+    "commonUses": "Damaged phones, old laptops, broken power banks",
+    "steps": [
+      "<strong>Do NOT puncture:</strong> Never squish, poke, or attempt to deflate a swollen battery.",
+      "<strong>Isolate it:</strong> If actively expanding or hot, place it in a fireproof container or a bucket of sand.",
+      "<strong>Dispose immediately:</strong> Take it directly to a municipal Household Hazardous Waste (HHW) facility."
+    ],
+    "mistakes": [
+      "<strong>Putting it in ANY household bin:</strong> Placing a lithium-ion battery in the garbage or recycling is extremely dangerous. When the truck compacts the waste, the battery will crush and ignite, causing a massive fire."
+    ],
+    "faqs": [
+      {
+        "question": "Why do these batteries swell up?",
+        "answer": "Swelling occurs when the internal cells degrade due to age, overheating, or overcharging. This causes a toxic, flammable gas to build up inside the casing."
       }
     ]
   }

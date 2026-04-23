@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "ewaste",
+    "title": "The Ultimate Guide to E-Waste",
+    "description": "Learn how to safely dispose of old electronics, protect your personal data, and keep toxic chemicals out of our environment.",
+    "category": "E-waste",
+    "read_time": 5,
+    "publish_date": "Oct 12, 2025",
+    "hero_emoji": "💻",
+    "tags": ["Electronics", "Data Security", "Toxic Materials"],
+    "eco_facts": [
+      {"icon": "🌍", "text": "E-waste represents 2% of America's trash in landfills, but it equals 70% of overall toxic waste."},
+      {"icon": "🔋", "text": "Recycling one million laptops saves the energy equivalent to the electricity used by 3,657 US homes in a year."},
+      {"icon": "📱", "text": "For every 1 million cell phones recycled, 35,000 lbs of copper and 75 lbs of gold can be recovered."}
+    ],
+    "html_content": "<h2>Why E-Waste Matters</h2><p>Electronic waste is currently the fastest-growing waste stream in the world. Devices like old smartphones, laptops, and cables contain toxic materials like lead and mercury, which can leach into groundwater if sent to a landfill.</p><h2>Step-by-Step Disposal</h2><h3>1. Secure Your Data</h3><p>Before recycling any device, ensure you have backed up your data. Perform a factory reset and remove any SIM cards or SD cards.</p><h3>2. Sort by Type</h3><ul><li><strong>Small Electronics:</strong> Phones, tablets, and smartwatches.</li><li><strong>Peripherals:</strong> Keyboards, mice, and tangled cables.</li><li><strong>Large Electronics:</strong> TVs, monitors, and desktop towers.</li></ul><div class=\"callout\"><strong>Pro Tip:</strong> Never throw swollen lithium-ion batteries in your regular bin. They are a severe fire hazard. Tape the terminals with clear tape and take them to a specialized battery drop-off.</div>"
+  },
+  {
+    "slug": "organics",
+    "title": "Simple Composting for Beginners",
+    "description": "Turn your kitchen scraps into nutrient-rich soil. A step-by-step guide to starting your first backyard compost bin.",
+    "category": "Organics",
+    "read_time": 4,
+    "publish_date": "Nov 04, 2025",
+    "hero_emoji": "🌱",
+    "tags": ["Compost", "Gardening", "Zero Waste"],
+    "eco_facts": [
+      {"icon": "🍂", "text": "About 30% of what we throw away is food scraps and yard waste, which could be composted instead."},
+      {"icon": "☁️", "text": "Composting at home significantly reduces methane emissions, a potent greenhouse gas produced in landfills."},
+      {"icon": "🐛", "text": "Healthy compost increases soil's ability to retain water, reducing the need for watering your garden by up to 30%."}
+    ],
+    "html_content": "<h2>The Magic of Composting</h2><p>Composting transforms your kitchen scraps and yard waste into nutrient-rich soil. It reduces methane emissions from landfills and gives you free fertilizer for your plants.</p><h2>The Golden Ratio: Greens and Browns</h2><p>A healthy compost pile needs a balance of Nitrogen (Greens) and Carbon (Browns). Aim for roughly a 50/50 mix to keep it odor-free and decomposing quickly.</p><ul><li><strong>Greens (Nitrogen):</strong> Fruit peels, vegetable scraps, coffee grounds, and fresh grass clippings.</li><li><strong>Browns (Carbon):</strong> Dry leaves, shredded cardboard, newspaper, and twigs.</li></ul><div class=\"callout\"><strong>What NOT to compost:</strong> Meat, dairy, bones, and oils. These will attract pests and create foul odors in a standard backyard setup.</div>"
+  },
+  {
+    "slug": "home-setup",
+    "title": "Sorting Glass & Broken Items",
+    "description": "Glass is 100% recyclable, but handling it wrong can ruin a whole batch. Here is how to sort it safely.",
+    "category": "Home Setup",
+    "read_time": 3,
+    "publish_date": "Jan 18, 2026",
+    "hero_emoji": "🫙",
+    "tags": ["Glass", "Safety", "Curbside"],
+    "eco_facts": [
+      {"icon": "♻️", "text": "Glass is 100% recyclable and can be recycled endlessly without any loss in quality or purity."},
+      {"icon": "🔥", "text": "Recycled glass melts at a lower temperature than raw materials, saving up to 30% of the energy needed to make new glass."},
+      {"icon": "💡", "text": "Recycling just one glass bottle saves enough energy to light a 100-watt bulb for four hours."}
+    ],
+    "html_content": "<h2>Understanding Glass Recycling</h2><p>Glass is 100% recyclable and can be recycled endlessly without loss in quality or purity. However, not all glass is created equal when it comes to your curbside bin.</p><h2>What Goes in the Bin?</h2><p>Only container glass should go into your standard recycling bin. Ensure they are empty and give them a quick rinse.</p><ul><li>Beverage bottles (soda, beer, wine)</li><li>Food jars (jam, pasta sauce, pickles)</li></ul><h2>Handling Broken Glass</h2><p>Broken glass is incredibly dangerous for sanitation workers and automated sorting machines.</p><div class=\"callout\"><strong>Safety Warning:</strong> Do not put broken glass in your recycling bin. Carefully sweep it up, wrap it securely in several layers of newspaper or seal it inside a cardboard box, label it 'Broken Glass', and place it in the general trash.</div>"
+  },
+  {
+    "slug": "plastics",
+    "title": "Understanding Plastic Resin Codes",
+    "description": "Stop wish-cycling. Learn exactly what the numbers on the bottom of your plastic containers mean and where they belong.",
+    "category": "Plastics",
+    "read_time": 6,
+    "publish_date": "Feb 22, 2026",
+    "hero_emoji": "🧴",
+    "tags": ["Plastics", "Resin Codes", "Contamination"],
+    "eco_facts": [
+      {"icon": "🛢️", "text": "It takes 500 to 1,000 years for plastic to degrade in a landfill."},
+      {"icon": "👕", "text": "Recycled PET plastic (#1) can be turned into sleeping bags, winter coats, and athletic t-shirts."},
+      {"icon": "🌊", "text": "Only about 9% of all plastic ever produced has been recycled. The rest sits in landfills, oceans, or has been incinerated."}
+    ],
+    "html_content": "<h2>Decoding the Chasing Arrows</h2><p>Those numbers from 1 to 7 inside the triangle on the bottom of your containers are resin identification codes. They tell processing facilities what type of plastic the item is made of.</p><h2>The 'Big Two' (Usually Recyclable)</h2><ul><li><strong>#1 PET (Polyethylene Terephthalate):</strong> Water bottles, soda bottles, and clear clam-shell packaging. Highly recyclable.</li><li><strong>#2 HDPE (High-Density Polyethylene):</strong> Milk jugs, shampoo bottles, and detergent containers. Very durable and widely accepted.</li></ul><h2>The Tricky Ones</h2><p>Plastics #3 (PVC), #6 (Polystyrene/Styrofoam), and #7 (Other/Mixed) are rarely accepted in standard curbside programs. They often require specialized drop-off locations.</p><div class=\"callout\"><strong>The Golden Rule of Plastics:</strong> When in doubt, throw it out. 'Wish-cycling' (putting questionable items in the bin hoping they get recycled) contaminates entire batches of good recyclables.</div>"
+  },
+  {
+    "slug": "hazardous-waste",
+    "title": "Disposing of Hazardous Waste",
+    "description": "Safely handle and find drop-off centers for old paint, household chemicals, and lightbulbs.",
+    "category": "Hazardous",
+    "read_time": 4,
+    "publish_date": "Mar 10, 2026",
+    "hero_emoji": "⚠️",
+    "tags": ["Chemicals", "Safety", "Drop-off"],
+    "eco_facts": [
+      {"icon": "🌍", "text": "Improperly disposed household chemicals can contaminate millions of gallons of groundwater."},
+      {"icon": "💡", "text": "Fluorescent lightbulbs contain small amounts of mercury and should never be crushed."},
+      {"icon": "🛢️", "text": "One gallon of improperly disposed motor oil can pollute 1 million gallons of fresh water."}
+    ],
+    "html_content": "<h2>The Danger of Household Chemicals</h2><p>Items like bleach, paint thinner, and pesticides are highly toxic. If poured down the drain or thrown in the regular trash, they can leach into our water systems and harm local wildlife.</p><h2>How to Handle Safely</h2><ul><li><strong>Keep original containers:</strong> Never mix chemicals. Keep them in their original labeled containers to prevent volatile reactions.</li><li><strong>Check for leaks:</strong> If a container is leaking, place it inside a larger, clear plastic container.</li></ul><div class=\"callout\"><strong>Pro Tip:</strong> Most municipalities hold free 'Household Hazardous Waste' drop-off days. Check your local county website for the next scheduled event!</div>"
+  },
+  {
+    "slug": "lithium-batteries",
+    "title": "Lithium Battery Safety Guide",
+    "description": "Why these batteries cause fires in recycling plants and the proper way to safely dispose of them.",
+    "category": "E-waste",
+    "read_time": 3,
+    "publish_date": "Mar 15, 2026",
+    "hero_emoji": "🔋",
+    "tags": ["Batteries", "Fire Hazard", "Electronics"],
+    "eco_facts": [
+      {"icon": "🔥", "text": "Lithium-ion batteries are responsible for thousands of fires at waste management facilities each year."},
+      {"icon": "♻️", "text": "When properly recycled, materials like cobalt, lithium, and nickel can be recovered and reused indefinitely."},
+      {"icon": "📱", "text": "An estimated 3 billion devices with lithium-ion batteries are thrown away globally every year."}
+    ],
+    "html_content": "<h2>The Hidden Fire Risk</h2><p>Lithium-ion batteries power everything from our phones to our e-bikes. When crushed in a standard garbage truck or recycling sorting machine, they can spark and ignite massive, fast-spreading fires.</p><h2>Proper Disposal Steps</h2><p>Never put these in your household bins.</p><ul><li><strong>Tape the Terminals:</strong> Place clear packing tape over the contact points to prevent short-circuiting.</li><li><strong>Store Safely:</strong> Keep them in a non-metal container away from heat sources until you can drop them off.</li><li><strong>Find a Drop-off:</strong> Use specialized e-waste centers or look for battery collection bins at major hardware or tech stores.</li></ul><div class=\"callout\"><strong>Safety Warning:</strong> If a battery is swollen or punctured, handle it with extreme care and contact a hazardous waste facility immediately. Do not keep it inside your home.</div>"
+  },
+  {
+    "slug": "metal-recycling",
+    "title": "Household Metal Recycling",
+    "description": "A complete checklist for recycling aluminum cans, clean foil, and household steel containers.",
+    "category": "Metal",
+    "read_time": 5,
+    "publish_date": "Apr 02, 2026",
+    "hero_emoji": "🥫",
+    "tags": ["Aluminum", "Steel", "Curbside"],
+    "eco_facts": [
+      {"icon": "♻️", "text": "Aluminum cans are 100% recyclable and can be back on store shelves in as little as 60 days."},
+      {"icon": "⚡", "text": "Recycling one aluminum can saves enough energy to run a TV for three hours."},
+      {"icon": "🏗️", "text": "Steel is the most recycled material on the planet, more than all other materials combined."}
+    ],
+    "html_content": "<h2>The Power of Metal Recycling</h2><p>Metals like aluminum and steel do not degrade during the recycling process, meaning they can be recycled infinitely. This saves a massive amount of energy compared to mining raw ore from the earth.</p><h2>What to Recycle</h2><ul><li><strong>Aluminum Cans:</strong> Soda and sparkling water cans. No need to crush them unless your local program explicitly asks you to!</li><li><strong>Steel (Tin) Cans:</strong> Soup, vegetable, and pet food cans. Give them a quick rinse.</li><li><strong>Clean Foil:</strong> Aluminum foil and foil baking pans (must be entirely free of food residue). Roll foil into a ball about the size of your fist before recycling.</li></ul><div class=\"callout\"><strong>Pro Tip:</strong> Keep the lids attached to your steel cans, or drop them inside and pinch the top closed so the sharp edges don't cut sorting workers.</div>"
+  },
+  {
+    "slug": "paper-cardboard",
+    "title": "Paper & Cardboard Prep",
+    "description": "How to properly flatten boxes, remove tape, and avoid grease contamination in pizza boxes.",
+    "category": "Paper",
+    "read_time": 4,
+    "publish_date": "Apr 10, 2026",
+    "hero_emoji": "📰",
+    "tags": ["Cardboard", "Paper", "Packaging"],
+    "eco_facts": [
+      {"icon": "🌲", "text": "Recycling one ton of paper saves 17 mature trees and 7,000 gallons of water."},
+      {"icon": "📦", "text": "Over 90% of all products shipped in the US are packaged in corrugated cardboard."},
+      {"icon": "📉", "text": "Food grease ruins paper fibers. One greasy pizza box can contaminate an entire bale of clean paper."}
+    ],
+    "html_content": "<h2>Cardboard the Right Way</h2><p>With the rise of online shopping, cardboard is overwhelming local recycling centers. Prepping your boxes properly ensures they actually get recycled instead of tossed aside.</p><h2>Step-by-Step Prep</h2><ol><li><strong>Empty it out:</strong> Remove all packing peanuts, bubble wrap, and plastic film.</li><li><strong>Flatten completely:</strong> Break down every box. Unflattened boxes take up too much space in trucks and clog sorting machines.</li><li><strong>Keep it dry:</strong> Wet paper and cardboard lose their structural integrity and are often sent directly to the landfill.</li></ol><div class=\"callout\"><strong>The Pizza Box Dilemma:</strong> Grease ruins paper recycling. Tear off the clean top half of your pizza box to recycle, and throw the greasy bottom half in the compost or regular trash.</div>"
+  }
+]

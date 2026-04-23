@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "kapiltirth-market",
+    "name": "Kapiltirth Market E-Waste Center",
+    "lat": 16.6968, "lng": 74.2224,
+    "type": ["ewaste"],
+    "address": "Kapiltirth Market, near Mahalakshmi Temple, Kolhapur",
+    "note": "Municipal e-waste collection point listed for Kolhapur city.",
+    "working_hours": "Mon-Sat: 10:00 AM - 5:00 PM (Sunday: Closed)",
+    "contact": "KMC Helpline: 1800-233-xxxx",
+    "description": "This center is a verified municipal collection point located in the bustling Kapiltirth Market, making it highly accessible for residents visiting the city center.",
+    "tips": "Always remember to factory reset your mobile phones and computers to wipe personal data before dropping them off. Remove any SIM cards or SD cards.",
+    "warning": "Safety Warning: Do NOT attempt to dismantle lithium-ion batteries yourself, as they can catch fire. Bring them whole to the center. ⚠️",
+    "accepted_items": [
+      {"icon": "📱", "name": "Mobile Phones"}, {"icon": "💻", "name": "Laptops & PCs"}, {"icon": "🔋", "name": "Batteries"}
+    ]
+  },
+  {
+    "slug": "sambhajinagar-filter",
+    "name": "Sambhajinagar Filter House Collection Point",
+    "lat": 16.6889, "lng": 74.2338,
+    "type": ["ewaste", "plastic"],
+    "address": "Racecourse Naka, Sambhajinagar, Kolhapur",
+    "note": "Collection point suitable for e-waste and dry recyclable drop-off.",
+    "working_hours": "Mon-Fri: 9:00 AM - 6:00 PM",
+    "contact": "Center Admin: +91 98765 43210",
+    "description": "A spacious collection point equipped to handle both electronics and bulk plastics.",
+    "tips": "Rinse all plastic containers before dropping them off to avoid contamination.",
+    "warning": "",
+    "accepted_items": [
+      {"icon": "🔌", "name": "Electronics"}, {"icon": "🧴", "name": "Clean Plastics"}
+    ]
+  },
+  {
+    "slug": "govind-pansare",
+    "name": "Govind Pansare School Collection Office",
+    "lat": 16.6838, "lng": 74.2418,
+    "type": ["ewaste", "paper"],
+    "address": "Sane Guruji Vasant area, Kolhapur",
+    "note": "Ward-level collection point for e-waste and paper waste segregation.",
+    "working_hours": "Mon-Sat: 8:00 AM - 2:00 PM",
+    "contact": "School Office: 0231-2XXXXXX",
+    "description": "A community-driven collection point managed in partnership with local school eco-clubs.",
+    "tips": "Please flatten all cardboard boxes to save space in the bins.",
+    "warning": "",
+    "accepted_items": [
+      {"icon": "📰", "name": "Newspaper & Cardboard"}, {"icon": "🖱️", "name": "Computer Peripherals"}
+    ]
+  },
+  {
+    "slug": "tararani-vidyalaya",
+    "name": "Tararani Vidyalaya Collection Point",
+    "lat": 16.6992, "lng": 74.2268,
+    "type": ["ewaste", "paper"],
+    "address": "Near Shahu Bank, Kolhapur",
+    "note": "Public collection office referenced in city e-waste network."
+  },
+  {
+    "slug": "shahu-cloth-market",
+    "name": "Shahu Cloth Market Dry Waste Point",
+    "lat": 16.7038, "lng": 74.2430,
+    "type": ["paper", "plastic"],
+    "address": "Shahu Cloth Market, Kolhapur",
+    "note": "Useful dry-waste point for paper and plastic segregation."
+  },
+  {
+    "slug": "padmaraje-vidyalaya",
+    "name": "Padmaraje Vidyalaya Collection Point",
+    "lat": 16.7089, "lng": 74.2282,
+    "type": ["ewaste", "glass"],
+    "address": "Near Khol Khandoba Temple, Kolhapur",
+    "note": "Ward collection point that can be shown as a local recycling drop-off center."
+  },
+  {
+    "slug": "panchganga-hospital",
+    "name": "Panchganga Hospital Collection Point",
+    "lat": 16.7146, "lng": 74.2238,
+    "type": ["plastic", "paper", "glass"],
+    "address": "Panchganga Hospital area, Kolhapur",
+    "note": "Mixed recyclable collection point for household dry waste."
+  },
+  {
+    "slug": "shastrinagar-fire",
+    "name": "Shastrinagar Fire Station Center",
+    "lat": 16.7212, "lng": 74.2387,
+    "type": ["ewaste", "metal"],
+    "address": "Shastrinagar Ground, opposite Fire Station, Kolhapur",
+    "note": "Local e-waste collection location in the city network."
+  },
+  {
+    "slug": "mohite-vidyalaya",
+    "name": "Mohite Vidyalaya Shahupuri Center",
+    "lat": 16.7005, "lng": 74.2352,
+    "type": ["ewaste", "paper"],
+    "address": "Shahupuri, Kolhapur",
+    "note": "Public collection office for ward residents."
+  },
+  {
+    "slug": "kawla-naka",
+    "name": "Kawla Naka Fire Station E-Waste Point",
+    "lat": 16.7058, "lng": 74.2438,
+    "type": ["ewaste"],
+    "address": "Kawla Naka, Kolhapur",
+    "note": "Public drop-off location in Kolhapur city."
+  },
+  {
+    "slug": "kasaba-bawada-hall",
+    "name": "Kasaba Bawada Pavilion Hall Center",
+    "lat": 16.7349, "lng": 74.2433,
+    "type": ["ewaste", "metal"],
+    "address": "Kasaba Bawada, Kolhapur",
+    "note": "Ward collection point connected with Kasaba Bawada processing facility."
+  },
+  {
+    "slug": "mahadik-mal",
+    "name": "Mahadik Mal Family Welfare Center",
+    "lat": 16.7248, "lng": 74.2664,
+    "type": ["ewaste", "plastic"],
+    "address": "Mahadik Mal, Kolhapur",
+    "note": "Public collection point for e-waste and hazardous dry waste."
+  },
+  {
+    "slug": "kasaba-bawada-processing",
+    "name": "Kasaba Bawada Processing Facility",
+    "lat": 16.7365, "lng": 74.2477,
+    "type": ["ewaste"],
+    "address": "Kasaba Bawada processing zone, Kolhapur",
+    "note": "Processing-related reference point for collected e-waste."
+  },
+  {
+    "slug": "servcare-pickup",
+    "name": "ServCare Kolhapur Pickup Coverage Point",
+    "lat": 16.7050, "lng": 74.2433,
+    "type": ["ewaste", "plastic"],
+    "address": "Kolhapur service coverage",
+    "note": "Authorized collection coverage in Kolhapur for e-waste and plastic pickup requests."
+  },
+  {
+    "slug": "shiroli-midc",
+    "name": "Shiroli MIDC Scrap & Metal Cluster",
+    "lat": 16.7433, "lng": 74.3182,
+    "type": ["metal", "plastic"],
+    "address": "Shiroli MIDC, Kolhapur district",
+    "note": "Industrial area with concentrated scrap and material recovery activity."
+  },
+  {
+    "slug": "gokul-shirgaon",
+    "name": "Gokul Shirgaon Industrial Scrap Hub",
+    "lat": 16.6549, "lng": 74.2902,
+    "type": ["metal", "plastic"],
+    "address": "Gokul Shirgaon MIDC, Kolhapur district",
+    "note": "Industrial recovery point for metal and plastic scrap movement."
+  },
+  {
+    "slug": "ujalaiwadi",
+    "name": "Ujalaiwadi Dry Waste Point",
+    "lat": 16.6777, "lng": 74.2978,
+    "type": ["plastic", "paper"],
+    "address": "Ujalaiwadi, Kolhapur district",
+    "note": "Representative suburban dry-waste sorting point."
+  },
+  {
+    "slug": "ichalkaranji",
+    "name": "Ichalkaranji Material Recovery Point",
+    "lat": 16.6918, "lng": 74.4605,
+    "type": ["plastic", "paper", "metal"],
+    "address": "Ichalkaranji, Kolhapur district",
+    "note": "Representative material recovery point for dry waste and scrap sorting."
+  },
+  {
+    "slug": "jaysingpur",
+    "name": "Jaysingpur Scrap Recovery Point",
+    "lat": 16.7762, "lng": 74.5548,
+    "type": ["metal", "plastic"],
+    "address": "Jaysingpur, Kolhapur district",
+    "note": "Scrap and recycling activity point serving the eastern belt."
+  },
+  {
+    "slug": "hupari",
+    "name": "Hupari Metal Recycling Point",
+    "lat": 16.7630, "lng": 74.4675,
+    "type": ["metal"],
+    "address": "Hupari, Kolhapur district",
+    "note": "Metal-focused recovery point in a well-known metal trade area."
+  },
+  {
+    "slug": "gadhinglaj",
+    "name": "Gadhinglaj Dry Waste Center",
+    "lat": 16.2229, "lng": 74.3501,
+    "type": ["plastic", "paper", "glass"],
+    "address": "Gadhinglaj, Kolhapur district",
+    "note": "Southern district collection point for mixed dry recyclables."
+  },
+  {
+    "slug": "kagal-municipal",
+    "name": "Kagal Municipal Dry Waste Point",
+    "lat": 16.5770, "lng": 74.3154,
+    "type": ["plastic", "paper", "glass"],
+    "address": "Kagal, Kolhapur district",
+    "note": "Municipal-side dry-waste point for local segregation and transfer."
+  },
+  {
+    "slug": "malkapur",
+    "name": "Malkapur Scrap Collection Point",
+    "lat": 16.8622, "lng": 74.3125,
+    "type": ["metal", "paper"],
+    "address": "Malkapur, Shahuwadi taluka, Kolhapur district",
+    "note": "Recovery point for paper and metal scrap from nearby settlements."
+  },
+  {
+    "slug": "ajara",
+    "name": "Ajara Recycling Collection Point",
+    "lat": 16.1170, "lng": 74.2107,
+    "type": ["plastic", "glass"],
+    "address": "Ajara, Kolhapur district",
+    "note": "Representative western belt collection point for dry recyclable waste."
+  }
+]

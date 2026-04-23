@@ -38,7 +38,6 @@
             padding-bottom: 50px;
         }
 
-   
         .btn-primary {
             background-color: #5bb46b;
             color: white;
@@ -57,7 +56,6 @@
             transform: translateY(-1px);
         }
 
-   
         nav {
             background-color: #2c7a3f;
             padding: 12px 0;
@@ -215,7 +213,6 @@
             display: none;
         }
 
-    
         .page-header {
             text-align: center;
             margin: 40px 0 40px 0;
@@ -234,12 +231,12 @@
             margin: 0;
         }
 
-        /* --- Modern Search & Filters Bar --- */
+        /* Modern Search & Filters Bar */
         .search-filter-bar {
             display: flex;
             background-color: white;
             padding: 8px 12px;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px; 
             border: 1px solid #eaeaea;
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             margin-bottom: 40px;
@@ -308,7 +305,7 @@
             background-color: #e4e4e4;
         }
 
-        /* --- Featured Guide --- */
+        /* Featured Guide */
         .featured-guide {
             display: flex;
             background-color: white;
@@ -375,6 +372,8 @@
             flex-direction: column;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
+            text-decoration: none; 
+            color: inherit;
         }
 
         .guide-card:hover {
@@ -437,7 +436,7 @@
             display: none;
         }
 
-        /* --- Load More Button (Matched to Image) --- */
+        /*Load More Button */
         .load-more-container {
             display: flex;
             justify-content: center;
@@ -461,7 +460,7 @@
             transform: translateY(-1px);
         }
 
-        /* --- Category Quick Links --- */
+        /* Category Quick Links */
         .category-links {
             display: flex;
             gap: 20px;
@@ -493,7 +492,7 @@
             margin-bottom: 10px;
         }
 
-        /* --- Banners --- */
+        /* Banners  */
         .tip-banner {
             background-color: #eaf5eb;
             border: 1px solid #c8e6c9;
@@ -528,7 +527,6 @@
             font-size: 15px;
         }
 
-        /* --- Footer --- */
         .simple-footer {
             background-color: #f9f9f9;
             border-top: 1px solid #eee;
@@ -574,7 +572,7 @@
             margin: 0;
         }
 
-        /* --- Mobile Responsive Rules --- */
+        /*Mobile Responsive Rules */
         @media (max-width: 900px) {
             .guides-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -696,83 +694,83 @@
                 <h2>How to Recycle Plastic at Home</h2>
                 <p>A comprehensive, step-by-step guide to identifying resin codes, cleaning containers, and preparing your household plastic waste for curbside pickup to avoid batch contamination.</p>
                 <div>
-                    <a href="PET-bottle.html" class="btn-primary">Read Full Guide</a>
+                    <a href="guide-template.html?id=plastics" class="btn-primary">Read Full Guide</a>
                 </div>
             </div>
         </div>
 
         <div class="guides-grid" id="guidesGrid">
             
-            <div class="guide-card" data-category="ewaste">
+            <a href="guide-template.html?id=ewaste" class="guide-card" data-category="ewaste">
                 <div class="guide-img" style="background-color: #e3f2fd; color: #1565c0;">💻</div>
                 <div class="guide-text">
                     <h3>The Ultimate Guide to E-Waste</h3>
                     <p>Learn how to securely wipe your data and safely dispose of old laptops, phones, and batteries.</p>
                     <span class="tag">E-waste</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card" data-category="organics">
+            <a href="guide-template.html?id=organics" class="guide-card" data-category="organics">
                 <div class="guide-img" style="background-color: #fff3e0; color: #ef6c00;">🌱</div>
                 <div class="guide-text">
                     <h3>Simple Composting for Beginners</h3>
                     <p>Turn your kitchen food scraps into nutrient-rich soil with this odor-free, beginner-friendly setup.</p>
                     <span class="tag">Composting</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card" data-category="home-setup">
+            <a href="guide-template.html?id=home-setup" class="guide-card" data-category="home-setup">
                 <div class="guide-img" style="background-color: #e8f5e9; color: #2e7d32;">🍾</div>
                 <div class="guide-text">
                     <h3>Sorting Glass & Broken Items</h3>
                     <p>Understand which glass containers go in the bin, and what to do safely when glass breaks.</p>
                     <span class="tag">Glass</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card" data-category="home-setup">
+            <a href="guide-template.html?id=paper-cardboard" class="guide-card" data-category="home-setup">
                 <div class="guide-img" style="background-color: #fff8e1; color: #f57f17;">📰</div>
                 <div class="guide-text">
                     <h3>Paper & Cardboard Prep</h3>
                     <p>How to properly flatten boxes, remove tape, and avoid grease contamination in pizza boxes.</p>
                     <span class="tag">Paper</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card" data-category="home-setup">
+            <a href="guide-template.html?id=metal-recycling" class="guide-card" data-category="home-setup">
                 <div class="guide-img" style="background-color: #eceff1; color: #546e7a;">🥫</div>
                 <div class="guide-text">
                     <h3>Household Metal Recycling</h3>
                     <p>A complete checklist for recycling aluminum cans, clean foil, and household steel containers.</p>
                     <span class="tag">Metal</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card" data-category="home-setup">
+            <a href="guide-template.html?id=hazardous-waste" class="guide-card" data-category="home-setup">
                 <div class="guide-img" style="background-color: #ffebee; color: #c62828;">⚠️</div>
                 <div class="guide-text">
                     <h3>Disposing of Hazardous Waste</h3>
                     <p>Safely handle and find drop-off centers for old paint, household chemicals, and lightbulbs.</p>
                     <span class="tag">Hazardous</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card hidden-item" data-category="plastics" style="display: none;">
+            <a href="guide-template.html?id=plastics" class="guide-card hidden-item" data-category="plastics" style="display: none;">
                 <div class="guide-img" style="background-color: #f3e5f5; color: #8e24aa;">🥤</div>
                 <div class="guide-text">
                     <h3>Understanding Plastic Resin Codes</h3>
                     <p>A deep dive into the numbers on the bottom of containers and what they mean for your bin.</p>
                     <span class="tag">Plastics</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="guide-card hidden-item" data-category="ewaste" style="display: none;">
+            <a href="guide-template.html?id=lithium-batteries" class="guide-card hidden-item" data-category="ewaste" style="display: none;">
                 <div class="guide-text">
                     <h3>Lithium Battery Safety Guide</h3>
                     <p>Why these batteries cause fires in recycling plants and the proper way to safely dispose of them.</p>
                     <span class="tag">E-waste</span>
                 </div>
-            </div>
+            </a>
 
             <div class="no-results" id="noResultsMsg">
                 No guides found matching your search or filter.
@@ -854,7 +852,6 @@
             closeBtn.addEventListener('click', closeSidebar);
             overlay.addEventListener('click', closeSidebar);
 
-            // --- Search, Filter & Load More Logic ---
             const searchInput = document.getElementById('searchInput');
             const filterBtns = document.querySelectorAll('.filter-btn');
             const cards = Array.from(document.querySelectorAll('.guide-card'));
@@ -938,7 +935,6 @@
                 filterAndRender();
             });
 
-            // Initial render
             filterAndRender();
         });
     </script>
